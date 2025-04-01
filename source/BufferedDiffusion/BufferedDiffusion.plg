@@ -1,0 +1,146 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: BufferedDiffusion - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x410 /fo"Debug/BufferedDiffusion.res" /d "_DEBUG" /d "_AFXDLL" "C:\msdev\Projects\BufferedDiffusion\BufferedDiffusion.rc"" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4C.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/BufferedDiffusion.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\BufferedDiffusion\BufferedDiffusion.cpp"
+"C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionDoc.cpp"
+"C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp"
+"C:\msdev\Projects\BufferedDiffusion\ChildFrm.cpp"
+"C:\msdev\Projects\common\Dcompl.cpp"
+"C:\msdev\Projects\BufferedDiffusion\DiagIO.cpp"
+"C:\msdev\Projects\BufferedDiffusion\Diffusion.cpp"
+"C:\msdev\Projects\BufferedDiffusion\GoThread.cpp"
+"C:\msdev\Projects\BufferedDiffusion\MainFrm.cpp"
+"C:\msdev\Projects\BufferedDiffusion\MyEditCtrl.cpp"
+"C:\msdev\Projects\common\Nrutil.cpp"
+"C:\msdev\Projects\BufferedDiffusion\ParamsDiag.cpp"
+"C:\msdev\Projects\BufferedDiffusion\RedrawDiag.cpp"
+"C:\msdev\Projects\BufferedDiffusion\SeriesSimulation.cpp"
+"C:\msdev\Projects\common\Simplex.cpp"
+"C:\msdev\Projects\BufferedDiffusion\SimThread.cpp"
+"C:\msdev\Projects\BufferedDiffusion\SimulationMemory.cpp"
+"C:\msdev\Projects\BufferedDiffusion\SimulSeriesDiag.cpp"
+"C:\msdev\Projects\common\utils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4C.tmp" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4D.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/BufferedDiffusion.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\BufferedDiffusion\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4D.tmp" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4E.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/BufferedDiffusion.pdb" /debug /machine:I386 /out:"Debug/BufferedDiffusion.exe" /pdbtype:sept 
+.\Debug\BufferedDiffusion.obj
+.\Debug\BufferedDiffusionDoc.obj
+.\Debug\BufferedDiffusionView.obj
+.\Debug\ChildFrm.obj
+.\Debug\Dcompl.obj
+.\Debug\DiagIO.obj
+.\Debug\Diffusion.obj
+.\Debug\GoThread.obj
+.\Debug\MainFrm.obj
+.\Debug\MyEditCtrl.obj
+.\Debug\Nrutil.obj
+.\Debug\ParamsDiag.obj
+.\Debug\RedrawDiag.obj
+.\Debug\SeriesSimulation.obj
+.\Debug\Simplex.obj
+.\Debug\SimThread.obj
+.\Debug\SimulationMemory.obj
+.\Debug\SimulSeriesDiag.obj
+.\Debug\StdAfx.obj
+.\Debug\utils.obj
+.\Debug\BufferedDiffusion.res
+]
+Creating command line "link.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP4E.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+BufferedDiffusion.cpp
+BufferedDiffusionDoc.cpp
+BufferedDiffusionView.cpp
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1302) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1303) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1305) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1306) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1327) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1329) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1332) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1333) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1588) : warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1616) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1617) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1619) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1620) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1641) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1643) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1646) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1647) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1872) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1873) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1875) : warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(1942) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+C:\msdev\Projects\BufferedDiffusion\BufferedDiffusionView.cpp(2221) : warning C4018: '>' : signed/unsigned mismatch
+ChildFrm.cpp
+Dcompl.cpp
+DiagIO.cpp
+Diffusion.cpp
+GoThread.cpp
+MainFrm.cpp
+MyEditCtrl.cpp
+Nrutil.cpp
+ParamsDiag.cpp
+RedrawDiag.cpp
+SeriesSimulation.cpp
+Simplex.cpp
+SimThread.cpp
+SimulationMemory.cpp
+C:\msdev\Projects\BufferedDiffusion\SimulationMemory.cpp(138) : warning C4018: '<' : signed/unsigned mismatch
+SimulSeriesDiag.cpp
+utils.cpp
+C:\msdev\Projects\common\utils.cpp(486) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(487) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(514) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(521) : warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\msdev\Projects\common\utils.cpp(522) : warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\msdev\Projects\common\utils.cpp(594) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(595) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(617) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(820) : warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+C:\msdev\Projects\common\utils.cpp(853) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\msdev\Projects\common\utils.cpp(1577) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\msdev\Projects\common\utils.cpp(1605) : warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+C:\msdev\Projects\common\utils.cpp(1632) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\msdev\Projects\common\utils.cpp(1667) : warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+C:\msdev\Projects\common\utils.cpp(2415) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(2431) : warning C4244: 'initializing' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(3670) : warning C4091: 'typedef ' : ignored on left of 'struct SwapInt32::structintstruct' when no variable is declared
+C:\msdev\Projects\common\utils.cpp(3691) : warning C4091: 'typedef ' : ignored on left of 'struct SwapDouble::structdoublestruct' when no variable is declared
+C:\msdev\Projects\common\utils.cpp(3793) : warning C4091: 'typedef ' : ignored on left of 'struct SwapInt::structintstruct' when no variable is declared
+C:\msdev\Projects\common\utils.cpp(3807) : warning C4091: 'typedef ' : ignored on left of 'struct SwapInt16::structintstruct' when no variable is declared
+C:\msdev\Projects\common\utils.cpp(3823) : warning C4091: 'typedef ' : ignored on left of 'struct SwapLong::structintstruct' when no variable is declared
+C:\msdev\Projects\common\utils.cpp(5573) : warning C4244: '=' : conversion from 'double' to '__int16', possible loss of data
+C:\msdev\Projects\common\utils.cpp(5579) : warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\msdev\Projects\common\utils.cpp(5580) : warning C4154: deletion of an array expression; conversion to pointer supplied
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+BufferedDiffusion.exe - 0 error(s), 47 warning(s)
+</pre>
+</body>
+</html>

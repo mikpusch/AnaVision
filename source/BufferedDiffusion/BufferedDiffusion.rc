@@ -1,0 +1,757 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\BufferedDiffusion.ico"
+IDR_BUFFERTYPE          ICON    DISCARDABLE     "res\\BufferedDiffusionDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About BufferedDiffusion...", ID_APP_ABOUT
+    END
+END
+
+IDR_BUFFERTYPE MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Save Simulation Series On File", 
+                                                ID_FILE_SAVESIMULATIONSERIESONFILE
+
+        MENUITEM "Load Simulation Series From File", 
+                                                ID_FILE_LOADSIMULATIONSERIESFROMFILE
+
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "Read dr/dt table",            ID_FILE_READDRDTTABLE
+        MENUITEM "Write dr/dt table",           ID_FILE_WRITEDRDTTABLE
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "&Parameters\t Ctrl+P",        ID_EDIT_PARAMETERS
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About BufferedDiffusion...", ID_APP_ABOUT
+    END
+    POPUP "Test"
+    BEGIN
+        MENUITEM "Test",                        ID_TEST_TEST
+    END
+    POPUP "Go"
+    BEGIN
+        MENUITEM "&Go\tCtrl+G",                 ID_GO_GO
+        MENUITEM "&Linearized\tCtrl+L",         ID_GO_LINEARIZED
+        MENUITEM "Second linearized",           ID_GO_SECONDLINEARIZED
+        MENUITEM "&Clear Windiowtrl+C",         ID_GO_CLEARWINDIOW
+        MENUITEM "Redraw Old Simulation",       ID_GO_REDRAWOLDSIMULATION
+        MENUITEM "Series of simulations",       ID_GO_SERIESOFSIMULATIONS
+        MENUITEM "Continue Series Simulation",  ID_GO_CONTINUESERIESSIMULATION
+
+    END
+    POPUP "Stop"
+    BEGIN
+        MENUITEM "Stop series simulation",      ID_STOP_STOPSERIESSIMULATION
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM "Slow (almost pause) simulation", 
+                                                ID_STOP_SLOWALMOSTPAUSESIMULATION
+
+        MENUITEM "Restart",                     ID_STOP_RESTART
+        MENUITEM "Save Energy",                 ID_STOP_SAVEENERGY
+        MENUITEM "Change no of seconds out",    ID_STOP_CHANGENOOFSECONDSOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_GO_CLEARWINDIOW,     VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GO_GO,               VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_GO_LINEARIZED,       VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_EDIT_PARAMETERS,     VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About BufferedDiffusion"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "BufferedDiffusion Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2005",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_DIAGIO DIALOG DISCARDABLE  0, 0, 299, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "General Input"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,242,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,242,24,50,14
+    EDITTEXT        IDC_NUMBER,61,58,109,14,ES_AUTOHSCROLL | WS_GROUP
+    EDITTEXT        IDC_STRING,61,28,111,14,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_DIAGPARAMS DIALOG DISCARDABLE  0, 0, 493, 466
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,436,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,436,24,50,14
+    LTEXT           "dt1",IDC_STATIC,13,7,12,8
+    EDITTEXT        IDC_DT,44,7,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Number of slices / delta r",IDC_STATIC,110,7,163,179
+    LTEXT           "r0",IDC_STATIC,117,24,19,8
+    EDITTEXT        IDC_R0,147,22,78,14,ES_AUTOHSCROLL
+    LTEXT           "rmax",IDC_STATIC,118,44,19,8
+    EDITTEXT        IDC_RMAX,148,42,78,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,118,67,132,108
+    CONTROL         "Fix DR, calc M",IDC_FIXDR,"Button",BS_AUTORADIOBUTTON,
+                    129,78,63,10
+    CONTROL         "Fix M, calc DR",IDC_FIXM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_DISABLED,129,92,63,10
+    LTEXT           "DR",IDC_STATIC,125,111,19,8
+    EDITTEXT        IDC_DR,156,108,78,14,ES_AUTOHSCROLL
+    LTEXT           "M",IDC_STATIC,126,163,19,8
+    EDITTEXT        IDC_NSLICES,156,159,78,14,ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "alpha, beta, KD",IDC_STATIC,289,13,140,146
+    LTEXT           "alpha",IDC_STATIC,300,30,19,8
+    EDITTEXT        IDC_ALPHA,333,29,78,14,ES_AUTOHSCROLL
+    LTEXT           "beta",IDC_STATIC,299,54,19,8
+    EDITTEXT        IDC_BETA,333,53,78,14,ES_AUTOHSCROLL
+    LTEXT           "KD",IDC_STATIC,299,75,19,8
+    EDITTEXT        IDC_KD,333,74,78,14,ES_AUTOHSCROLL
+    CONTROL         "calc alpha from beta, KD",IDC_CALCALPHA,"Button",
+                    BS_AUTORADIOBUTTON,306,105,94,10
+    CONTROL         "calc beta from alpha, KD",IDC_CALCBETA,"Button",
+                    BS_AUTORADIOBUTTON,306,121,94,10
+    CONTROL         "calc KD from alpha, beta",IDC_CALCKD,"Button",
+                    BS_AUTORADIOBUTTON,306,136,94,10
+    LTEXT           "DH (m^2 s^-1)",IDC_STATIC,8,194,50,8
+    EDITTEXT        IDC_DH,61,191,78,14,ES_AUTOHSCROLL
+    LTEXT           "DB (m^2 s^-1)",IDC_STATIC,7,214,50,8
+    EDITTEXT        IDC_DB,61,211,78,14,ES_AUTOHSCROLL
+    LTEXT           "Niter",IDC_STATIC,25,64,19,8
+    EDITTEXT        IDC_NITER,53,61,40,14,ES_AUTOHSCROLL
+    LTEXT           "update graph every ...",IDC_STATIC,9,85,98,8
+    EDITTEXT        IDC_NUPDATE,9,101,40,14,ES_AUTOHSCROLL
+    LTEXT           "pHbulk",IDC_STATIC,153,197,28,8
+    EDITTEXT        IDC_PHBULK,209,194,78,14,ES_AUTOHSCROLL
+    LTEXT           "Total [B] (molar!)",IDC_STATIC,153,215,52,8
+    EDITTEXT        IDC_TOTALBUFFER,209,212,78,14,ES_AUTOHSCROLL
+    LTEXT           "I protons (A)",IDC_STATIC,307,214,41,8
+    EDITTEXT        IDC_IH,303,226,78,14,ES_AUTOHSCROLL
+    CONTROL         "Automatic calcualtion of buffer capacity = D[H]tot/D[H]free ",
+                    IDC_AUTOCALCBUFFERCAPAC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,23,339,203,10
+    CONTROL         "Simple Wagner-Keizer",IDC_SIMPLEWAGNERKEIZER,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,309,178,85,10
+    CONTROL         "Write H-profile on files",IDC_WRITEFILES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,260,85,10
+    EDITTEXT        IDC_OUTFILENAMES,7,287,141,14,ES_AUTOHSCROLL
+    LTEXT           "File name",IDC_STATIC,15,279,31,8
+    PUSHBUTTON      "Change",IDC_CHANGEFILENAME,62,270,50,14
+    GROUPBOX        "Current protocol",IDC_STATIC,159,252,76,62
+    CONTROL         "constant",IDC_CONSTANTCURRENT,"Button",
+                    BS_AUTORADIOBUTTON,175,271,43,10
+    CONTROL         "train",IDC_TRAIN,"Button",BS_AUTORADIOBUTTON,175,291,29,
+                    10
+    LTEXT           "time with current",IDC_STATIC,263,246,67,8
+    EDITTEXT        IDC_TIMECURRENTON,259,258,78,14,ES_AUTOHSCROLL
+    LTEXT           "time 0 current",IDC_STATIC,347,246,64,8
+    EDITTEXT        IDC_TIMECURRENTOFF,343,258,78,14,ES_AUTOHSCROLL
+    LTEXT           "N pulses in train",IDC_STATIC,261,276,64,8
+    EDITTEXT        IDC_NPULSESTRAIN,257,289,78,14,ES_AUTOHSCROLL
+    CONTROL         "Renormalize",IDC_RENORMALIZE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,309,194,55,10
+    LTEXT           "dtMAX",IDC_STATIC,14,26,26,8
+    EDITTEXT        IDC_DT2,44,24,40,14,ES_AUTOHSCROLL
+    LTEXT           "fact-DR",IDC_STATIC,120,129,31,8
+    EDITTEXT        IDC_FACTDR,157,127,78,14,ES_AUTOHSCROLL
+    LTEXT           "fact dt",IDC_STATIC,13,43,27,8
+    EDITTEXT        IDC_DT3,43,42,40,14,ES_AUTOHSCROLL
+    LTEXT           "MaxDR",IDC_STATIC,120,145,31,8
+    EDITTEXT        IDC_MAXDR,158,142,78,14,ES_AUTOHSCROLL
+    LTEXT           "N roots in linearized explicit function",IDC_STATIC,23,
+                    412,138,8
+    EDITTEXT        IDC_NROOTS,19,425,78,14,ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "Use Wagner-Keizer",IDC_USEWAGNERKEIZER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,309,164,77,10
+    GROUPBOX        "Linearized solution",IDC_STATIC,7,327,242,132
+    LTEXT           "externally supplied buffer capacity",IDC_STATIC,27,355,
+                    67,8
+    EDITTEXT        IDC_EXTERNALLYSUPPLEIDBUFFERCAPAC,23,366,78,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Use flux correction",IDC_USE_FLUX_CORRECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,23,388,75,10
+    LTEXT           "pH range in display",IDC_STATIC,11,126,64,8
+    EDITTEXT        IDC_RANGEPH,7,139,78,14,ES_AUTOHSCROLL
+    LTEXT           "factor correction",IDC_STATIC,129,381,67,8
+    EDITTEXT        IDC_FACTORCORRECTION,125,392,78,14,ES_AUTOHSCROLL
+    LTEXT           "internal",IDC_STATIC,141,353,67,8
+    EDITTEXT        IDC_INTERNALBUFFERCAPAC,137,364,78,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "Fixed surface buffer",IDC_STATIC,272,333,171,102
+    CONTROL         "Include fixed surface buffer",
+                    IDC_CHECK_INCLUDE_FIXED_SURFACE_BUFFER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,291,350,101,10
+    LTEXT           "KD",IDC_STATIC,289,369,19,8
+    EDITTEXT        IDC_KD_FIXED_SURFACEBUFFER,329,368,78,14,ES_AUTOHSCROLL
+    LTEXT           "Amount in moles",IDC_STATIC,275,391,53,8
+    EDITTEXT        IDC_AMOUNT_FIXED_SURFACEBUFFER,329,390,78,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Thicknesss (m)",IDC_STATIC,277,413,53,8
+    EDITTEXT        IDC_AMOUNT_FIXED_THICKNESSFIXEDSURFACE,331,413,78,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Read starting conf. from file",IDC_READFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,308,102,10
+    LTEXT           "number of seconds out in\nenergy save",IDC_STATIC,388,
+                    284,98,20
+    EDITTEXT        IDC_NSECONDSOUT,389,307,40,14,ES_AUTOHSCROLL
+    CONTROL         "Use predictor",IDC_USE_PREDICTORIN_WAGNERKEIZER,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,421,160,58,10
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "BufferedDiffusion MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "BufferedDiffusion\0"
+            VALUE "LegalCopyright", "Copyright (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "BufferedDiffusion.EXE\0"
+            VALUE "ProductName", "BufferedDiffusion Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_DIAGIO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 292
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_DIAGPARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 486
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 459
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "BufferedDiffusion"
+    IDR_BUFFERTYPE          "\nBuffer\nBuffer\n\n\nBufferedDiffusion.Document\nBuffer Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "BufferedDiffusion"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_EDITCTRL MENU DISCARDABLE 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Copy",                        ID_MENU_COPY
+        MENUITEM "Paste",                       ID_MENU_PASTE
+        MENUITEM "Cut",                         ID_MENU_CUT
+    END
+    POPUP "EditCtrl"
+    BEGIN
+        MENUITEM "Copy",                        ID_EDITCTRO_COPY
+        MENUITEM "Paste",                       ID_EDITCTRO_PASTE
+        MENUITEM "Cut",                         ID_EDITCTRO_CUT
+        MENUITEM "SelectAll",                   ID_SELECT_ALL_EDIT_CTRL
+    END
+END
+
+IDR_MENU_POP2 MENU DISCARDABLE 
+BEGIN
+    POPUP "EditCtrll"
+    BEGIN
+        MENUITEM "Select All",                  ID_EDITCTRLL_SELECTALL
+        MENUITEM "Copy",                        ID_EDITCTRLL_COPY
+        MENUITEM "Cut",                         ID_EDITCTRLL_CUT
+        MENUITEM "Paste",                       ID_EDITCTRLL_PASTE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_REDRAWDIAG DIALOG DISCARDABLE  0, 0, 392, 401
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Redraw dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,334,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,334,24,50,14
+    EDITTEXT        IDC_REDRAW_INDEX,210,22,40,14,ES_AUTOHSCROLL
+    LTEXT           "Redraw index",IDC_STATIC,210,7,44,8
+    GROUPBOX        "Color",IDC_STATIC,299,67,76,158
+    CONTROL         "Gray",IDC_RADIO_GRAY,"Button",BS_AUTORADIOBUTTON,313,77,
+                    39,14
+    CONTROL         "Black",IDC_RADIO_BLACK,"Button",BS_AUTORADIOBUTTON,313,
+                    91,39,14
+    CONTROL         "Red",IDC_RADIO_RED,"Button",BS_AUTORADIOBUTTON,313,105,
+                    39,14
+    CONTROL         "Green",IDC_RADIO_GREEN,"Button",BS_AUTORADIOBUTTON,313,
+                    119,39,14
+    CONTROL         "Yellow",IDC_RADIO_YELLOW,"Button",BS_AUTORADIOBUTTON,
+                    313,147,39,14
+    CONTROL         "Blue",IDC_RADIO_BLUE,"Button",BS_AUTORADIOBUTTON,313,
+                    133,39,14
+    CONTROL         "Orange",IDC_RADIO_ORANGE,"Button",BS_AUTORADIOBUTTON,
+                    313,161,39,14
+    CONTROL         "Pink",IDC_RADIO_PINK,"Button",BS_AUTORADIOBUTTON,313,
+                    175,39,14
+    CONTROL         "Brown",IDC_RADIO_BROWN,"Button",BS_AUTORADIOBUTTON,313,
+                    189,39,14
+    CONTROL         "Light Blue",IDC_RADIO_LIGHTBLUE,"Button",
+                    BS_AUTORADIOBUTTON,313,203,52,14
+    EDITTEXT        IDC_NSIMUL,277,22,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Available curves",IDC_STATIC,273,11,53,8
+    CONTROL         "Show reference (in gray)",IDC_SHOWREF,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,381,93,10
+    EDITTEXT        IDC_REFINDEX,199,380,40,14,ES_AUTOHSCROLL
+    LTEXT           "Reference index",IDC_STATIC,139,384,53,8
+END
+
+IDD_DIAG_SIMUL_SERIES DIALOG DISCARDABLE  0, 0, 456, 421
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Simulate a series of dr, dt values"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,399,24,50,14
+    LTEXT           "Table of dr, dt values - separated by white space",
+                    IDC_STATIC,32,31,154,8
+    LTEXT           "Total time of the simulation",IDC_STATIC,353,77,84,8
+    EDITTEXT        IDC_EDIT_TOTALTIME,353,89,72,14,ES_AUTOHSCROLL
+    LTEXT           "Number of curves",IDC_STATIC,355,184,57,8
+    EDITTEXT        IDC_EDIT_NUMBERCURVES,355,196,72,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDMYOK,399,7,50,14
+    LTEXT           "Intermediate time point",IDC_STATIC,355,147,72,8
+    EDITTEXT        IDC_EDIT_INTERMEDIATETIME,355,159,72,14,ES_AUTOHSCROLL
+    CONTROL         "use 2 times (else: use n-curves)",
+                    IDC_USE_TWO_TIMES_POINTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,330,121,115,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_REDRAWDIAG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 384
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 394
+    END
+
+    IDD_DIAG_SIMUL_SERIES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 449
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 414
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\BufferedDiffusion.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\BufferedDiffusion.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
