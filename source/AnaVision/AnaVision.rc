@@ -1,0 +1,1322 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\AnaVision.ico"
+
+IDR_ANAVISTYPE          ICON                    "res\\AnaVisionDoc.ico"
+
+IDI_ICON3               ICON                    "res\\icon1.ico"
+
+IDI_ICON4               ICON                    "res\\icon4.ico"
+
+IDI_ICON5               ICON                    "res\\icon5.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    BUTTON      ID_CREATEAPOLYGON
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      ID_AUTO_SCALE
+    BUTTON      ID_MAN_SCALE
+    SEPARATOR
+    BUTTON      ID_VIEW_SHOWCONUS
+    BUTTON      ID_VIEW_SHOWRECTANGLE
+    SEPARATOR
+    BUTTON      ID_VIEW_VIEWGRADIENTTHISIMAGE
+    BUTTON      ID_VIEW_VIENUMBEROFPROTONS
+    SEPARATOR
+    BUTTON      ID_VIEW_SHOWGRAPH
+    BUTTON      ID_VIEW_SHOWTEXT
+    SEPARATOR
+    BUTTON      ID_EDIT_PARAMS
+    BUTTON      ID_FILE_LOADPARAMS
+    BUTTON      ID_FILE_SAVEPARAMS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About AnaVision...",         ID_APP_ABOUT
+    END
+END
+
+IDR_ANAVISTYPE MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Open Tiff",                   ID_FILE_OPENTIFF
+        MENUITEM "Open Tiff z-stack",           ID_FILE_OPENTIFFZ
+        MENUITEM "Open Standard Tiff",          ID_FILE_OPENSTANDARDTIFF
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM "Load Flim Fret Project",      ID_FILE_LOADFLIMFRETPROJECT
+        MENUITEM "Save Flim Fret Project",      ID_FILE_SAVEFLIMFRETPOJECT
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Load Params",                 ID_FILE_LOADPARAMS
+        MENUITEM "SaveParams",                  ID_FILE_SAVEPARAMS
+        MENUITEM SEPARATOR
+        MENUITEM "Export Gradients",            ID_FILE_EXPORTGRADIENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "Save Images in Anavision format", ID_FILE_SAVEIMAGESINANAVISIONFORMAT
+        MENUITEM "Open Anavision Format",       ID_FILE_OPENANAVISIPONFORMAT
+        MENUITEM "Save this stack in Anavision format", ID_FILE_SAVETHISSTACKINANAVISIONFORMAT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tShift+Z",              ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Params\tCtrl+P",              ID_EDIT_PARAMS
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Set Mode Move\tm",            ID_VIEW_SETMODEMOVE
+        MENUITEM "Set Mode Size\ts",            ID_VIEW_SETMODESIZE
+        MENUITEM "Set Mode Rotate \tr",         ID_VIEW_SETMODEROTATE
+        MENUITEM SEPARATOR
+        MENUITEM "ShowRectangle",               ID_VIEW_SHOWRECTANGLE
+        MENUITEM "ShowConus",                   ID_VIEW_SHOWCONUS
+        MENUITEM "Show Polygons",               ID_VIEW_SHOWPOLYGONS
+        MENUITEM SEPARATOR
+        MENUITEM "View gradient this image",    ID_VIEW_VIEWGRADIENTTHISIMAGE
+        MENUITEM "View number of protons",      ID_VIEW_VIENUMBEROFPROTONS
+        MENUITEM "View mean values",            ID_VIEW_VIEWMEANVALUES
+        MENUITEM "View kinetics as function of time", ID_VIEW_VIEWKINETICS
+        MENUITEM "View kinetics as function of radius", ID_VIEW_VIEWKINETICSASFUNCTIONOFRADIUS
+        MENUITEM "View mean values of polygons", ID_VIEW_VIEWMEANVALUESINPOLYGONS
+        MENUITEM "View filled area",            ID_VIEW_VIEWFILLEDAREA
+        MENUITEM "View Phasors",                ID_VIEW_VIEWPHASORS
+        MENUITEM SEPARATOR
+        MENUITEM "Show Graph",                  ID_VIEW_SHOWGRAPH
+        MENUITEM "Show Numbers",                ID_VIEW_SHOWTEXT
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+        MENUITEM "S&plit",                      ID_WINDOW_SPLIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About AnaVision...",         ID_APP_ABOUT
+        MENUITEM "Test Vect Ref",               ID_HELP_TESTVECTREF
+        MENUITEM "Test",                        ID_HELP_TEST
+        MENUITEM "TestEdge",                    ID_HELP_TESTEDGE
+        MENUITEM "Fill",                        ID_HELP_FILL
+        MENUITEM "StartFill",                   ID_HELP_STARTFILL
+    END
+    POPUP "Tone", INACTIVE
+    BEGIN
+        MENUITEM "A",                           ID_TONE_A
+        MENUITEM "b",                           ID_TONE_B
+        MENUITEM "C",                           ID_TONE_C
+        MENUITEM "test",                        ID_TONE_TEST
+    END
+    POPUP "Generate", INACTIVE
+    BEGIN
+        MENUITEM "NewMacros",                   ID_GENERATE_NEWMACROS
+        MENUITEM "Init",                        ID_GENERATE_INIT
+        MENUITEM "Next\tCtrl+Enter",            ID_GENERATE_NEXT
+        MENUITEM "Macro",                       ID_GENERATE_MACRO
+        MENUITEM "Macro-Normalize-Images",      ID_GENERATE_MACRONORMALIZEIMAGES
+    END
+    POPUP "&Analyze"
+    BEGIN
+        MENUITEM "&This Image",                 ID_ANALYZE_THISIMAGE
+        MENUITEM "&Get number of protons (in C)\tCtrl+G", ID_ANALYZE_GETNUMBEROFPROTONS
+        MENUITEM "Overlay gradient several frames", ID_ANALYZE_OVERLAYGRADIENTSEVERALFRAMES
+        MENUITEM "Mean Values ",                ID_ANALYZE_SHOWMEANVALUESINTABLE
+        MENUITEM "Export images",               ID_ANALYZE_EXPORTIMAGES
+        MENUITEM "Export gradients",            ID_ANALYZE_EXPORTGRADIENTS
+        MENUITEM "Fret",                        ID_ANALYZE_FRET
+    END
+    POPUP "Modify Data"
+    BEGIN
+        MENUITEM "Subtract",                    ID_MODIFYDATA_SUBTRACT
+        MENUITEM "Assign a value to this image", ID_MODIFYDATA_ASSIGNAVALUETOTHISIMAGE
+        MENUITEM "Ratio",                       ID_MODIFYDATA_RATIO
+    END
+    POPUP "Kinetics"
+    BEGIN
+        MENUITEM "Construct",                   ID_KINETICS_CONSTRUCT
+        MENUITEM "Fit linear",                  ID_KINETICS_FIT
+        MENUITEM "Fit simulated",               ID_KINETICS_FITSIMULATED
+        MENUITEM "Stop Fit",                    ID_KINETICS_STOPFIT
+        MENUITEM "Export as a function of radius", ID_KINETICS_EXPORTASAFUNCTIONOFRADIUS
+        MENUITEM "Export as a function of time", ID_KINETICS_EXPORTASAFUNCTIONOFTIME
+    END
+    POPUP "Region of Interest"
+    BEGIN
+        MENUITEM "Define new polygon\tP",       ID_CREATEAPOLYGON
+        MENUITEM "Calc Mean Values",            ID_REGIONOFINTEREST_CALCMEANVALUES
+        MENUITEM "Calc Sum Values",             ID_REGIONOFINTEREST_CALCSUMVALUES
+        MENUITEM "Calc Area",                   ID_REGIONOFINTEREST_CALCAREA
+        MENUITEM "Make Membrane Polygons of selected ROI", ID_REGIONOFINTEREST_CALCULATEMEMBRANE
+        MENUITEM "Make opposing closed ROIS form a linear ROI", ID_REGIONOFINTEREST_MAKEOPPOSINGCLOSEDROISFORMALINEARROI
+        MENUITEM SEPARATOR
+        MENUITEM "Delete selected polygon",     ID_REGIONOFINTEREST_DELETESELECTEDPOLYGON
+        MENUITEM "Delete ALL plygons",          ID_REGIONOFINTEREST_DELETEALLPLYGONS
+        MENUITEM SEPARATOR
+        MENUITEM "Calculate Circular Gradient of 1 selected polygon", ID_REGIONOFINTEREST_CALCULATEMEMBRANESUMS
+        MENUITEM "Calculate gradient for a lineal Poly", ID_REGIONOFINTEREST_CALCULATEGRADIENTFORALINEALPOLY
+        MENUITEM SEPARATOR
+        MENUITEM "Copy selected polygon",       ID_REGIONOFINTEREST_COPYSELECTEDPOLYGON32850
+        MENUITEM "Copy all polygons",           ID_REGIONOFINTEREST_COPYALLPOLYGONS
+        MENUITEM "Paste copied polygon(s)",     ID_REGIONOFINTEREST_PASTECOPIEDPOLYGON
+        MENUITEM "Select polygon by index",     ID_REGIONOFINTEREST_SELECTPOLYGONBYINDEX
+        MENUITEM "Convert selected polygon to line", ID_REGIONOFINTEREST_CONVERTTOLINE
+        MENUITEM "Move selected poly with arrow keys (ESC to stop)", ID_REGIONOFINTEREST_MOVESELECTEDPOLYWITHARROWKEYS
+        MENUITEM "Calc circumference of selected polygon", ID_REGIONOFINTEREST_CALCCIRCUMFERENCEOFSELECTEDPOLYGON
+        MENUITEM "Create n Polygons inside",    ID_REGIONOFINTEREST_CREATENPOLYGONSINSIDE
+    END
+    POPUP "Line"
+    BEGIN
+        MENUITEM "Define new line",             ID_LINE_DEFINENEWLINE
+        MENUITEM "Delete selected line",        ID_LINE_DELETESELECTEDLINE
+        MENUITEM "Delete ALL lines",            ID_LINE_DELETEALLLINES
+        MENUITEM "Select line by index",        ID_LINE_SELECTLINEBYINDEX
+        MENUITEM "Make Polygon around selected line", ID_LINE_MAKEPOLYGONAROUNDSELECTEDLINE
+        MENUITEM "Copy selected line",          ID_LINE_COPYSELECTEDLINE
+        MENUITEM "Paste copied line",           ID_LINE_PASTECOPIEDLINE
+        MENUITEM "Move selected line with arrow keys (ESC to stop)", ID_LINE_MOVESELECTEDPOLYWITHARROWKEYS
+        MENUITEM "Convert selected line to polygon", ID_LINE_CONVERTSELECTEDLINETOPOLYGON
+        MENUITEM "Calc Length of selected line", ID_LINE_CALCLENGTH
+    END
+    POPUP "Offset"
+    BEGIN
+        MENUITEM "Offsetx + 10",                ID_OFFSET_OFFSETX
+        MENUITEM "Offsetx - 10",                ID_OFFSET_OFFSETX32832
+        MENUITEM "Offsety + 10",                ID_OFFSET_OFFSETY
+        MENUITEM "Offsety - 10",                ID_OFFSET_OFFSETY32834
+        MENUITEM SEPARATOR
+        MENUITEM "Track only this",             ID_OFFSET_TRACK
+        MENUITEM "Track All, start from this",  ID_OFFSET_TRACKALL
+        MENUITEM SEPARATOR
+        MENUITEM "Clear all offsets",           ID_OFFSET_CLEARALLOFFSETS
+    END
+    POPUP "Fill"
+    BEGIN
+        MENUITEM "Define threshold",            ID_FILL_DEFINETHRESHOLD
+        MENUITEM "Clear",                       ID_FILL_CLEAR
+        MENUITEM "Fill currently selected polygon", ID_FILL_FILLCURRENTLYSELECTEDPOLYGON
+        MENUITEM "Start select points",         ID_FILL_STARTSELECTPOINTS
+        MENUITEM "Stop select points",          ID_FILL_STOPSELECTPOINTS
+        MENUITEM "Undo last",                   ID_FILL_UNDOLAST
+        MENUITEM "Toggle Hide/Show",            ID_FILL_TOGGLEHIDE
+        MENUITEM "Save On File",                ID_FILL_SAVEONFILE
+        MENUITEM "Load from file",              ID_FILL_LOADFROMFILE
+        MENUITEM "Start select points in selected polygon", ID_FILL_STARTSELECTPOINTSINSELECTEDPOLYGON
+        MENUITEM "Stop select points in selected polygon", ID_FILL_STOPSELECTPOINTSINSELECTEDPOLYGON
+    END
+    POPUP "Count"
+    BEGIN
+        MENUITEM "Start",                       ID_COUNT_START
+        MENUITEM "Stop",                        ID_COUNT_STOP
+        MENUITEM "Clear",                       ID_COUNT_CLEAR
+        MENUITEM "Set size",                    ID_COUNT_SETSIZE
+    END
+    POPUP "Track Cells"
+    BEGIN
+        MENUITEM "Start tracking cells mode",   ID_TRACKCELLS_STARTTRACKINGCELLSMODE
+        MENUITEM "Detect cells",                ID_TRACKCELLS_DETECTCELLS
+        MENUITEM "Count cells",                 ID_TRACKCELLS_COUNTCELLS
+        MENUITEM "Stop tracking cells moded",   ID_TRACKCELLS_STOPTRACKINGCELLSMODED
+    END
+    POPUP "Phasor"
+    BEGIN
+        MENUITEM "Load Phasor txt files",       ID_PHASOR_LOADPHASORTXTFILES
+        MENUITEM "Load Phasor tif files",       ID_PHASOR_LOADPHASORTIFFILES
+    END
+    POPUP "Localization"
+    BEGIN
+        MENUITEM "Calc Pearson",                ID_LOCALIZATION_CALCCOEFFICIENTS
+        MENUITEM "Calc Manders1",               ID_LOCALIZATION_CALCMANDERS1
+        MENUITEM "Calc Manders2",               ID_LOCALIZATION_CALCMANDERS2
+    END
+END
+
+IDR_MENU_POPUP_PHASOR MENU
+BEGIN
+    POPUP "Popup Phasor"
+    BEGIN
+        MENUITEM "Show G, S and N",             ID_POPUPPHASOR_SHOWN, CHECKED
+        MENUITEM "Set as pink circle center (no FRET)", ID_POPUPPHASOR_SHOW
+        MENUITEM "Set as blue circle center (FRET)", ID_POPUPPHASOR_SETASBLUECIRCLECENTER
+        MENUITEM "Set as background reference", ID_POPUPPHASOR_SETASBACKGROUNDREFERENCE
+        MENUITEM "Remove background reeference", ID_POPUPPHASOR_REMOVEBACKGROUNDREEFERENCE
+        MENUITEM "Export G, S, N to clipboard", ID_POPUPPHASOR_EXPORTG
+        MENUITEM "Save only pink part of image as tif", ID_POPUPPHASOR_SAVELOWERIMAGEASTIFF
+        MENUITEM "Save only blue part of image as tif", ID_POPUPPHASOR_SAVEONLYBLUEPARTOFIMAGEASTIF
+        MENUITEM "Toggle use currently selected polygon ", ID_POPUPPHASOR_TOGGLEUSECURRENTLYSELECTEDPOLYGON
+        MENUITEM "Copy pink circle coordinates", ID_POPUPPHASOR_COPYPINKCIRCLECOORDINATES
+        MENUITEM "Paste pink circle coordinates", ID_POPUPPHASOR_PASTEPINKCIRCLECOORDINATES
+        MENUITEM "Copy all",                    ID_POPUPPHASOR_COPYALL
+        MENUITEM "Paste all",                   ID_POPUPPHASOR_PASTEALL
+        MENUITEM "Save this as tiff",           ID_POPUPPHASOR_SAVETHISASTIFF
+        MENUITEM "Show/Hide pink circle",       ID_POPUPPHASOR_SHOW32913
+        MENUITEM "Show/Hide blue circle",       ID_POPUPPHASOR_SHOW32914
+        MENUITEM "Copy pink values to clipboard", ID_POPUPPHASOR_COPYPINKVALUESTOCLIPBOARD
+        MENUITEM "Copy blue values to clipboard", ID_POPUPPHASOR_COPYBLUEVALUESTOCLIPBOARD
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "S",            ID_ACCEL32772,          VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_ANALYZE_GETNUMBEROFPROTONS, VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_AUTO_SCALE,          VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_EDIT_PARAMS,         VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "Z",            ID_EDIT_REDO,           VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_RETURN,      ID_GENERATE_NEXT,       VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_MAN_SCALE,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_MAN_SCALE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "A",            ID_TONE_A,              VIRTKEY, NOINVERT
+    "B",            ID_TONE_B,              VIRTKEY, NOINVERT
+    "C",            ID_TONE_C,              VIRTKEY, NOINVERT
+    "M",            ID_VIEW_SETMODEMOVE,    VIRTKEY, NOINVERT
+    "R",            ID_VIEW_SETMODEROTATE,  VIRTKEY, NOINVERT
+    "S",            ID_VIEW_SETMODESIZE,    VIRTKEY, NOINVERT
+    "P",            ID_CREATEAPOLYGON,      VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 63
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AnaVision"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "AnaVision Version 12.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006-2025, Michael Pusch",IDC_STATIC,40,25,164,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Last change: 29.3.2025",IDC_STATIC,43,39,76,8
+END
+
+IDD_DIAGIO DIALOG 0, 0, 220, 101
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "General Input"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,163,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,163,24,50,14
+    EDITTEXT        IDC_NUMBER,15,48,109,14,ES_AUTOHSCROLL | WS_GROUP
+    EDITTEXT        IDC_STRING,15,18,111,14,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_DIAGSET DIALOGEX 0, 0, 494, 409
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,437,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,437,24,50,14
+    LTEXT           "Size Image x",IDC_STATIC,13,15,41,8
+    EDITTEXT        IDC_SIZE_X,14,25,40,14,ES_AUTOHSCROLL
+    LTEXT           "Size Image y",IDC_STATIC,67,15,41,8
+    EDITTEXT        IDC_SIZE_Y,68,25,40,14,ES_AUTOHSCROLL
+    CONTROL         "Autoscale",IDC_CHECK_AUTOSCALE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,337,270,47,10
+    LTEXT           "Manual Min",IDC_STATIC,337,289,38,8
+    EDITTEXT        IDC_MANUAL_MIN,338,297,40,14,ES_AUTOHSCROLL
+    LTEXT           "Manual Max",IDC_STATIC,388,287,40,8
+    EDITTEXT        IDC_MANUAL_MAX,389,297,40,14,ES_AUTOHSCROLL
+    LTEXT           "Delta Image",IDC_STATIC,17,62,39,8
+    EDITTEXT        IDC_DELTA_IMAGE,16,76,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Conversion",IDC_STATIC,24,103,269,206
+    GROUPBOX        "Wavelength",IDC_STATIC,44,154,229,108
+    CONTROL         "490/450",IDC_RADIO_490450,"Button",BS_AUTORADIOBUTTON | WS_GROUP,50,161,43,10
+    CONTROL         "490/440",IDC_RADIO_490440,"Button",BS_AUTORADIOBUTTON,50,215,43,10
+    LTEXT           "Scale ratio",IDC_STATIC,27,279,34,8
+    EDITTEXT        IDC_EDIT_SCALERATIO,28,290,62,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LOOKUPNAME,338,353,102,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Load Color Lookup Table",IDC_LOAD_LOOKUPTABLE,335,333,110,14
+    PUSHBUTTON      "Make Green",IDC_MAKE_GREEN,329,377,50,25
+    LTEXT           "x0 + dx*ln((y-A1)/(A2-y))",IDC_STATIC,131,140,75,8
+    LTEXT           "A1",IDC_STATIC,103,162,10,8
+    EDITTEXT        IDC_A1_490_450,118,160,47,14,ES_AUTOHSCROLL
+    LTEXT           "A2",IDC_STATIC,176,162,10,8
+    EDITTEXT        IDC_A2_490_450,191,160,47,14,ES_AUTOHSCROLL
+    LTEXT           "x0",IDC_STATIC,104,185,8,8
+    EDITTEXT        IDC_X0_490_450,119,182,47,14,ES_AUTOHSCROLL
+    LTEXT           "dx",IDC_STATIC,175,185,8,8
+    EDITTEXT        IDC_DX_490_450,191,182,47,14,ES_AUTOHSCROLL
+    LTEXT           "A1",IDC_STATIC,103,217,10,8
+    EDITTEXT        IDC_A1_490_440,117,214,47,14,ES_AUTOHSCROLL
+    LTEXT           "A2",IDC_STATIC,175,217,10,8
+    EDITTEXT        IDC_A2_490_440,190,214,47,14,ES_AUTOHSCROLL
+    LTEXT           "x0",IDC_STATIC,103,240,8,8
+    EDITTEXT        IDC_X0_490_440,119,237,47,14,ES_AUTOHSCROLL
+    LTEXT           "dx",IDC_STATIC,175,240,8,8
+    EDITTEXT        IDC_DX_490_440,191,237,47,14,ES_AUTOHSCROLL
+    LTEXT           "Time difference between images (in seconds)",IDC_STATIC,124,14,143,8
+    EDITTEXT        IDC_TIME_DIFFERENCE,124,25,131,14,ES_AUTOHSCROLL
+    LTEXT           "Pixel size in microns",IDC_STATIC,124,47,63,8
+    EDITTEXT        IDC_PIXELSIZE,124,58,65,14,ES_AUTOHSCROLL
+    LTEXT           "Magnification",IDC_STATIC,203,47,43,8
+    EDITTEXT        IDC_MAGNIFICATION,203,58,65,14,ES_AUTOHSCROLL
+    GROUPBOX        "Convert pH change to total proton change",IDC_STATIC,317,98,158,163
+    CONTROL         "theoretical",IDC_THEORETICAL,"Button",BS_AUTORADIOBUTTON,326,132,49,10
+    CONTROL         "linear",IDC_LINEAR,"Button",BS_AUTORADIOBUTTON,326,165,33,10
+    CONTROL         "Convert ratio to DeltaH",IDC_RADIO_CONVERT_RATIO_TO_DH,
+                    "Button",BS_AUTORADIOBUTTON,326,182,88,10
+    CONTROL         "not implemented",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,326,224,67,10
+    CONTROL         "not implemented",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,326,241,67,10
+    EDITTEXT        IDC_THEORETICAL_PK,385,128,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TOTALAMOUNT,440,128,26,14,ES_AUTOHSCROLL
+    LTEXT           "pK",IDC_STATIC,391,112,10,8
+    LTEXT           "Total conc.",IDC_STATIC,429,112,37,8
+    EDITTEXT        IDC_LINEARCONVERSIONFACTOR,385,163,26,14,ES_AUTOHSCROLL
+    LTEXT           "alpha (mM / pH unit)",IDC_STATIC,390,150,66,8
+    CONTROL         "raw data",IDC_RADIO_RAW,"Button",BS_AUTORADIOBUTTON,43,118,43,10
+    CONTROL         "convert to pH",IDC_RADIO_CONVERT,"Button",BS_AUTORADIOBUTTON,43,138,59,10
+    LTEXT           "units: microM",IDC_STATIC,431,196,42,8
+    EDITTEXT        IDC_CONVERSION_RATIO_TO_DELTA_H,375,193,47,14,ES_AUTOHSCROLL
+    LTEXT           "Factor",IDC_STATIC,347,196,21,8
+    CONTROL         "Subtract reference",IDC_CHECK_SUBTRACTREFERNCE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,200,328,75,10
+    LTEXT           "Image Scale",IDC_STATIC,155,351,40,8
+    EDITTEXT        IDC_IMAGE_SCALE,155,359,40,14,ES_AUTOHSCROLL
+    LTEXT           "Offset on image",IDC_STATIC,205,348,50,8
+    EDITTEXT        IDC_IMAGE_OFFSET,207,359,40,14,ES_AUTOHSCROLL
+    LTEXT           "Flim laser freqency",IDC_STATIC,123,79,59,8
+    EDITTEXT        IDC_FLIM_LASER_FREQ,123,90,65,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Make Grey",IDC_MAKE_GREY,429,377,50,25
+    PUSHBUTTON      "Make Red",IDC_MAKE_RED,279,377,50,25
+    PUSHBUTTON      "Make Blue",IDC_MAKE_BLUE,379,377,50,25
+END
+
+IDD_DIAG_GET_FRAMES_TO_ANALYZE DIALOG 0, 0, 340, 146
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Frames to analyze"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,283,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,283,24,50,14
+    LTEXT           "background frame initial",IDC_STATIC,19,17,76,8
+    EDITTEXT        IDC_INITIALFRAME0,19,33,40,14,ES_AUTOHSCROLL
+    LTEXT           "background frame final",IDC_STATIC,105,17,73,8
+    EDITTEXT        IDC_INITIALFRAME1,108,33,40,14,ES_AUTOHSCROLL
+    LTEXT           "analysis frame initial",IDC_STATIC,20,66,62,8
+    EDITTEXT        IDC_ANALYSISFRAME0,20,82,40,14,ES_AUTOHSCROLL
+    LTEXT           "analysis frame final",IDC_STATIC,106,66,60,8
+    EDITTEXT        IDC_ANALYSISFRAME1,108,82,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Use which step",IDC_STATIC,207,60,126,79
+    CONTROL         "Step by 1",IDC_STEP_BY_ONE,"Button",BS_AUTORADIOBUTTON,213,71,46,10
+    CONTROL         "Use step >= 1",IDC_USE_LARGER_STEP,"Button",BS_AUTORADIOBUTTON,213,103,60,10
+    LTEXT           "Step",IDC_STATIC,281,93,16,8
+    EDITTEXT        IDC_STEP,277,104,40,14,ES_AUTOHSCROLL
+    CONTROL         "Track drift",IDC_TRACK_DRIFT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,116,48,10
+END
+
+IDD_DIAG_KINETICS DIALOG 0, 0, 494, 503
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Kinetics"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,18,452,92,14
+    PUSHBUTTON      "Cancel",IDCANCEL,153,450,95,14
+    LTEXT           "Radius oocyte (m) = ",IDC_STATIC,19,149,65,8
+    EDITTEXT        IDC_ROOCYTE,87,148,49,12,ES_AUTOHSCROLL
+    GROUPBOX        "Radius  (indexes)",IDC_STATIC,25,16,98,70,BS_CENTER
+    LTEXT           "R min    =",IDC_STATIC,40,31,30,11
+    LTEXT           "R max   =",IDC_STATIC,40,47,30,11
+    EDITTEXT        IDC_RMIN,75,31,28,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAX,75,47,28,12,ES_AUTOHSCROLL
+    LTEXT           "Delta R =",IDC_STATIC,40,63,30,11
+    EDITTEXT        IDC_DELTAR,75,63,28,12,ES_AUTOHSCROLL
+    GROUPBOX        "Time",IDC_STATIC,154,16,212,161,BS_CENTER
+    LTEXT           "First Image to analyze",IDC_STATIC,176,31,77,11
+    LTEXT           "Last Image to analyze",IDC_STATIC,176,47,69,11
+    EDITTEXT        IDC_TIMEMIN,278,31,47,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TIMEMAX,278,47,48,12,ES_AUTOHSCROLL
+    LTEXT           "Use Step",IDC_STATIC,176,63,52,11
+    EDITTEXT        IDC_DELTATIME,278,63,48,12,ES_AUTOHSCROLL
+    CONTROL         "Track Drift",IDC_CHECKTRACKDRIFT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,91,49,10
+    LTEXT           "Time difference between images (s)",IDC_STATIC,167,144,66,18
+    LTEXT           "Pixel size (m)  =",IDC_STATIC,19,134,49,8
+    EDITTEXT        IDC_PIXELSIZE,87,132,49,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TIMEBETWEENIMAGES,267,147,52,12,ES_AUTOHSCROLL
+    LTEXT           "Current  (A)  =",IDC_STATIC,30,210,42,11
+    LTEXT           "Buffer capacity    =",IDC_STATIC,9,242,62,11
+    EDITTEXT        IDC_CURRENT,78,210,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DIFFCOEFF,78,226,46,12,ES_AUTOHSCROLL
+    LTEXT           "Diffusion coeff.  =",IDC_STATIC,11,226,65,11
+    EDITTEXT        IDC_BUFFERCAP,78,242,45,12,ES_AUTOHSCROLL
+    CONTROL         "Convert to DeltaH-total",IDC_CHECKCONVERTTODELTAHTOTAL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,107,88,10
+    CONTROL         "Fit D",IDC_CHECKFITD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,129,226,31,10
+    LTEXT           "Starting values: 1st image",IDC_STATIC,176,91,86,11
+    LTEXT           "Starting values: last image",IDC_STATIC,176,107,92,11
+    EDITTEXT        IDC_FIRSTSTART,279,91,47,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LASTSTART,279,107,48,12,ES_AUTOHSCROLL
+    GROUPBOX        "For simulated fit",IDC_STATIC,197,180,268,265,BS_CENTER
+    EDITTEXT        IDC_KD_FREE,277,194,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_KDFREE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,329,197,23,10
+    LTEXT           "KD free (M)",IDC_STATIC,237,197,37,8
+    EDITTEXT        IDC_CONC_FREE,278,214,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_CONCFREE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,330,218,23,10
+    LTEXT           "Total conc. free (M)",IDC_STATIC,213,218,63,8
+    EDITTEXT        IDC_KD_FIXED,278,233,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_KDFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,330,238,23,10
+    LTEXT           "KD fixed (M)",IDC_STATIC,236,238,40,8
+    EDITTEXT        IDC_AMOUNT_FIXED,279,255,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_AMOUNTFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,331,259,23,10
+    LTEXT           "Amount fixed (moles)",IDC_STATIC,211,259,66,8
+    EDITTEXT        IDC_DR,256,353,40,14,ES_AUTOHSCROLL
+    LTEXT           "DR (m)",IDC_STATIC,220,358,23,8
+    EDITTEXT        IDC_DT0,342,339,40,14,ES_AUTOHSCROLL
+    LTEXT           "DT0",IDC_STATIC,310,343,15,8
+    EDITTEXT        IDC_FACT_T,344,357,40,14,ES_AUTOHSCROLL
+    LTEXT           "Fact T",IDC_STATIC,308,362,22,8
+    EDITTEXT        IDC_DT_MAX,342,377,40,14,ES_AUTOHSCROLL
+    LTEXT           "DT Max",IDC_STATIC,310,381,26,8
+    GROUPBOX        "simulation parameters",IDC_STATIC,210,334,190,93
+    LTEXT           "Number of iterations",IDC_STATIC,224,314,64,8
+    EDITTEXT        IDC_NITERATIONS_SIMULFIT,300,313,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit Current",IDC_CHECKFITCURRENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,130,210,48,10
+    LTEXT           "Step size",IDC_STATIC,378,315,30,8
+    EDITTEXT        IDC_STEPSIZE,418,312,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_THICKNESS_FIXED,280,277,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_THICKNESSFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,332,281,23,10
+    LTEXT           "Thickness fixed b.",IDC_STATIC,212,281,58,8
+    EDITTEXT        IDC_RMAXSIMUL,249,393,40,14,ES_AUTOHSCROLL
+    LTEXT           "Rmax for simulation (m)",IDC_STATIC,221,385,73,8
+    GROUPBOX        "Off focus correction",IDC_STATIC,17,271,163,102
+    CONTROL         "Use off focus correction (only for linear fit",IDC_CHECK_OFFFOCUS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,288,144,10
+    LTEXT           "and for Delta-H total data)",IDC_STATIC,37,301,82,8
+    EDITTEXT        IDC_N_OFF_FOCUS_COEFFS,119,324,40,14,ES_AUTOHSCROLL
+    LTEXT           "Number of corrections coeffs",IDC_STATIC,21,328,92,8
+    EDITTEXT        IDC_GAUSSIAN_WIDTH,119,345,40,14,ES_AUTOHSCROLL
+    LTEXT           "Width of Gaussian (in µm)",IDC_STATIC,30,349,82,8
+END
+
+IDD_DIAG_RATIO DIALOGEX 0, 0, 493, 393
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ratio"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,436,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,436,24,50,14
+    LISTBOX         IDC_LIST_B,231,34,124,64,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "A",IDC_STATIC,69,14,8,8
+    LISTBOX         IDC_LIST_A,75,34,124,64,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "B",IDC_STATIC,233,15,8,8
+    COMBOBOX        IDC_COMBO_RESULT,68,167,140,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Result",IDC_STATIC,76,150,21,8
+    EDITTEXT        IDC_BACKGROUND_A,77,116,122,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BACKGROUND_B,233,118,122,14,ES_AUTOHSCROLL
+    LTEXT           "Background A",IDC_STATIC,105,106,46,8
+    LTEXT           "Background B",IDC_STATIC,267,107,46,8
+    EDITTEXT        IDC_N_NEIGHBORS,307,168,122,14,ES_AUTOHSCROLL
+    LTEXT           "Numer of Neighbors for Averaging",IDC_STATIC,318,156,108,8
+END
+
+ID_DIAG_SHOW_GSN DIALOGEX 0, 0, 186, 92
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "G S N"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    EDITTEXT        IDC_EDIT_G_POINT,31,17,83,14,ES_AUTOHSCROLL
+    LTEXT           "G",IDC_STATIC,17,20,8,8
+    EDITTEXT        IDC_EDIT_S_POINT,31,37,83,14,ES_AUTOHSCROLL
+    LTEXT           "S",IDC_STATIC,17,40,8,8
+    EDITTEXT        IDC_EDIT_N_POINT,31,57,83,14,ES_AUTOHSCROLL
+    LTEXT           "N",IDC_STATIC,17,60,8,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "AnaVision MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "AnaVision"
+            VALUE "LegalCopyright", "Copyright (C) 2005"
+            VALUE "OriginalFilename", "AnaVision.EXE"
+            VALUE "ProductName", "AnaVision Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_DIAGIO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_DIAGSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 487
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 402
+    END
+
+    IDD_DIAG_GET_FRAMES_TO_ANALYZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 139
+    END
+
+    IDD_DIAG_KINETICS, DIALOG
+    BEGIN
+        LEFTMARGIN, 9
+        RIGHTMARGIN, 487
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 496
+    END
+
+    IDD_DIAG_RATIO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 486
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 386
+    END
+
+    ID_DIAG_SHOW_GSN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "AnaVision"
+    IDR_ANAVISTYPE          "\nAnaVis\nAnaVis\n\n\nAnaVision.Document\nAnaVis Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "AnaVision"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_PARAMS          "\nEdit Params"
+    ID_FILE_SAVEPARAMS      "\nSave Params"
+    ID_FILE_LOADPARAMS      "\nLoad Params"
+    ID_AUTO_SCALE           "\nAuto scale\tCtrl+A"
+    ID_MAN_SCALE            "\nManual Scale\tCtrl+M"
+    ID_VIEW_VIEWGRADIENTTHISIMAGE "\nView gradient of pH"
+    ID_VIEW_VIENUMBEROFPROTONS "\nView number of protons"
+    ID_VIEW_SHOWGRAPH       "\nShow Graph"
+    ID_VIEW_SHOWTEXT        "\nShow Numbers"
+    ID_SHOW_GRAPH           "\tShow Graph"
+    ShowConus               "\nShow Conus"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_SHOWRECTANGLE   "\nShow Rectangle"
+    ID_VIEW_SHOWCONUS       "\nShow Conus"
+END
+
+STRINGTABLE
+BEGIN
+    ID_CREATEAPOLYGON       "\nDefine a Polygon"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "res\\ico00001.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIAGFITD DIALOG 0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fit D?"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    EDITTEXT        IDC_DIFFCOEFF,80,58,28,12,ES_AUTOHSCROLL
+    LTEXT           "Diffusion coeff.  =",IDC_STATIC,14,58,65,11
+    CONTROL         "Fit D",IDC_CHECKFITD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,116,60,31,10
+END
+
+IDD_DIAG_SIMULATED_FIT DIALOG 0, 0, 560, 341
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Simulated fit"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,503,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,503,24,50,14
+    LTEXT           "Current    =",IDC_STATIC,30,12,42,11
+    EDITTEXT        IDC_CURRENT,77,12,70,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DIFFCOEFF,78,28,66,12,ES_AUTOHSCROLL
+    LTEXT           "Diffusion coeff.  =",IDC_STATIC,11,28,65,11
+    CONTROL         "Fit D",IDC_CHECKFITD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,171,31,31,10
+    GROUPBOX        "For simulated fit",IDC_STATIC,235,7,251,307,BS_CENTER
+    EDITTEXT        IDC_KD_FREE,304,22,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_KDFREE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,356,25,23,10
+    LTEXT           "KD free (M)",IDC_STATIC,264,25,37,8
+    EDITTEXT        IDC_CONC_FREE,305,42,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_CONCFREE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,357,46,23,10
+    LTEXT           "Total conc. free (M)",IDC_STATIC,240,46,63,8
+    EDITTEXT        IDC_KD_FIXED,305,61,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_KDFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,357,66,23,10
+    LTEXT           "KD fixed (M)",IDC_STATIC,263,66,40,8
+    EDITTEXT        IDC_AMOUNT_FIXED,306,83,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_AMOUNTFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,358,87,23,10
+    LTEXT           "Amount fixed (moles)",IDC_STATIC,238,87,66,8
+    EDITTEXT        IDC_DR,284,194,40,14,ES_AUTOHSCROLL
+    LTEXT           "DR (m)",IDC_STATIC,248,199,23,8
+    EDITTEXT        IDC_DT0,370,180,40,14,ES_AUTOHSCROLL
+    LTEXT           "DT0",IDC_STATIC,337,184,15,8
+    EDITTEXT        IDC_FACT_T,371,198,40,14,ES_AUTOHSCROLL
+    LTEXT           "Fact T",IDC_STATIC,335,203,22,8
+    EDITTEXT        IDC_DT_MAX,370,218,40,14,ES_AUTOHSCROLL
+    LTEXT           "DT Max",IDC_STATIC,338,222,26,8
+    GROUPBOX        "simulation parameters",IDC_STATIC,237,172,190,115
+    LTEXT           "Number of iterations",IDC_STATIC,244,145,64,8
+    EDITTEXT        IDC_NITERATIONS_SIMULFIT,309,144,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit Current",IDC_CHECKFITCURRENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,169,15,48,10
+    LTEXT           "Step size",IDC_STATIC,385,148,30,8
+    EDITTEXT        IDC_STEPSIZE,425,146,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_THICKNESS_FIXED,307,106,40,14,ES_AUTOHSCROLL
+    CONTROL         "Fit",IDC_FIT_THICKNESSFIXED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,359,110,23,10
+    LTEXT           "Thickness fixed b.",IDC_STATIC,239,110,58,8
+    EDITTEXT        IDC_RMAXSIMUL,280,225,40,14,ES_AUTOHSCROLL
+    LTEXT           "Rmax for simulation (m)",IDC_STATIC,252,217,73,8
+END
+
+IDD_DIAG_LINFIT DIALOG 0, 0, 236, 153
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Linear fit"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,179,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,179,24,50,14
+    DEFPUSHBUTTON   "OK",IDOK2,179,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL2,179,24,50,14
+    EDITTEXT        IDC_DIFFCOEFF,85,121,28,12,ES_AUTOHSCROLL
+    LTEXT           "Diffusion coeff.  =",IDC_STATIC,19,121,65,11
+    CONTROL         "Fit D",IDC_CHECKFITD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,124,31,10
+    GROUPBOX        "Off focus correction",IDC_STATIC,3,8,163,102
+    CONTROL         "Use off focus correction (only for linear fit",IDC_CHECK_OFFFOCUS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,25,144,10
+    LTEXT           "and for Delta-H total data)",IDC_STATIC,23,38,82,8
+    EDITTEXT        IDC_N_OFF_FOCUS_COEFFS,105,62,40,14,ES_AUTOHSCROLL
+    LTEXT           "Number of corrections coeffs",IDC_STATIC,7,65,92,8
+    EDITTEXT        IDC_GAUSSIAN_WIDTH,105,82,40,14,ES_AUTOHSCROLL
+    LTEXT           "Width of Gaussian (in µm)",IDC_STATIC,16,86,82,8
+END
+
+IDD_ANALYZE_ROIS DIALOGEX 0, 0, 434, 391
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select series and polygons to analyze"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,377,3,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,377,25,50,14
+    CONTROL         "Polygon 0",IDC_POLYGON0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,38,47,10
+    CONTROL         "Polygon 1",IDC_POLYGON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,55,47,10
+    CONTROL         "Polygon 2",IDC_POLYGON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,72,47,10
+    CONTROL         "Polygon 3",IDC_POLYGON3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,88,47,10
+    CONTROL         "Polygon 4",IDC_POLYGON4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,105,47,10
+    CONTROL         "Polygon 5",IDC_POLYGON5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,122,47,10
+    CONTROL         "Polygon 6",IDC_POLYGON6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,139,47,10
+    CONTROL         "Polygon 7",IDC_POLYGON7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,156,47,10
+    CONTROL         "Polygon 8",IDC_POLYGON8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,173,47,10
+    CONTROL         "Polygon 9",IDC_POLYGON9,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,190,47,10
+    CONTROL         "Polygon 10",IDC_POLYGON10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,207,51,10
+    CONTROL         "Polygon 11",IDC_POLYGON11,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,224,51,10
+    CONTROL         "Polygon 12",IDC_POLYGON12,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,241,51,10
+    CONTROL         "Polygon 13",IDC_POLYGON13,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,286,258,51,10
+    LTEXT           "No background subtraction",IDC_STATIC,289,22,87,8
+    LTEXT           "Use as background",IDC_STATIC,247,11,62,8
+    CONTROL         "",IDC_RADDIO_BACK_1,"Button",BS_AUTORADIOBUTTON,269,54,16,10
+    CONTROL         "",IDC_RADDIO_BACK_2,"Button",BS_AUTORADIOBUTTON,269,71,16,10
+    CONTROL         "",IDC_RADDIO_BACK_3,"Button",BS_AUTORADIOBUTTON,269,88,16,10
+    CONTROL         "",IDC_RADDIO_BACK_4,"Button",BS_AUTORADIOBUTTON,269,105,16,10
+    CONTROL         "",IDC_RADDIO_BACK_5,"Button",BS_AUTORADIOBUTTON,269,122,16,10
+    CONTROL         "",IDC_RADDIO_BACK_6,"Button",BS_AUTORADIOBUTTON,269,139,16,10
+    CONTROL         "",IDC_RADDIO_BACK_7,"Button",BS_AUTORADIOBUTTON,269,156,16,10
+    CONTROL         "",IDC_RADDIO_BACK_8,"Button",BS_AUTORADIOBUTTON,269,173,16,10
+    CONTROL         "",IDC_RADDIO_BACK_9,"Button",BS_AUTORADIOBUTTON,269,190,16,10
+    CONTROL         "",IDC_RADDIO_BACK_10,"Button",BS_AUTORADIOBUTTON,269,207,16,10
+    CONTROL         "",IDC_RADDIO_BACK_11,"Button",BS_AUTORADIOBUTTON,269,224,16,10
+    CONTROL         "",IDC_RADDIO_BACK_12,"Button",BS_AUTORADIOBUTTON,269,241,16,10
+    CONTROL         "",IDC_RADDIO_BACK_13,"Button",BS_AUTORADIOBUTTON,269,258,16,10
+    CONTROL         "",IDC_RADDIO_BACK_NOBACK,"Button",BS_AUTORADIOBUTTON,269,23,16,10
+    CONTROL         "",IDC_RADDIO_BACK_0,"Button",BS_AUTORADIOBUTTON,270,38,16,11
+    CONTROL         "",IDC_LIST_SERIES,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,16,12,211,277,WS_EX_LEFTSCROLLBAR
+    CONTROL         "Concatenate images",IDC_CONCAT_IMAGES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,41,299,81,10
+    CONTROL         "Analyzed ROIs enclose the cell ",IDC_ROIS_ARE_CIRCULAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,173,317,113,10
+    GROUPBOX        "For membrane analysis only",IDC_STATIC,161,304,243,65
+    EDITTEXT        IDC_SIZE_MEMBRANE,317,320,53,14,ES_AUTOHSCROLL
+    LTEXT           "Size of membrane in image pixels",IDC_STATIC,295,310,106,8
+    EDITTEXT        IDC_NUMBER_GRADIENTPOINTS,192,350,53,14,ES_AUTOHSCROLL
+    LTEXT           "Number of gradient points",IDC_STATIC,188,340,84,8
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 281, 170
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,231,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,231,24,50,14
+    COMBOBOX        IDC_COMBO1,21,19,72,50,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST1,26,52,48,40,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_LIST2,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,109,54,119,83
+END
+
+IDD_DIALG_EDGE_DETECT DIALOGEX 0, 0, 312, 205
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edge Detection"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,255,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,255,24,50,14
+    EDITTEXT        IDC_EDIT_LOW_THRESHOLD,43,33,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HIGH_THRESHOLD,152,33,40,14,ES_AUTOHSCROLL
+    LTEXT           "Low threshold",IDC_STATIC,39,17,46,8
+    LTEXT           "High threshold",IDC_STATIC,143,17,47,8
+    EDITTEXT        IDC_EDIT_MAXDISTPOLYPOINTS,182,81,40,14,ES_AUTOHSCROLL
+    LTEXT           "Max distance poly point",IDC_STATIC,178,68,76,8
+    EDITTEXT        IDC_EDIT_MAXPOINTSEACHPOLY,45,81,40,14,ES_AUTOHSCROLL
+    LTEXT           "Max number of points in each poly",IDC_STATIC,31,69,110,8
+    GROUPBOX        "Advanced",IDC_STATIC,45,118,219,72
+    EDITTEXT        IDC_EDITGAUSRADIUS,64,156,40,14,ES_AUTOHSCROLL
+    LTEXT           "Gaussian Kernel radius",IDC_STATIC,56,137,73,8
+    EDITTEXT        IDC_EDITGAUSWIDTH,167,156,40,14,ES_AUTOHSCROLL
+    LTEXT           "Gaussian Kernel width",IDC_STATIC,159,137,71,8
+END
+
+IDD_DIAGMEMBRANEPOLYS DIALOGEX 0, 0, 263, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Make Membrane Polys"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,206,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,206,24,50,14
+    CONTROL         "Analyzed ROI enclose the cell ",IDC_ROIS_ARE_CIRCULAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,33,17,113,10
+    EDITTEXT        IDC_SIZE_MEMBRANE,52,55,53,14,ES_AUTOHSCROLL
+    LTEXT           "Size of membrane in image pixels",IDC_STATIC,26,40,106,8
+END
+
+IDD_DIAG_FILLTHRESHOLD DIALOGEX 0, 0, 186, 92
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fill Parameters"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    EDITTEXT        IDC_FILLTHRESHOLD,23,25,68,14,ES_AUTOHSCROLL
+    LTEXT           "Threshold",IDC_STATIC,25,14,32,8
+    CONTROL         "Use global mean",IDC_CHECK_USE_GLOBALMEAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,56,68,10
+END
+
+IDD_DIAGSELECT_POLY_BY_INDEX DIALOGEX 0, 0, 213, 241
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select polygon / line"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,156,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,156,24,50,14
+    CONTROL         "Polygon / line 0",IDC_RADIO_SELECT_POLY_0,"Button",BS_AUTORADIOBUTTON,23,9,65,11
+    CONTROL         "Polygon / line 1",IDC_RADIO_SELECT_POLY_1,"Button",BS_AUTORADIOBUTTON,23,21,65,10
+    CONTROL         "Polygon / line 2",IDC_RADIO_SELECT_POLY_2,"Button",BS_AUTORADIOBUTTON,23,33,65,10
+    CONTROL         "Polygon / line 3",IDC_RADIO_SELECT_POLY_3,"Button",BS_AUTORADIOBUTTON,23,46,65,10
+    CONTROL         "Polygon / line 4",IDC_RADIO_SELECT_POLY_4,"Button",BS_AUTORADIOBUTTON,23,59,65,10
+    CONTROL         "Polygon / line 5",IDC_RADIO_SELECT_POLY_5,"Button",BS_AUTORADIOBUTTON,23,70,65,10
+    CONTROL         "Polygon / line 6",IDC_RADIO_SELECT_POLY_6,"Button",BS_AUTORADIOBUTTON,23,82,65,10
+    CONTROL         "Polygon / line 7",IDC_RADIO_SELECT_POLY_7,"Button",BS_AUTORADIOBUTTON,23,95,65,10
+    CONTROL         "Polygon / line 8",IDC_RADIO_SELECT_POLY_8,"Button",BS_AUTORADIOBUTTON,23,106,65,10
+    CONTROL         "Polygon / line 9",IDC_RADIO_SELECT_POLY_9,"Button",BS_AUTORADIOBUTTON,23,120,65,10
+    CONTROL         "Polygon / line 10",IDC_RADIO_SELECT_POLY_10,"Button",BS_AUTORADIOBUTTON,23,133,69,10
+    CONTROL         "Polygon / line 11",IDC_RADIO_SELECT_POLY_11,"Button",BS_AUTORADIOBUTTON,23,145,69,10
+    CONTROL         "Polygon / line 12",IDC_RADIO_SELECT_POLY_12,"Button",BS_AUTORADIOBUTTON,24,157,69,10
+    CONTROL         "Polygon / line 13",IDC_RADIO_SELECT_POLY_13,"Button",BS_AUTORADIOBUTTON,24,170,69,10
+    CONTROL         "Polygon / line 14",IDC_RADIO_SELECT_POLY_14,"Button",BS_AUTORADIOBUTTON,24,181,69,10
+    CONTROL         "Polygon / line 15",IDC_RADIO_SELECT_POLY_15,"Button",BS_AUTORADIOBUTTON,24,195,69,10
+    CONTROL         "Polygon / line 16",IDC_RADIO_SELECT_POLY_16,"Button",BS_AUTORADIOBUTTON,24,208,69,10
+    CONTROL         "Polygon / line 17",IDC_RADIO_SELECT_POLY_17,"Button",BS_AUTORADIOBUTTON,24,219,69,10
+END
+
+IDD_DIAG_FRET DIALOGEX 0, 0, 234, 128
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fret"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,177,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,177,24,50,14
+    EDITTEXT        IDC_EDIT_BTDON,65,23,40,14,ES_AUTOHSCROLL
+    LTEXT           "BTDon",IDC_STATIC,38,25,22,8
+    EDITTEXT        IDC_EDIT_BTACC,66,41,40,14,ES_AUTOHSCROLL
+    LTEXT           "BTAcc",IDC_STATIC,38,44,20,8
+    EDITTEXT        IDC_EDIT_THRESHOLDFRET,67,66,40,14,ES_AUTOHSCROLL
+    LTEXT           "Threshold",IDC_STATIC,32,69,32,8
+    CONTROL         "Calc normalized Fret (else just fret)",IDC_CHECK_NORMALIZED_FRET,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,87,129,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIAGFITD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_DIAG_SIMULATED_FIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 553
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 334
+    END
+
+    IDD_DIAG_LINFIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 146
+    END
+
+    IDD_ANALYZE_ROIS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 427
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 384
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 164
+    END
+
+    IDD_DIALG_EDGE_DETECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 305
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_DIAGMEMBRANEPOLYS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+
+    IDD_DIAG_FILLTHRESHOLD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+
+    IDD_DIAGSELECT_POLY_BY_INDEX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 206
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 234
+    END
+
+    IDD_DIAG_FRET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 227
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AnaVision.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\AnaVision.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

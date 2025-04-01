@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="NoSimpleImageCore|Win32">
+      <Configuration>NoSimpleImageCore</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}</ProjectGuid>
+    <RootNamespace>AnaVision</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NoSimpleImageCore|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='NoSimpleImageCore|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>17.0.35913.81</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NoSimpleImageCore|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/AnaVision.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/AnaVision.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0410</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>..\SimpleImageCore\lib\release\simpleImageCore.lib;..\GnuWin32\lib\LibTiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/AnaVision.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\SimpleImageCore\lib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/AnaVision.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/AnaVision.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/AnaVision.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/AnaVision.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0410</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>..\SimpleImageCore\lib\release\simpleImageCore.lib;..\GnuWin32\lib\LibTiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Debug/AnaVision.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/AnaVision.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/AnaVision.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='NoSimpleImageCore|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/AnaVision.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/AnaVision.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0410</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>..\..\GnuWin32\lib\LibTiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/AnaVision.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\SimpleImageCore\lib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/AnaVision.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/AnaVision.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\alglib370\cpp\src\alglibinternal.cpp" />
+    <ClCompile Include="..\alglib370\cpp\src\alglibmisc.cpp" />
+    <ClCompile Include="..\alglib370\cpp\src\ap.cpp" />
+    <ClCompile Include="..\alglib370\cpp\src\linalg.cpp" />
+    <ClCompile Include="..\BufferedDiffusion\Diffusion.cpp" />
+    <ClCompile Include="..\cdib\cdib.cpp" />
+    <ClCompile Include="..\cdib\dibutil.cpp" />
+    <ClCompile Include="..\common\CannyEdge.cpp" />
+    <ClCompile Include="..\common\ConnectedComponent.cpp" />
+    <ClCompile Include="..\common\Dcompl.cpp" />
+    <ClCompile Include="..\common\DrawObject.cpp" />
+    <ClCompile Include="..\common\ListObject.cpp" />
+    <ClCompile Include="..\common\MTRand.cpp" />
+    <ClCompile Include="..\common\MyPolygon.cpp" />
+    <ClCompile Include="..\common\Nrutil.cpp" />
+    <ClCompile Include="..\common\Simplex.cpp" />
+    <ClCompile Include="..\common\tinytiffreader.cpp" />
+    <ClCompile Include="..\common\tinytiffwriter.cpp" />
+    <ClCompile Include="..\common\utils.cpp" />
+    <ClCompile Include="AnaVision.cpp" />
+    <ClCompile Include="AnaVisionDoc.cpp" />
+    <ClCompile Include="AnaVisionImageFile.cpp" />
+    <ClCompile Include="AnaVisionTif.cpp" />
+    <ClCompile Include="AnaVisionView.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="DataFile.cpp" />
+    <ClCompile Include="DiagEdgeDetect.cpp" />
+    <ClCompile Include="DiagFillParams.cpp" />
+    <ClCompile Include="DiagFitD.cpp" />
+    <ClCompile Include="DiagFret.cpp" />
+    <ClCompile Include="DiagKinetics.cpp" />
+    <ClCompile Include="DiagLinearFit.cpp" />
+    <ClCompile Include="DiagMembranePolys.cpp" />
+    <ClCompile Include="DiagSelectPoly.cpp" />
+    <ClCompile Include="DiagSelectSeriesAndPolygons.cpp" />
+    <ClCompile Include="DiagShowGSN.cpp" />
+    <ClCompile Include="DiagSimulFit.cpp" />
+    <ClCompile Include="GetFramesDiag.cpp" />
+    <ClCompile Include="IODiag.cpp" />
+    <ClCompile Include="Kinetics.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyEdit.cpp" />
+    <ClCompile Include="Params.cpp" />
+    <ClCompile Include="ParamsDiag.cpp" />
+    <ClCompile Include="Phasor.cpp" />
+    <ClCompile Include="RatioDiag.cpp" />
+    <ClCompile Include="SimFitThread.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='NoSimpleImageCore|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="Traces.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="ZoomButton.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AnaVision.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\GnuWin32\include\tiff.h" />
+    <ClInclude Include="..\..\GnuWin32\include\tiffio.h" />
+    <ClInclude Include="..\BufferedDiffusion\Diffusion.h" />
+    <ClInclude Include="..\cdib\cdib.h" />
+    <ClInclude Include="..\cdib\dibutil.h" />
+    <ClInclude Include="..\common\CannyEdge.h" />
+    <ClInclude Include="..\common\ConnectedComponent.h" />
+    <ClInclude Include="..\common\Dcompl.h" />
+    <ClInclude Include="..\common\DrawObject.h" />
+    <ClInclude Include="..\common\IIO.h" />
+    <ClInclude Include="..\common\inttypes.h" />
+    <ClInclude Include="..\common\ListObject.h" />
+    <ClInclude Include="..\common\MyPolygon.h" />
+    <ClInclude Include="..\common\Nrutil.h" />
+    <ClInclude Include="..\common\Simplex.h" />
+    <ClInclude Include="..\common\tinytiffreader.h" />
+    <ClInclude Include="..\common\tinytiffwriter.h" />
+    <ClInclude Include="..\common\utils.h" />
+    <ClInclude Include="..\SimpleImageCore\include\arivis\SimpleImageCore.h" />
+    <ClInclude Include="..\SimpleImageCore\include\arivis\SimpleImageStack.h" />
+    <ClInclude Include="AnaVision.h" />
+    <ClInclude Include="AnaVisionDoc.h" />
+    <ClInclude Include="AnaVisionImageFile.h" />
+    <ClInclude Include="AnaVisionTif.h" />
+    <ClInclude Include="AnaVisionView.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="DataFile.h" />
+    <ClInclude Include="DiagEdgeDetect.h" />
+    <ClInclude Include="DiagFillParams.h" />
+    <ClInclude Include="DiagFitD.h" />
+    <ClInclude Include="DiagFret.h" />
+    <ClInclude Include="DiagKinetics.h" />
+    <ClInclude Include="DiagLinearFit.h" />
+    <ClInclude Include="DiagMembranePolys.h" />
+    <ClInclude Include="DiagSelectPoly.h" />
+    <ClInclude Include="DiagSelectSeriesAndPolygons.h" />
+    <ClInclude Include="DiagShowGSN.h" />
+    <ClInclude Include="DiagSimulFit.h" />
+    <ClInclude Include="GetFramesDiag.h" />
+    <ClInclude Include="IODiag.h" />
+    <ClInclude Include="Kinetics.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyEdit.h" />
+    <ClInclude Include="Params.h" />
+    <ClInclude Include="ParamsDiag.h" />
+    <ClInclude Include="phasor.h" />
+    <ClInclude Include="RatioDiag.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SimFitThread.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="Traces.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="ZoomButton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\AnaVision.ico" />
+    <Image Include="res\AnaVisionDoc.ico" />
+    <Image Include="res\ico00001.ico" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\icon4.ico" />
+    <Image Include="res\icon5.ico" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\AnaVision.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="AnaVision.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnaVision", "AnaVision.vcxproj", "{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}.Debug|Win32.Build.0 = Debug|Win32
+		{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}.Release|Win32.ActiveCfg = Release|Win32
+		{F70CD794-5B4E-452E-AB9B-2EDE0F908B71}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {777B3EFB-052E-4255-9BC1-6FAB0F2CB3B1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,62 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AnaVision - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\HP_PRO~1\IMPOST~1\Temp\RSPD0.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/AnaVision.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\common\MTRand.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\HP_PRO~1\IMPOST~1\Temp\RSPD0.tmp" 
+Creating temporary file "C:\DOCUME~1\HP_PRO~1\IMPOST~1\Temp\RSPD1.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/AnaVision.pdb" /debug /machine:I386 /out:"Debug/AnaVision.exe" /pdbtype:sept 
+.\Debug\AnaVision.obj
+.\Debug\AnaVisionDoc.obj
+.\Debug\AnaVisionView.obj
+.\Debug\Button.obj
+.\Debug\ChildFrm.obj
+.\Debug\DataFile.obj
+.\Debug\Dcompl.obj
+.\Debug\DiagFitD.obj
+.\Debug\DiagKinetics.obj
+.\Debug\DiagLinearFit.obj
+.\Debug\DiagSimulFit.obj
+.\Debug\Diffusion.obj
+.\Debug\DrawObject.obj
+.\Debug\GetFramesDiag.obj
+.\Debug\IODiag.obj
+.\Debug\Kinetics.obj
+.\Debug\MainFrm.obj
+.\Debug\MyEdit.obj
+.\Debug\Nrutil.obj
+.\Debug\Params.obj
+.\Debug\ParamsDiag.obj
+.\Debug\RatioDiag.obj
+.\Debug\SimFitThread.obj
+.\Debug\Simplex.obj
+.\Debug\StdAfx.obj
+.\Debug\Text.obj
+.\Debug\Traces.obj
+.\Debug\Tree.obj
+.\Debug\utils.obj
+.\Debug\AnaVision.res
+.\Debug\MTRand.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\HP_PRO~1\IMPOST~1\Temp\RSPD1.tmp"
+<h3>Output Window</h3>
+Compiling...
+MTRand.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+AnaVision.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
