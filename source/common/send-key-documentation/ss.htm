@@ -1,0 +1,2861 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp -->
+<HTML><HEAD><TITLE>SendKeys in C++ - The Code Project - C++ / MFC</TITLE><!-- START Insight XE-->
+<SCRIPT language=JavaScript> 
+var if_Site_ID = "ipro"; 
+var if_sid="1"; 
+var if_protocol=window.location.protocol; 
+var mep1="&Site="+escape("codeproject.com"); 
+</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/ipro_if.js"></SCRIPT>
+<!-- END Insight XE-->
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content=en-US name=MS.LOCALE>
+<META content="A C++ port and enhancement of C#'s / VB's SendKeys function." 
+name=Description>
+<META content=kbArticle name=Search.TopicType>
+<META content=lallous name=Author>
+<META content="22 Apr 2004 14:00:00 GMT" name=Search.PublishDate>
+<META content="14 Jun 2004 14:00:00 GMT" name=Search.RevisedDate><!--<meta name="Search.UserRating"  content="86 %" /> -->
+<META 
+content="Free source code, C++ / MFC, Visual C++, MFC, Windows, C++, Keyboard, SendKeys, Automation, General" 
+name=keywords>
+<META 
+content="Article content copyright lallous, 2004, everthing else Copyright © CodeProject, 1999-2005, All Rights Reserved." 
+name=Copyright><LINK title="CodeProject Latest articles - All topics" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - MFC / C++" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - C#" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - ASP.NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - .NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5" 
+type=application/rss+xml rel=alternate>
+<META http-equiv=Reply-to content=mailto:webmaster@codeproject.com><LINK 
+href="/favicon.ico" type=image/ico rel=icon><LINK href="/favicon.ico" 
+rel="SHORTCUT ICON"><LINK 
+href="SendKeys in C++ - The Code Project - C++ - MFC_file/global.css" 
+type=text/css rel=stylesheet>
+<SCRIPT language=javascript 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/oncopy.js"></SCRIPT>
+
+<META content="MSHTML 6.00.2900.2769" name=GENERATOR></HEAD>
+<BODY oncopy="return copyCode();" text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=3 topMargin=3>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#ff9900 border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%">
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ff9900 
+        border=0><TBODY>
+        <TR>
+          <TD vAlign=top><A href="http://www.codeproject.com/"><IMG height=72 
+            alt="The Code Project" 
+            src="SendKeys in C++ - The Code Project - C++ - MFC_file/logo225x72.gif" 
+            width=225 border=0></A></TD>
+          <TD align=right><SPAN id=AdBanner4>
+            <TABLE cellSpacing=0 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TD><A class=AdLink 
+                  href="http://www.codeproject.com/script/admentor/ads.asp">View 
+                  our advertisers</A></TD>
+                <TD align=right><A class=AdLink 
+                  href="http://www.codeproject.com/info/mediakit">Advertise with 
+                  us</A></TD></TR>
+              <TR>
+                <TD colSpan=2>
+                  <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=402&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvsnet468x60%5Fmfc%2Egif&C=False&id=402\" alt=\"Support Code Project and purchase Visual Studio .NET from $899\" border=0 width=468 height=60></a>");</SCRIPT>
+                </TD></TR></TBODY></TABLE></SPAN></TD></TR>
+        <TR>
+          <TD bgColor=#fbedbb colSpan=2>
+            <TABLE cellPadding=3 width="100%" bgColor=#fbedbb border=0>
+              <TBODY>
+              <TR vAlign=top>
+                <TD width="100%"><FONT style="FONT-SIZE: 8pt"><A 
+                  href="http://www.codeproject.com/?cat=1">All Topics</A>, <A 
+                  href="http://www.codeproject.com/?cat=2">MFC / C++</A> 
+                  &gt;&gt; <A href="http://www.codeproject.com/cpp/">C++ / 
+                  MFC</A> &gt;&gt; <A 
+                  href="http://www.codeproject.com/cpp/#General">General</A></FONT><BR><BR><B><FONT 
+                  style="FONT-SIZE: 16pt" size=4>SendKeys in 
+                  C++</FONT></B><BR><B>By <A 
+                  href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861">lallous</A> 
+                  </B><BR><BR><FONT style="FONT-SIZE: 9pt">A C++ port and 
+                  enhancement of C#'s / VB's SendKeys function.&nbsp;</FONT> </TD>
+                <TD vAlign=top align=right>
+                  <TABLE cellSpacing=0 cellPadding=1 width=200 border=0>
+                    <TBODY>
+                    <TR vAlign=top>
+                      <TD>&nbsp;</TD>
+                      <TD class=SmallText>C++ (VC6)<BR>Windows<BR>Win32, 
+                        VS<BR>Dev</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD class=SmallText noWrap>Posted 23 Apr 2004</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD class=SmallText>Updated 15 Jun 2004</TD></TR>
+                    <TR vAlign=top>
+                      <TD><IMG height=16 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/hlp.gif" 
+                        width=16></TD>
+                      <TD class=SmallText noWrap><A 
+                        href="http://www.codeproject.com/script/Articles/list_articles.asp?userid=139861">Articles 
+                        by this author</A></TD></TR>
+                    <TR vAlign=top>
+                      <TD></TD>
+                      <TD class=SmallText noWrap><B>51,530</B> 
+                    views</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD colSpan=2>
+            <TABLE id=tblSiteToolbar cellSpacing=0 cellPadding=1 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <FORM name=Search action=/info/search.asp method=post>
+                <TD vAlign=top align=left width="100%">
+                  <TABLE cellSpacing=0 cellPadding=1 border=0>
+                    <TBODY>
+                    <TR vAlign=center>
+                      <TD class=smallText><B><FONT 
+                        color=white>Search:</FONT></B></TD>
+                      <TD class=navbar noWrap><INPUT class=smallText 
+                        maxLength=255 size=18 name=target></TD>
+                      <TD vAlign=top><SELECT class=smallText name=st> 
+                          <OPTION value=kw selected>Articles</OPTION> <OPTION 
+                          value=au>Authors</OPTION></SELECT></TD>
+                      <TD><INPUT class=formButton type=submit value=Go></TD></TR></TBODY></TABLE></TD></FORM>
+                <TD>
+                  <DIV id=MenuPos 
+                  style="WIDTH: 380px; POSITION: relative; HEIGHT: 20px">
+                  <TABLE height=20 cellSpacing=0 cellPadding=2 width=375>
+                    <TBODY>
+                    <TR>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/info/faq.asp">Help!</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/info/latest.asp">Articles</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/script/comments/forums.asp">Message 
+                        Boards</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/store/">StoreFront</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/lounge.asp">Lounge</A></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
+            <SCRIPT type=text/javascript>function Go(){return}</SCRIPT>
+
+            <SCRIPT 
+            src="SendKeys in C++ - The Code Project - C++ - MFC_file/cpmenu_var.js" 
+            type=text/javascript></SCRIPT>
+
+            <SCRIPT 
+            src="SendKeys in C++ - The Code Project - C++ - MFC_file/menu10_com.js" 
+            type=text/javascript></SCRIPT>
+          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=1 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD vAlign=top bgColor=#fbedbb rowSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <SCRIPT language=javascript>
+function ErrorHandle() {}
+window.onerror = ErrorHandle;
+
+function OnNLSubmit(option)
+{
+	if (option=="up")
+		document.subForm.action = "/script/profile/modify.asp?ct=%2Fcpp%2Fsendkeys%5Fcpp%5FArticle%2Easp";
+	else if (option=="in")
+		document.subForm.action = "/script/profile/process_logon.asp?ct=%2Fcpp%2Fsendkeys%5Fcpp%5FArticle%2Easp";
+	document.subForm.submit();
+	return true;
+}
+</SCRIPT>
+
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=3 cellPadding=0>
+              <TBODY>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD class=InfoBarHeader>Toolbox</TD></TR>
+              <TR>
+                <TD bgColor=black colSpan=2><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/sitebuild_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/script/submit/ReportProblem.asp?GUID=sendkeys%5Fcpp%5FArticle%2Fcpp4%2F23%2F2004">Broken 
+                  Article?</A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/support_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/store/"><B>VS.NET 2003 for 
+                  $899</B></A></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/support_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/store/"><B>Ultimate Toolbox 
+                  $499</B></A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/print.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?print=true" 
+                  target=_print>Print version</A></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/mail.gif" 
+                  width=16></TD>
+                <TD class=SmallText><A 
+                  href="http://www.codeproject.com/script/recommend/form.asp?guid=sendkeys%5Fcpp%5FArticle%2Fcpp4%2F23%2F2004">Send 
+                  to a friend</A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR>
+                <TD bgColor=black colSpan=2><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD class=InfoBarHeader colSpan=2><BR>Sign in / Sign 
+              up</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class=smallText>
+            <FORM id=subForm name=subForm 
+            action=/script/profile/process_logon.asp method=post>
+            <TABLE cellSpacing=0 cellPadding=0 width=125 bgColor=#ffcc99 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif"></TD></TR>
+              <TR>
+                <TD class=smallText>&nbsp;Email</TD>
+                <TD class=smallText><INPUT class=smallText id=Email 
+                  style="WIDTH: 60px" name=Email> </TD></TR>
+              <TR>
+                <TD class=smallText>&nbsp;Password</TD>
+                <TD><INPUT class=smallText id=Password style="WIDTH: 60px" 
+                  type=password name=Password></TD></TR>
+              <TR>
+                <TD class=smallText vAlign=center colSpan=2><INPUT 
+                  type=checkbox CHECKED name=cookie>Remember me</TD></TR>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif"></TD></TR>
+              <TR>
+                <TD align=middle><A 
+                  href="http://www.codeproject.com/script/profile/modify.asp"><IMG 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/signup.gif" 
+                  border=0></A></TD>
+                <TD align=middle><INPUT type=image 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/signin.gif" 
+                  border=0></TD></TR>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif"></TD></TR></FORM></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class=smallText><A class=smallText 
+            href="http://www.codeproject.com/script/profile/forgot.asp" 
+            name=HLLink>Lost your Password?</A></TD></TR>
+        <TR>
+          <TD>&nbsp;</TD></TR>
+        <TR>
+          <TD>
+            <CENTER>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=1052&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FUltimateToolbox120x600%2Egif&C=False&id=1052\" alt=\"Ultimate Toolbox 9.0 - MFC 7.0 Compliant, with Office 2003 like and Office XP like classes and hundreds more, all with 100% MFC source code\" border=0 width=120 height=600></a>");</SCRIPT>
+            <BR></CENTER><BR></TD></TR></TBODY></TABLE></TD>
+    <TD width=5 rowSpan=2><IMG height=1 
+      src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif" 
+      width=5> </TD>
+    <TD align=right width="100%" bgColor=white>
+      <TABLE width="100%">
+        <TBODY>
+        <TR vAlign=top>
+          <TD class=smallText vAlign=top noWrap></TD>
+          <TD noWrap align=right><A name=__top></A>
+            <TABLE>
+              <TBODY>
+              <TR>
+                <TD class=smallText align=right>73 members have rated this 
+                  article. Result:</TD>
+                <TD>
+                  <TABLE cellSpacing=0 cellPadding=0 border=2>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/red.gif" 
+                        width=14 border=0><IMG height=5 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/white.gif" 
+                        width=6 border=0></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD class=smallText align=right colSpan=2><A 
+                  title="Calculated as rating x Log10(# votes)" 
+                  href="http://www.codeproject.com/script/articles/top_articles.asp?st=2">Popularity: 
+                  8.74</A>. Rating: <B>4.69</B> out of 
+        5.</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top width="100%">
+      <DIV id=contentdiv><!-- Article Starts -->
+      <UL class=download>
+        <LI><A 
+        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article/SendKeys_cpp_src.zip">Download 
+        source and demo - 29 Kb</A> </LI></UL>
+      <P><IMG height=204 
+      src="SendKeys in C++ - The Code Project - C++ - MFC_file/sendkeys_cpp.jpg" 
+      width=378 border=0></P>
+      <H2>Introduction</H2>
+      <P>One day I needed to send keys to another application in order to 
+      automate a task from my C++ program, but after some research, I found no 
+      easy way to do that in C++ and all what was found is reference to VB's or 
+      C#'s <CODE>SendKeys</CODE>. However, one of the search results returned 
+      sndkeys32.pas which is a Delphi code version of the 
+      <CODE>SendKeys()</CODE> written by Ken Henderson back in 1995. 
+      <P>Since I know Delphi and wanted this same functionality in C++, I 
+      decided to port and enhance the code to make it fit my needs. The 
+      remainder of the article will explain the concept of sending keys in Win32 
+      and will show you how to use the code in order to send keys in just two 
+      lines of code! 
+      <P>Hope you find this article useful. 
+      <H2>Key sending concept in Win32</H2>
+      <P>The core functionality of sending keys in <CODE>CSendKeys</CODE> 
+      revolves around the usage of the <CODE>keybd_event() </CODE>Win32 API 
+      function. 
+      <P>The <CODE>keybd_event()</CODE> produces a keystroke, however the 
+      keyboard driver's interrupt handles the calls to this function, which 
+      means we can send almost any key combination with less limitations. 
+      <P>In brief, it allows you to send a virtual key, defined in winuser.h as 
+      VK_XXX, and a flag which denotes a KeyDown, KeyUp or state to tell if the 
+      VKey is an extended key or not. 
+      <P>
+      <P>Normal characters are translated into virtual keys using the 
+      <CODE>VkKeyScan()</CODE> which takes a CHAR and returns a WORD denoting a 
+      VK. 
+      <P>
+      <P>When you send a key, it will be depressed until you send it again with 
+      the <CODE>KEYEVENTF_KEYUP</CODE> flag. 
+      <P>
+      <P>Here is a small snippet that allows you to send the ALT-TAB sequence: 
+      </P><PRE>  <SPAN class=cpp-comment>// press DOWN "Alt-Tab"</SPAN>
+  keybd_event(VK_MENU, <SPAN class=cpp-literal>0</SPAN>, <SPAN class=cpp-literal>0</SPAN>, <SPAN class=cpp-literal>0</SPAN>);
+  keybd_event(VK_TAB, <SPAN class=cpp-literal>0</SPAN>, <SPAN class=cpp-literal>0</SPAN>, <SPAN class=cpp-literal>0</SPAN>);
+
+  ::Sleep(<SPAN class=cpp-literal>1000</SPAN>);
+
+  <SPAN class=cpp-comment>// stop pressing "Alt-Tab"</SPAN>
+  keybd_event(VK_MENU, <SPAN class=cpp-literal>0</SPAN>, KEYEVENTF_KEYUP, <SPAN class=cpp-literal>0</SPAN>);
+  keybd_event(VK_TAB, <SPAN class=cpp-literal>0</SPAN>, KEYEVENTF_KEYUP, <SPAN class=cpp-literal>0</SPAN>);
+
+</PRE>
+      <P>As you see, in order to send this simple keys combination, 4 lines of 
+      coded were needed. Here is where <CODE>CSendKeys</CODE> comes to simplify 
+      this task. 
+      <H2>How to use the code</H2>In short, the code can be used as: <PRE><SPAN class=cpp-preprocessor>#include "SendKeys.h"</SPAN>
+.
+.
+.
+CSendKeys sk;
+<SPAN class=cpp-comment>// Send "Hello world!"</SPAN>
+sk.SendKeys(<SPAN class=cpp-string>"Hello world!"</SPAN>);
+.
+.
+.
+.
+.
+.
+<SPAN class=cpp-comment>// Run notepad</SPAN>
+sk.SendKeys(<SPAN class=cpp-string>"{DELAY=50}@rnotepad{ENTER}"</SPAN>);
+
+<P>
+</P></PRE>
+      <P><CODE>CSendKeys</CODE> is designed in a way to maintain certain 
+      compatibility with C#'s <CODE>SendKeys</CODE> while also adding more 
+      functionality. So if you used C#'s SendKeys.Send() or VB's before then 
+      using <CODE>CSendKeys</CODE> becomes easier.</P>
+      <P>Each key is represented by one or more characters. To specify a single 
+      keyboard character, use the character itself. For example, to represent 
+      the letter 'a', pass in the string "a" to the method. Naturally to 
+      represent a string of characters just pass them in order as "hello". 
+      <P>
+      <P>If you want to send modifier keys such as the SHIFT, ALT, CONTROL or 
+      WINKEY keys in addition to normal keys, you might want to use any of the 
+      characters defined in <A 
+      href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp#t3">Table 
+      3</A>.</P>
+      <P>For example, if you want to send "A" you usually press Shift+A, which 
+      is equivalent to sending these key strokes: "+a" , similarly to send the 
+      "~" you would press Shift+` which is equivalent to key strokes "+`" or 
+      simply "{TILDE}" (Table 1.b). 
+      <P>
+      <P>All characters in <A 
+      href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp#t3">Table 
+      3</A> are reserved and have special meaning in addition to the left/right 
+      parenthesis/braces. 
+      <P>
+      <P>The parenthesis are used to associate a given modifier or modifiers 
+      with a group of characters, for example to send the "HELLO", you would 
+      describe as "+(hello)" which informs <CODE>CSendKeys</CODE> to depress the 
+      SHIFT key while sending the following keys group. Whereas the braces are 
+      used to enclose any of the keys displayed in Table <A 
+      href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp#t1">1</A> 
+      and <A 
+      href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp#t2">2</A>. 
+      <P>
+      <P>The sent keys are sent to no specific application, instead they are 
+      just pressed and whatever application has the keyboard input will take the 
+      keys. 
+      <P>
+      <P>In order to send the keys to a specific window/application please use 
+      either of the methods: 
+      <P></P><PRE><SPAN class=cpp-comment>// 1. activate an application using its handle</SPAN>
+sk.AppActivate(hWnd);
+
+<SPAN class=cpp-comment>// 2. activate an application given its window title</SPAN>
+sk.AppActivate(<SPAN class=cpp-string>"Title"</SPAN>);
+
+<SPAN class=cpp-comment>/// 3. activate an application given either or both of its window title/class</SPAN>
+sk.AppActivate(NULL, <SPAN class=cpp-string>"TheClass"</SPAN>); <SPAN class=cpp-comment>// NULL means this criteria is not avail</SPAN>
+
+<SPAN class=cpp-comment>// 4. via SendKeys method</SPAN>
+sk.SendKeys(<SPAN class=cpp-string>"{appactivate Notepad}hello"</SPAN>);
+
+</PRE>
+      <P>
+      <P>The following table is a slightly modified version of the MSDN/SendKeys 
+      help: 
+      <P><A name=t1></A>
+      <P>
+      <TABLE cellSpacing=1 cellPadding=1 width="85%" border=1>
+        <TBODY>
+        <TR vAlign=top bgColor=#fbedbb>
+          <TH width="50%">Key</TH>
+          <TH width="50%">Code</TH></TR>
+        <TR vAlign=top>
+          <TD width="50%">BACKSPACE</TD>
+          <TD width="50%">{BACKSPACE}, {BS}, or {BKSP}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">BREAK</TD>
+          <TD width="50%">{BREAK}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">CAPS LOCK</TD>
+          <TD width="50%">{CAPSLOCK}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">DEL or DELETE</TD>
+          <TD width="50%">{DELETE} or {DEL}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">DOWN ARROW</TD>
+          <TD width="50%">{DOWN}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">END</TD>
+          <TD width="50%">{END}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">ENTER</TD>
+          <TD width="50%">{ENTER} or ~</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">ESC</TD>
+          <TD width="50%">{ESC}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">HELP</TD>
+          <TD width="50%">{HELP}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">HOME</TD>
+          <TD width="50%">{HOME}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">INS or INSERT</TD>
+          <TD width="50%">{INS}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">LEFT ARROW</TD>
+          <TD width="50%">{LEFT}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">NUM LOCK</TD>
+          <TD width="50%">{NUMLOCK}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">PAGE DOWN</TD>
+          <TD width="50%">{PGDN}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">PAGE UP</TD>
+          <TD width="50%">{PGUP}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">PRINT SCREEN</TD>
+          <TD width="50%">{PRTSC} (reserved for future use)</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">RIGHT ARROW</TD>
+          <TD width="50%">{RIGHT}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">SCROLL LOCK</TD>
+          <TD width="50%">{SCROLL}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">TAB</TD>
+          <TD width="50%">{TAB}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">UP ARROW</TD>
+          <TD width="50%">{UP}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F1</TD>
+          <TD width="50%">{F1}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F2</TD>
+          <TD width="50%">{F2}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F3</TD>
+          <TD width="50%">{F3}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F4</TD>
+          <TD width="50%">{F4}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F5</TD>
+          <TD width="50%">{F5}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F6</TD>
+          <TD width="50%">{F6}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F7</TD>
+          <TD width="50%">{F7}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F8</TD>
+          <TD width="50%">{F8}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F9</TD>
+          <TD width="50%">{F9}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F10</TD>
+          <TD width="50%">{F10}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F11</TD>
+          <TD width="50%">{F11}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F12</TD>
+          <TD width="50%">{F12}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F13</TD>
+          <TD width="50%">{F13}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F14</TD>
+          <TD width="50%">{F14}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F15</TD>
+          <TD width="50%">{F15}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">F16</TD>
+          <TD width="50%">{F16}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">Keypad add</TD>
+          <TD width="50%">{ADD}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">Keypad subtract</TD>
+          <TD width="50%">{SUBTRACT}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">Keypad multiply</TD>
+          <TD width="50%">{MULTIPLY}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">Keypad divide</TD>
+          <TD width="50%">{DIVIDE}</TD></TR></TBODY></TABLE>(table 1.a) 
+      <P>
+      <P>The following are my additions: 
+      <P>
+      <P>
+      <TABLE cellSpacing=1 cellPadding=1 width="85%" border=1>
+        <TBODY>
+        <TR vAlign=top bgColor=#fbedbb>
+          <TH width="50%">Key</TH>
+          <TH width="50%">Code</TH></TR>
+        <TR vAlign=top>
+          <TD width="50%">+</TD>
+          <TD width="50%">{PLUS}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">@</TD>
+          <TD width="50%">{AT}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">APPS</TD>
+          <TD width="50%">{APPS}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">^</TD>
+          <TD width="50%">{CARET}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">~</TD>
+          <TD width="50%">{TILDE}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%" height=17>{ }</TD>
+          <TD width="50%" height=17>{LEFTBRACE} {RIGHTBRACE}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">( )</TD>
+          <TD width="50%">{LEFTPAREN} {RIGHTPAREN}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">Left/Right WINKEY</TD>
+          <TD width="50%">{LWIN} {RWIN}</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">WINKEY</TD>
+          <TD width="50%">{WIN} equivalent to {LWIN}</TD></TR></TBODY></TABLE>(table 
+      1.b) 
+      <P>
+      <P>In addition to this, I have added some special keys that act like 
+      commands:<A name=t2></A> 
+      <P>
+      <TABLE cellSpacing=1 cellPadding=1 width="85%" border=1>
+        <TBODY>
+        <TR vAlign=top bgColor=#fbedbb>
+          <TH width="30%">Command Syntax</TH>
+          <TH width="70%">Action</TH></TR>
+        <TR vAlign=top>
+          <TD width="30%" height=114>{VKEY X}</TD>
+          <TD width="70%" height=114>Sends the VKEY of value X. 
+            <P>Very useful if you don't want to recompile CSendKeys and add new 
+            Vkey to the hardcoded special keys table. 
+            <P>For example, {VKEY 13} is equivalent to VK_RETURN.</P></TD></TR>
+        <TR vAlign=top>
+          <TD width="30%" height=55>{BEEP X Y}}</TD>
+          <TD width="70%" height=55>Beeps with a frequency of X and a duration 
+            of Y milliseconds.</TD></TR>
+        <TR vAlign=top>
+          <TD width="30%" height=116>{DELAY X}</TD>
+          <TD width="70%" height=116>Delays sending the next key of X 
+            milliseconds. After the delaying the following key, the subsequent 
+            keys will not be further delayed unless there is a default delay 
+            value (see DELAY=X). 
+            <P>Example: {DELAY 1000} &lt;-- delays subsequent key stroke for 1 
+            second.</P></TD></TR>
+        <TR vAlign=top>
+          <TD width="30%" height=124>{DELAY=X}</TD>
+          <TD width="70%" height=124>Sets the default delay value to X 
+            milliseconds. This will cause every key to be delayed X ms. 
+            <P>If a value is already set and you specify {DELAY Y} you will have 
+            your following key delay Y ms but the subsequent keys will be 
+            delayed X ms. 
+            <P>
+            <P>Example: {DELAY=1000} &lt;-- all subsequent keys will be delayed 
+            for 1 second. 
+            <P></P></TD></TR>
+        <TR vAlign=top>
+          <TD width="30%" height=69>{APPACTIVATE WindowTitle}</TD>
+          <TD width="70%" height=69>Activates an application using is 
+            WindowTitle. 
+            <P>Very useful if you want to send different keys to different 
+            applications.</P></TD></TR></TBODY></TABLE>(table 2) 
+      <P><A name=t3></A>
+      <P>
+      <TABLE cellSpacing=1 cellPadding=1 width=216 border=1>
+        <TBODY>
+        <TR vAlign=top bgColor=#fbedbb>
+          <TH width="50%">Key</TH>
+          <TH width="50%">Code</TH></TR>
+        <TR vAlign=top>
+          <TD width="50%">WINKEY</TD>
+          <TD width="50%">@</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">SHIFT</TD>
+          <TD width="50%">+</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">CTRL</TD>
+          <TD width="50%">^</TD></TR>
+        <TR vAlign=top>
+          <TD width="50%">ALT</TD>
+          <TD width="50%">%</TD></TR></TBODY></TABLE>(table 3) 
+      <P>
+      <P>Here are some examples: 
+      <TABLE cellSpacing=1 cellPadding=1 width=600 border=1>
+        <TBODY>
+        <TR vAlign=top bgColor=#fbedbb>
+          <TH width="53%">Keystrokes</TH>
+          <TH width="47%">Description</TH></TR>
+        <TR vAlign=top>
+          <TD width="53%">{DELAY=50}@rnotepad~hello world%ha</TD>
+          <TD width="47%">
+            <OL>
+              <LI>set delay after each character to 50 ms 
+              <LI>WINKEY+R to invoke the run dialog 
+              <P></P>
+              <LI>type "notepad" and press ENTER 
+              <LI>Type "hello world" 
+              <LI>Invoke Alt+H then press "A" to invoke the about dialog of 
+              notepad </LI></OL></TD></TR>
+        <TR vAlign=top>
+          <TD width="53%">{delay=100}{appactivate Calculator}{ESC}5*7~{beep 
+            1000 500}^c{appactivate Notepad}^a{DEL}Result of 5*7 is: ^v</TD>
+          <TD width="47%">Given that "Calc.exe" and "Notepad.exe" are running: 
+
+            <OL>
+              <LI>set delay to 100 ms 
+              <LI>activate calculatr 
+              <LI>press ESC to clear previous result 
+              <LI>type in 5*7 then press ENTER 
+              <LI>beep for 500ms with a frequency of 1000 
+              <LI>press CTRL+C to copy result 
+              <LI>activate notepad 
+              <LI>press CTRL+A then DEL in notepad to delete previously written 
+              text 
+              <LI>type in a phrase then press CTRL+V to paste the copied result 
+              </LI></OL></TD></TR>
+        <TR vAlign=top>
+          <TD 
+            width="53%">{DELAY=500}{NUMLOCK}{CAPSLOCK}{SCROLL}{SCROLL}{CAPSLOCK}{NUMLOCK}</TD>
+          <TD width="47%">
+            <OL>
+              <LI>Press NUM,CAPS,SCROll lock in order 
+              <LI>Turn them off in reverse order </LI></OL></TD></TR>
+        <TR vAlign=top>
+          <TD width="53%">{DELAY=500}% {DOWN 5}</TD>
+          <TD width="47%">
+            <OL>
+              <LI>press ALT+SPACE 
+              <LI>press DOWN key 5 times </LI></OL></TD></TR></TBODY></TABLE>
+      <P>For more examples see the accompanying sample code. 
+      <UL>
+        <LI>04/19/2004 
+        <UL>
+          <LI>Initial version development</LI></UL>
+        <LI>04/21/2004 
+        <UL>
+          <LI>Added number of times specifier to special keys 
+          <LI>Added {BEEP X Y} 
+          <LI>Added {APPACTIVATE WindowTitle} 
+          <LI>Added <CODE>CarryDelay()</CODE> and now delay works properly with 
+          all keys 
+          <LI>Added <CODE>SetDelay() </CODE>method 
+          <LI>Fixed code in AppActivate that allowed to pass both NULL 
+          windowTitle/windowClass</LI></UL>
+        <LI>05/21/2004 
+        <UL>
+          <LI>Fixed a bug in <CODE>StringToVKey()</CODE> that caused the search 
+          for <CODE>RIGHTPAREN</CODE> to be matched as <CODE>RIGHT</CODE> 
+          <LI>Adjusted code so it compiles w/ VC6</LI></UL>
+        <LI>05/24/2004 
+        <UL>
+          <LI>Added Unicode support</LI></UL></LI></UL>
+      <P>
+      <H2>Reference</H2>
+      <UL>
+        <LI>MSDN / <CODE>SendKeys.Send</CODE> method reference 
+        <LI>SndKeys32.pas 
+        <LI><A href="http://www.codeproject.com/cpp/togglekeys.asp">Toggling the 
+        Num Lock, Caps Lock, and Scroll Lock keys</A> </LI></UL><!-- Article Ends --></DIV>
+      <H2>About lallous</H2>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD class=smallText noWrap><BR></TD>
+          <TD class=smallText width="100%">Elias (aka lallous) has always been 
+            interested in the making of things and their inner 
+            workings.<BR><BR>He studies computer science and is a part time 
+            employee @ secursoftware.com<BR><BR>His computer interests include 
+            system programming, reverse engineering, writing libraries, 
+            tutorials and articles.<BR><BR>In his free time, and apart from 
+            researching, his favorite reading topics include topics as dreams, 
+            metaphysics, philosophy, psychology and any other human/mystical 
+            science
+            <P class=smallText>Click <A 
+            href="http://www.codeproject.com/script/profile/whos_who.asp?vt=arts&amp;id=139861">here</A> 
+            to view lallous's online profile.</P></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellPadding=4 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD width="100%">
+            <H2>Other popular articles:</H2>
+            <UL>
+              <LI><A 
+              href="http://www.codeproject.com/useritems/l_system.asp">Simple 
+              Lindenmayer System</A><BR><SPAN class=smalltext>A simple 2D 
+              Lindenmayer system drawing program</SPAN>
+              <LI><A 
+              href="http://www.codeproject.com/cpp/exceptionhandler.asp">How a 
+              C++ compiler implements exception handling</A><BR><SPAN 
+              class=smalltext>An indepth discussion of how VC++ implements 
+              exception handling. Source code includes exception handling 
+              library for VC++.</SPAN>
+              <LI><A href="http://www.codeproject.com/cpp/genfunctors.asp">Yet 
+              Another Generalized Functors Implementation in C++</A><BR><SPAN 
+              class=smalltext>An article on generalized functors implementation 
+              in C++. Generalized functor requirements, existing implementation 
+              problems and disadvantages are considered. Several new ideas and 
+              problem solutions together with the compete implementation are 
+              suggested.</SPAN>
+              <LI><A 
+              href="http://www.codeproject.com/cpp/rtl_scaling.asp">Scaling of 
+              memory intensive multi-threaded applications to SMMP 
+              computers</A><BR><SPAN class=smalltext>This article discusses 
+              impact of the multithreaded run-time library's memory manager on 
+              scaling memory-intensive server applications to Shared Memory 
+              Multiprocessor computers.</SPAN></LI></UL></TD>
+          <TD width=360>
+            <SCRIPT language=javascript>document.write("<IFRAME src=\"/script/admentor/include/ServeAdHTML.aspx?C=False&id=786\" border=0 frameborder=0 scrolling=no width=300 height=250></IFRAME>");</SCRIPT>
+          </TD></TR></TBODY></TABLE>
+      <FORM action=/script/rating/code/app/insert_vote.asp method=post><INPUT 
+      type=hidden value=sendkeys_cpp_Article/cpp4/23/2004 name=vote_name> <INPUT 
+      type=hidden value=/cpp/sendkeys_cpp_Article.asp name=goal> 
+      <TABLE cellSpacing=0 cellPadding=1 width="100%" bgColor=#ff9900 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=0 cellPadding=4 width="100%" bgColor=#fbedbb 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=smalltext vAlign=center>[<A 
+                  href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp#__top">Top</A>]</TD>
+                <TD vAlign=center noWrap align=right><A 
+                  href="http://www.codeproject.com/script/profile/logon.asp?ct=%2Fcpp%2Fsendkeys%5Fcpp%5FArticle%2Easp"><B>Sign 
+                  in</B></A> to vote for this article:&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <I>Poor</I><INPUT style="disabled: true" type=radio value=1 
+                  name=rate><INPUT style="disabled: true" type=radio value=2 
+                  name=rate><INPUT style="disabled: true" type=radio value=3 
+                  name=rate><INPUT style="disabled: true" type=radio value=4 
+                  name=rate><INPUT style="disabled: true" type=radio value=5 
+                  name=rate><I>Excellent</I>&nbsp;&nbsp;<INPUT class=FormButton style="disabled: true" type=submit value=Vote> 
+                </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD vAlign=top>
+            <CENTER>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=156&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fmsdn%5Fbutton%2Egif&C=False&id=156\" alt=\"MSDN Magazine - Your guide to Microsoft tools, development environments, and technologies for Windows and the Web.\" border=0 width=120 height=60></a>");</SCRIPT>
+            </CENTER><BR></TD>
+          <TD vAlign=top noWrap align=middle><SPAN id=AdBanner5>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=648&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvsnet468x60%5Fmfc%2Egif&C=False&id=648\" alt=\"Support Code Project and purchase Visual Studio .NET from $899\" border=0 width=468 height=60></a>");</SCRIPT>
+            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+name=__comments></A>
+<SCRIPT language=JavaScript>
+
+var Selected = "";
+var AdTime = new Date();
+
+function SwitchMessage(elm)
+{
+	
+	var elmref;
+	if (Selected != "")
+	{
+		elmref = eval("document.getElementById('" + Selected + "_h1')");
+		if (elmref) elmref.style.display = 'none';
+		elmref = eval("document.getElementById('" + Selected + "_h0')");
+		if (elmref) elmref.bgColor = '#FEF9E7';
+	}
+	if (Selected != elm.name) 
+	{
+		Selected = elm.name;
+		elmref = eval("document.getElementById('" + Selected + "_h1')");
+		if (elmref) 
+		{
+			if (elmref.style.display=='none') elmref.style.display='';
+			else elmref.style.display = 'none';
+		}
+		elmref = eval("document.getElementById('" + Selected + "_h0')");
+		if (elmref) 
+			elmref.bgColor = '#99CCFF';
+	}
+	else
+		Selected="";
+		
+	window.location = "#xx" + Selected + "xx";
+
+	return false;
+}
+
+</SCRIPT>
+
+<SCRIPT language=javascript event=onclick for=DynMessLink>
+return SwitchMessage(this);
+</SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#ff9900 border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%">
+      <TABLE id=ForumTable cellSpacing=1 cellPadding=0 width="100%" 
+      bgColor=#ff9900 border=0>
+        <FORM 
+        action=/script/comments/app/do_filtermessages.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007 
+        method=post>
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=3 width="100%" bgColor=white 
+            border=0>
+              <TBODY>
+              <TR bgColor=#fbedbb>
+                <TD class=smalltext noWrap><A 
+                  href="http://www.codeproject.com/script/comments/faq.asp"><IMG 
+                  height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/forum_faq.gif" 
+                  width=16 align=absMiddle border=0> <B>FAQ</B></A>&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap align=right>Noise 
+                  tolerance <SELECT class=smalltext size=1 name=noise><OPTION 
+                    value=1>Very High</OPTION> <OPTION value=2>High</OPTION> 
+                    <OPTION value=3 selected>Medium</OPTION> <OPTION 
+                    value=4>Low</OPTION> <OPTION value=5>Very 
+                  low</OPTION></SELECT>&nbsp;&nbsp;</TD>
+                <TD class=smalltext vAlign=center noWrap align=right 
+                  colSpan=2><A 
+                  href="http://www.codeproject.com/script/comments/search_comments.asp?forumid=39007"><IMG 
+                  height=15 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/forum_search.gif" 
+                  width=16 border=0> Search comments</A> &nbsp;</TD>
+                <TD vAlign=top align=right><INPUT class=FormButton type=submit value="Set Options" name=submit></TD></TR>
+              <TR bgColor=#ff9900>
+                <TD width="100%">&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap align=right>View <SELECT 
+                  class=smalltext size=1 name=expand><OPTION value=0>Normal 
+                    (slow)</OPTION> <OPTION value=2>Preview (slow)</OPTION> 
+                    <OPTION value=5 selected>Message View</OPTION> <OPTION 
+                    value=6>Topic View</OPTION> <OPTION value=1>Thread 
+                    View</OPTION> <OPTION value=3>Expanded (Supporters 
+                    only)</OPTION></SELECT>&nbsp;&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap>Per page <SELECT 
+                  class=smalltext size=1 name=perpage><OPTION 
+                    value=10>10</OPTION> <OPTION value=25 selected>25</OPTION> 
+                    <OPTION value=50>50 (must logon)</OPTION></SELECT></TD>
+                <TD colSpan=2>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></FORM>
+        <TR bgColor=#fbedbb>
+          <TD><A name=xx0xx></A>
+            <TABLE cellPadding=2 width="100%" bgColor=#fbedbb border=0>
+              <TBODY>
+              <TR>
+                <TD class=messagetitle><IMG height=16 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/forum_newmsg.gif" 
+                  width=16 align=top border=0><A class=HoverLink 
+                  title="Add a new message to the discussions" 
+                  href="http://www.codeproject.com/script/comments/user_new.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007" 
+                  target=_top name=HoverNL><B>New Message</B></A></TD>
+                <TD class=messagetitle>Msgs 1 to 25 of 60 (Total: 60) (<A 
+                  href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007">Refresh</A>)</TD>
+                <TD noWrap align=right><FONT class=messagetitle><SPAN 
+                  class=HoverLink>First</SPAN> <SPAN class=HoverLink>Prev</SPAN> 
+                  <A class=HoverLink 
+                  href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;fr=26" 
+                  name=HoverNL>Next</A> <SPAN 
+                  class=HoverLink>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR>
+        <TR bgColor=white>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=2 bgColor=#fbedbb border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=messagetitle width="100%">Subject&nbsp;</TD>
+                      <TD class=messagetitle noWrap width=140>Author&nbsp;</TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT 
+                    class=messagetitle>Date&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1259316_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1259316xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1259316#xx1259316xx" 
+                        name=1259316><B>Couldn't active and setfouc to a window 
+                        on remote machines</B></A><IMG height=12 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/New.gif"></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>foxdog</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>15:53 20 Oct 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1259316_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Tried 
+                                your code, worked fine on a local machine. 
+                                However, couldn't active and setfocus to a 
+                                window on a remote machine. Do you have any 
+                                idea? Thx. <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259316">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259316">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1259316&amp;forumid=39007&amp;select=1259316#xx1259316xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1259316#xx1259316xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259316"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259316"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1259701_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1259701xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1259701#xx1259701xx" 
+                        name=1259701>Re: Couldn't active and setfouc to a window 
+                        on remote machines</A><IMG height=12 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/New.gif"></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>lallous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>2:08 21 Oct 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1259701_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Sorry, 
+                                what do you mean a window on a remote 
+                                machine?<BR><BR>You mean, run the Sendkeys 
+                                application from within a mstsc 
+                                window?<BR><BR>--<BR>Elias 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259701">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259701">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1259316&amp;forumid=39007&amp;select=1259701#xx1259701xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1259701#xx1259701xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259701"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1259701"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1260056_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1260056xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=36><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1260056#xx1260056xx" 
+                        name=1260056>Re: Couldn't active and setfouc to a window 
+                        on remote machines</A><IMG height=12 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/New.gif"></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>foxdog&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>17hrs 52mins 
+                        ago&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1260056_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=36><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>I put a 
+                                SendKey application in a remote machine (rc). I 
+                                use psexec.exe on the local machine (lc) to send 
+                                a command to the rc and remotely start the 
+                                SendKey application. It won't input keystrokes 
+                                to proceses, applications, and windows in this 
+                                case. It works fine if I log in rc and start the 
+                                SendKey there. <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1260056">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1260056">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1259316&amp;forumid=39007&amp;select=1260056#xx1260056xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1260056#xx1260056xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1260056"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1260056"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1207439_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1207439xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_question.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1207439#xx1207439xx" 
+                        name=1207439><B>Error C1010 ...</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=62487"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>Reganas</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>17:49 26 Aug 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1207439_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Me too 
+                                I have this problem<BR><BR>I am using Visual 
+                                Studio .NET 2003<BR><BR>And I get the following 
+                                error:<BR>...sendkeys.cpp(652) : fatal error 
+                                C1010: unexpected end of file while looking for 
+                                precompiled header directive<BR><BR>*i've even 
+                                to add #include "SendKeys.h" to my stdafx.h and 
+                                TestDlg.h<BR><BR>I have the _WIN32_WINDOWS well 
+                                define<BR>I can't arrive to found where I can 
+                                <BR>What is going 
+                                on?<BR><BR>Thanks<BR><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1207439">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1207439">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1207439&amp;forumid=39007&amp;select=1207439#xx1207439xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1207439#xx1207439xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1207439"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1207439"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1212729_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1212729xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_answer.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1212729#xx1212729xx" 
+                        name=1212729>Re: Error C1010 ...</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=17424"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle>Dominik 
+                        Reichl&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>7:44 1 Sep 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1212729_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Open 
+                                the <CODE>SendKeys.cpp</CODE> file and add this 
+                                as the very first, top line:<BR><CODE>#include 
+                                "StdAfx.h"</CODE><BR><BR>Best 
+                                regards<BR>Dominik<BR><BR><BR>
+                                <HR>
+                                <I><FONT face=arial size=2><CODE>_outp(0x64, 
+                                0xAD);</CODE><BR><SMALL>and</SMALL><BR><CODE>__asm 
+                                mov al, 0xAD __asm out 0x64, 
+                                al</CODE><BR><SMALL>do the same... but what do 
+                                they do?? <IMG 
+                                src="SendKeys in C++ - The Code Project - C++ - MFC_file/smiley_wink.gif" 
+                                align=absMiddle></SMALL><BR><SMALL>(doesn't work 
+                                on 
+                                NT)</SMALL></FONT></I><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1212729">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1212729">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1207439&amp;forumid=39007&amp;select=1212729#xx1212729xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1212729#xx1212729xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1212729"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1212729"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1214160_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1214160xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_answer.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1214160#xx1214160xx" 
+                        name=1214160>Re: Error C1010 ...</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>lallous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>9:51 2 Sep 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1214160_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>just 
+                                right-click and select "not using precompiled 
+                                headers" ... <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1214160">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1214160">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1207439&amp;forumid=39007&amp;select=1214160#xx1214160xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1214160#xx1214160xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1214160"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1214160"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1219584_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1219584xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=36><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1219584#xx1219584xx" 
+                        name=1219584>Re: Error C1010 ...</A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>Anonymous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>5:45 8 Sep 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1219584_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=36><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent><BR>Don't exclude the 
+                                headers, just add '#include "stdafx.h"' in the 
+                                file, just like it was suggested. 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1219584">Reply</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1207439&amp;forumid=39007&amp;select=1219584#xx1219584xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1219584#xx1219584xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1219584"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1219584"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1127537_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1127537xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1127537#xx1127537xx" 
+                        name=1127537><B>is it possibl;e to launch for example 
+                        notepad without the run command?</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1231040"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>sani 
+                        chabi yo</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>11:41 6 Jun 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1127537_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>is it 
+                                possible to launch for example notepad without 
+                                the run command?<BR><BR>thanks 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1127537">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1127537">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1127537&amp;forumid=39007&amp;select=1127537#xx1127537xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1127537#xx1127537xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1127537"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1127537"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1128224_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1128224xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1128224#xx1128224xx" 
+                        name=1128224>Re: is it possibl;e to launch for example 
+                        notepad without the run command?</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>lallous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>3:04 7 Jun 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1128224_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>not w/ 
+                                sendkeys...you might want to run through 
+                                WinExec() or similar APIs 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1128224">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1128224">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1127537&amp;forumid=39007&amp;select=1128224#xx1128224xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1128224#xx1128224xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1128224"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1128224"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1090548_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1090548xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1090548#xx1090548xx" 
+                        name=1090548><B>how to send Unicode character</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1601204"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>masfoy</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>8:09 23 Apr 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1090548_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent><BR>how 
+                                to send Unicode character in an application 
+                                .<BR><BR>i know system wide hooking . So using 
+                                setwindowshookex() , how can i send a unicode 
+                                character to any application . 
+                                <BR><BR>masum<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1090548">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1090548">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1090548&amp;forumid=39007&amp;select=1090548#xx1090548xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1090548#xx1090548xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1090548"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1090548"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1089054_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1089054xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1089054#xx1089054xx" 
+                        name=1089054><B>How to send Unicode character</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1601204"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>masfoy</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>6:48 21 Apr 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1089054_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent><BR>How 
+                                can i send unicode character to an application 
+                                or to any application(using setwindowhookex() ,i 
+                                know using system wide hooking ) 
+                                <BR><BR><BR>masfoy<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1089054">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1089054">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1089054&amp;forumid=39007&amp;select=1089054#xx1089054xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1089054#xx1089054xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1089054"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1089054"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1062992_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1062992xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1062992#xx1062992xx" 
+                        name=1062992><B>Sometimes doesn't work</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=17424"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>Dominik 
+                        Reichl</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>5:43 19 Mar 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1062992_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hello,<BR><BR>sometimes, 
+                                especially under heavy CPU load, the sending 
+                                engine seems to "forget" some characters... The 
+                                bug especially happens with special characters 
+                                like '@'. Is this a known problem? Any idea what 
+                                causes it and how to fix it?<BR><BR>I cannot 
+                                give you a sample string which reproduces the 
+                                bug. It only sometimes happens (maybe one time 
+                                in 50). Setting a default delay of 10 ms (so the 
+                                keyboard buffer doesn't overflow) doesn't help 
+                                either...<BR><BR>Thanks and best 
+                                regards<BR>Dominik<BR><BR><BR>
+                                <HR>
+                                <I><FONT face=arial size=2><CODE>_outp(0x64, 
+                                0xAD);</CODE><BR><SMALL>and</SMALL><BR><CODE>__asm 
+                                mov al, 0xAD __asm out 0x64, 
+                                al</CODE><BR><SMALL>do the same... but what do 
+                                they do?? <IMG 
+                                src="SendKeys in C++ - The Code Project - C++ - MFC_file/smiley_wink.gif" 
+                                align=absMiddle></SMALL><BR><SMALL>(doesn't work 
+                                on 
+                                NT)</SMALL></FONT></I><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1062992">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1062992">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1062992&amp;forumid=39007&amp;select=1062992#xx1062992xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1062992#xx1062992xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1062992"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1062992"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1058555_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1058555xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1058555#xx1058555xx" 
+                        name=1058555><B>sorry for being noob but how do i solve 
+                        the error for send key ... i got the following 
+                        message</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1797638"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>tervalor</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>7:27 13 Mar 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1058555_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Compiling...<BR>CProcessMem_demoDlg.cpp<BR>Linking...<BR>CProcessMem_demoDlg.obj 
+                                : error LNK2001: unresolved external symbol 
+                                "public: bool __thiscall 
+                                CSendKeys::SendKeys(char const *,bool)" 
+                                (?SendKeys@CSendKeys@@QAE_NPBD_N@Z)<BR>CProcessMem_demoDlg.obj 
+                                : error LNK2001: unresolved external symbol 
+                                "public: __thiscall CSendKeys::CSendKeys(void)" 
+                                (??0CSendKeys@@QAE@XZ)<BR>Debug/CProcessMem_demo.exe 
+                                : fatal error LNK1120: 2 unresolved 
+                                externals<BR>Error executing 
+                                link.exe.<BR><BR>CProcessMem_demo.exe - 3 
+                                error(s), 0 warning(s) 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1058555">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1058555">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1058555&amp;forumid=39007&amp;select=1058555#xx1058555xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1058555#xx1058555xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1058555"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1058555"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1060388_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1060388xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1060388#xx1060388xx" 
+                        name=1060388>Re: sorry for being noob but how do i solve 
+                        the error for send key ... i got the following 
+                        message</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>lallous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>15:24 15 Mar 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1060388_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Hello 
+                                tervalor,<BR><BR>You have to add the SendKeys.h 
+                                and .cpp files to your project and then rebuild 
+                                the project again.<BR><BR>You might also want to 
+                                specify that SendKeys.cpp should compile without 
+                                using precompiled headers.<BR><BR>Please refer 
+                                to VC's help for more info.<BR><BR>Hope that 
+                                help<BR>Elias <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060388">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060388">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1058555&amp;forumid=39007&amp;select=1060388#xx1060388xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1060388#xx1060388xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060388"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060388"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1056477_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1056477xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1056477#xx1056477xx" 
+                        name=1056477><B>Not Woriking in VC++6</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1601204"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>masfoy</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>2:51 10 Mar 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1056477_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hi,<BR>this is masum ,i am 
+                                worry that it is not working in VC++6 ,i added 
+                                the calss CSendKeys in a new dialogbox project 
+                                and shows some errors . <BR><BR>I think you try 
+                                this in a dialogbox project (VC++6),.if u r 
+                                success then it will be greate pleaser for me . 
+                                And please let me know how u have done 
+                                this.<BR><BR>Waiting for replay. 
+                                <BR><BR>Mahfuz<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1056477">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1056477">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1056477&amp;forumid=39007&amp;select=1056477#xx1056477xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1056477#xx1056477xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1056477"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1056477"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1060393_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1060393xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1060393#xx1060393xx" 
+                        name=1060393>Re: Not Woriking in VC++6</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=139861"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>lallous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>15:27 15 Mar 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1060393_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Hello 
+                                Masfoy,<BR><BR>It works in VC++ 6 except that 
+                                you might not have recent platform SDK.<BR><BR>I 
+                                assume you're facing problems w/ the SendInput() 
+                                function call or its "INPUT" struct 
+                                parameter.<BR><BR>--<BR>Elias 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060393">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060393">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1056477&amp;forumid=39007&amp;select=1060393#xx1060393xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1060393#xx1060393xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060393"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1060393"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1047502_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1047502xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1047502#xx1047502xx" 
+                        name=1047502><B>Broken repeat count for special 
+                        keys</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=229579"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>RayEddington</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>11:50 25 Feb 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1047502_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Hi - 
+                                Great Tool!<BR><BR>From what I can gather, the 
+                                fix made on 5/21/2005 for {RIGHTBRACE} must have 
+                                broken the ability to parse things like {DOWN 5} 
+                                (or {DOWN=5} to repeat the down key five times. 
+                                Here is what I came up with to fix it. This is 
+                                the last "else" clause in the "special keys" 
+                                section. It records the origional length of the 
+                                string, and then effectively "shortens" it by 
+                                replacing the space or '=' with a string 
+                                terminator. <BR><BR><BR>{<BR>size_t t2 = 
+                                _tcslen(KeyString);<BR>for(p = KeyString; *p<IMG 
+                                src="SendKeys in C++ - The Code Project - C++ - MFC_file/smiley_tongue.gif" 
+                                align=absMiddle>++)<BR>{<BR>if( *p == ' ' || *p 
+                                == '=') *p=0;<BR>}<BR><BR>MKey = 
+                                StringToVKey(KeyString, keyIdx);<BR>// Key found 
+                                in table<BR>if (keyIdx != -1)<BR>{<BR>NumTimes = 
+                                1;<BR><BR>// Does the key string have also count 
+                                specifier?<BR>t = 
+                                _tcslen(KeyNames[keyIdx].keyName);<BR>if (t2 
+                                &gt; t)<BR>{<BR>p = KeyString + t + 1;<BR>// 
+                                Take the specified number of times<BR>NumTimes = 
+                                _ttoi(p);<BR>}<BR><BR>if 
+                                (KeyNames[keyIdx].normalkey)<BR>MKey = 
+                                ::VkKeyScan(KeyNames[keyIdx].VKey);<BR>}<BR>}<BR><BR><BR>Ray<BR><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1047502">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1047502">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1047502&amp;forumid=39007&amp;select=1047502#xx1047502xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1047502#xx1047502xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1047502"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1047502"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1033777_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1033777xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1033777#xx1033777xx" 
+                        name=1033777><B>Win and Ctrl combinations in 
+                      XP</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1700657"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>Bob 
+                        Ray</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>23:12 7 Feb 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1033777_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>I am 
+                                trying to use SendKeys to launch a screen lock 
+                                program under XP.<BR><BR>I don't know the App 
+                                name of the program but it launches with the 
+                                Windows Key + L or the Ctrl key + space bar. The 
+                                program responds to these combinations no matter 
+                                what program is running.<BR><BR>My program 
+                                calls<BR><BR>m_sk.SendKeys("@L");<BR><BR>or<BR><BR>m_sk.SendKeys("{^Space}");<BR><BR>but 
+                                neither one has any effect.<BR><BR>Any 
+                                ideas?<BR><BR>Bob<BR><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1033777">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1033777">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1033777&amp;forumid=39007&amp;select=1033777#xx1033777xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1033777#xx1033777xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1033777"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1033777"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=1028425_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1028425xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1028425#xx1028425xx" 
+                        name=1028425><B>An app that uses SendKeys</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=50520"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>PerFnurt</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>2:03 1 Feb 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1028425_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>The 
+                                KeySender app (dull name, Im not a marketing 
+                                guy) is a small application that uses SendKeys 
+                                to, well...send keys.<BR><BR>It can be found 
+                                here<BR><A 
+                                href="http://www.perfnurt.se/down.asp#KeySender" 
+                                rel=nofollow>http://www.perfnurt.se/down.asp#KeySender</A> 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1028425">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1028425">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=1028425&amp;forumid=39007&amp;select=1028425#xx1028425xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1028425#xx1028425xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1028425"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1028425"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=963334_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx963334xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=963334#xx963334xx" 
+                        name=963334><B>Sythesize a "real" keystroke??</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>Rick81</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>17:49 2 Nov 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=963334_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>By 
+                                using sendkeys, keybd_event or Send_input it's 
+                                only possible to control newer windowprograms. 
+                                Some programs(probably older or written in 
+                                another way)is not possible to control. Does 
+                                anyone knows how to make a "real" keystroke 
+                                which works in EVERY program run in windows? 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=963334">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=963334">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=963334&amp;forumid=39007&amp;select=963334#xx963334xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=963334#xx963334xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=963334"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=963334"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=913686_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx913686xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=913686#xx913686xx" 
+                        name=913686><B>Sendkeys pro</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>Anonymous</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>15:29 1 Sep 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=913686_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>hi 
+                                all..<BR>firstly what is the code for the 
+                                (spacebar) button for SendKeys class.<BR>and i 
+                                am using the SendKeys class in c#,<BR>what is 
+                                the code for the (START MENU) button(WINLOGO 
+                                button)<BR>and how i make a send for the 
+                                (ALT+CTRL+DEL) buttons<BR>(Holdin Alt+Ctrl then 
+                                press DEL)..thx <BR><BR>i tried sending the 
+                                keystrokes (CTRL+ESC) but it didnt work..<IMG 
+                                src="SendKeys in C++ - The Code Project - C++ - MFC_file/smiley_confused.gif" 
+                                align=absMiddle><BR><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=913686">Reply</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=913686&amp;forumid=39007&amp;select=913686#xx913686xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=913686#xx913686xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=913686"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=913686"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (2 votes). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=903340_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx903340xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=903340#xx903340xx" 
+                        name=903340><B>Holding down a Vkey in 
+                      windows??</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070><B>Rick81</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle 
+                        color=#707070><B>11:43 20 Aug 
+                    '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=903340_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>I'm 
+                                using the standard VKey in my C program, but 
+                                when I try to hold a VK I can't get it to work, 
+                                For exampel:<BR><BR>keybd_event(0x41, 0, 0, 
+                                0);<BR>sleep(5000);<BR>keybd_event(0x41, 0, 
+                                KEYEVENTF_KEYUP, 0);<BR><BR>will make notepad 
+                                type one a, but it should be many a, because the 
+                                button should be held in. <BR><BR>It works with 
+                                VK_MENU, as in the example on this 
+                                site.<BR><BR>In other programs and games it's no 
+                                problem to keep a button pressed for as long as 
+                                wanted, but this does not work in 
+                                windows(xp).<BR><BR>Can anyone tell me why it 
+                                doesn't work and give a solution? 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=903340">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=903340">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=903340&amp;forumid=39007&amp;select=903340#xx903340xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=903340#xx903340xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=903340"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=903340"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=883122_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx883122xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=883122#xx883122xx" 
+                        name=883122><B>Very nice, but an error in 
+                        CSendKeys::StringToVKey</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=252599"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>huyuxin</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>4:04 26 Jul 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=883122_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent><BR>There are an error in 
+                                this fucntion whitch cause {left} --&gt; 
+                                {leftbrace}.<BR><BR>I made a change, please 
+                                check it!<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;int cmp 
+                                = /*_tcsnicmp --&gt; 
+                                _tcsicmp*/_tcsicmp(KeyNames<BR>[Middle].keyName, 
+                                KeyString/*, _tcslen(KeyString)--&gt; 
+                                delete*/);<BR><BR><BR>Huyuxin<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=883122">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=883122">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=883122&amp;forumid=39007&amp;select=883122#xx883122xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=883122#xx883122xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=883122"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=883122"><I>Delete</I></A>]<BR>Score: 
+                                4.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1145998_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1145998xx></A><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=1145998#xx1145998xx" 
+                        name=1145998>Re: Very nice, but an error in 
+                        CSendKeys::StringToVKey</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=508939"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>brian_gavin&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>23:29 24 Jun 
+                        '05&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1145998_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/ind.gif" 
+                        width=18><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Yes 
+                                like huyuxin said there is a bug handling the 
+                                left arrow key. Tries to make a left brace 
+                                instead<BR><BR><BR>asdf<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1145998">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1145998">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=883122&amp;forumid=39007&amp;select=1145998#xx1145998xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=1145998#xx1145998xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1145998"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=1145998"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=882950_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx882950xx></A><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;select=882950#xx882950xx" 
+                        name=882950><B>SendKeys for modal dialogs?</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>cmaxb</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>17:51 25 Jul 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=882950_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Can't 
+                                get SendKeys to send an {Enter} when another 
+                                application displays a modal 
+                                dialog.<BR><BR><CODE><BR>CSendKeys 
+                                sk;<BR>sk.AppActivate("Interactive Brokers 
+                                Trader 
+                                Workstation");<BR>sk.SendKeys("{ENTER}");<BR></CODE><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=882950">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=882950">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;tid=882950&amp;forumid=39007&amp;select=882950#xx882950xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?msg=882950#xx882950xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=882950"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/cpp/sendkeys_cpp_Article.asp&amp;df=100&amp;forumid=39007&amp;select=882950"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="SendKeys in C++ - The Code Project - C++ - MFC_file/t.gif" 
+                  width=1 border=0></TD></TR></TBODY></TABLE></TD></TR>
+        <TR bgColor=#fbedbb>
+          <TD>
+            <TABLE cellPadding=2 width="100%">
+              <TBODY>
+              <TR>
+                <TD class=messagetitle>Last Visit: 13:12 Thursday 20th 
+                  October, 2005</TD>
+                <TD noWrap align=right><FONT class=messagetitle><SPAN 
+                  class=HoverLink>First</SPAN> <SPAN class=HoverLink>Prev</SPAN> 
+                  <A class=HoverLink 
+                  href="http://www.codeproject.com/cpp/sendkeys_cpp_Article.asp?df=100&amp;forumid=39007&amp;fr=26" 
+                  name=HoverNL>Next</A> <SPAN 
+                  class=HoverLink>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<P class=smallText><IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_general.gif" 
+align=absMiddle> General comment &nbsp;&nbsp; <IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_info.gif" 
+align=absMiddle> News / Info &nbsp;&nbsp; <IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_question.gif" 
+align=absMiddle> Question &nbsp;&nbsp; <IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_answer.gif" 
+align=absMiddle> Answer &nbsp;&nbsp; <IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_game.gif" 
+align=absMiddle> Joke / Game &nbsp;&nbsp; <IMG 
+src="SendKeys in C++ - The Code Project - C++ - MFC_file/news_sticky.gif" 
+align=absMiddle> Admin message</P><BR>
+<TABLE cellSpacing=5 width="100%">
+  <TBODY>
+  <TR vAlign=top>
+    <TD><FONT style="FONT-SIZE: 7pt" size=1><A 
+      href="http://www.codeproject.com/?cat=1">All Topics</A>, <A 
+      href="http://www.codeproject.com/?cat=2">MFC / C++</A> &gt;&gt; <A 
+      href="http://www.codeproject.com/cpp/">C++ / MFC</A> &gt;&gt; <A 
+      href="http://www.codeproject.com/cpp/#General">General</A> <BR>Updated: 15 
+      Jun 2004 </FONT></TD>
+    <TD align=right><FONT style="FONT-SIZE: 7pt" size=1>Article content 
+      copyright lallous, 2004<BR>everything else Copyright © <A 
+      href="mailto:webmaster@codeproject.com">CodeProject</A>, 1999-2005</A>. 
+      <BR><A href="http://www.codeproject.com/info/MediaKit">Advertise on The 
+      Code Project</A> | <A 
+      href="http://www.codeproject.com/info/privacy.asp">Privacy</A> 
+  </FONT></TD></TR></TBODY></TABLE><BR>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width="95%" border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ff9900 height=1><IMG height=1 
+      src="SendKeys in C++ - The Code Project - C++ - MFC_file/space.gif"></TD></TR>
+  <TR>
+    <TD align=middle><FONT size=1><A 
+      href="http://www.theultimatetoolbox.com/">The Ultimate Toolbox</A> • <A 
+      href="http://www.codeproject.com/redir.asp?id=235">MSDN Communities</A> | 
+      <A href="http://www.aspalliance.com/">ASP Alliance</A> • <A 
+      href="http://www.developerfusion.co.uk/">Developer Fusion</A> • <A 
+      href="http://www.developersdex.com/">Developersdex</A> • <A 
+      href="http://www.devguru.com/">DevGuru</A> • <A 
+      href="http://www.programmersheaven.com/">Programmers Heaven</A> • <A 
+      href="http://www.planet-source-code.com/">Planet Source Code</A> • <A 
+      href="http://www.tek-tips.com/">Tek-Tips Forums</A> • 
+</FONT></TD></TR></TBODY></TABLE></CENTER></BODY></HTML>

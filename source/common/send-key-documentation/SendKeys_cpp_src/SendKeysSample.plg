@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: SendKeysSample - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/SendKeysSample.res" /d "_DEBUG" /d "_AFXDLL" "C:\msdev\Projects\SendKeys_cpp_src\SendKeysSample.rc"" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CB.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D _WIN32_WINNT=0x401 /Fp"Debug/SendKeysSample.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\SendKeys_cpp_src\SendKeysSample.cpp"
+"C:\msdev\Projects\SendKeys_cpp_src\SendKeysSampleDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CB.tmp" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CC.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D _WIN32_WINNT=0x401 /Fp"Debug/SendKeysSample.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\SendKeys_cpp_src\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CC.tmp" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CD.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D _WIN32_WINNT=0x401 /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\msdev\Projects\SendKeys_cpp_src\SendKeys.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CD.tmp" 
+Creating temporary file "C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CE.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/SendKeysSample.pdb" /debug /machine:I386 /out:"Debug/SendKeysSample.exe" /pdbtype:sept 
+.\Debug\SendKeysSample.obj
+.\Debug\SendKeysSampleDlg.obj
+.\Debug\StdAfx.obj
+.\Debug\SendKeys.obj
+.\Debug\SendKeysSample.res
+]
+Creating command line "link.exe @C:\DOCUME~1\mik\IMPOST~1\Temp\RSP2CE.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+SendKeysSample.cpp
+SendKeysSampleDlg.cpp
+Generating Code...
+Compiling...
+SendKeys.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+SendKeysSample.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

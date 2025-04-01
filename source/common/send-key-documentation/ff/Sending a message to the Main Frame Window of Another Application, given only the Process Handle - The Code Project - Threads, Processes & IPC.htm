@@ -1,0 +1,2173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.codeproject.com/threads/sendmsg.asp -->
+<HTML><HEAD><TITLE>Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes & IPC</TITLE><!-- START Insight XE-->
+<SCRIPT language=JavaScript> 
+var if_Site_ID = "ipro"; 
+var if_sid="1"; 
+var if_protocol=window.location.protocol; 
+var mep1="&Site="+escape("codeproject.com"); 
+</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ipro_if.js"></SCRIPT>
+<!-- END Insight XE-->
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content=en-US name=MS.LOCALE>
+<META 
+content="Explains how to send a message between windows when you only have the Process handle" 
+name=Description>
+<META content=kbArticle name=Search.TopicType>
+<META content="Martin-Pierre Frenette" name=Author>
+<META content="08 Dec 1999 14:00:00 GMT" name=Search.PublishDate>
+<META content="08 Dec 1999 14:00:00 GMT" name=Search.RevisedDate><!--<meta name="Search.UserRating"  content="86 %" /> -->
+<META 
+content="Free source code, Threads, Processes &amp; IPC, Visual C++, MFC, Windows, Inter-process send message create process" 
+name=keywords>
+<META 
+content="Article content copyright Martin-Pierre Frenette, 1999, everthing else Copyright © CodeProject, 1999-2005, All Rights Reserved." 
+name=Copyright><LINK title="CodeProject Latest articles - All topics" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - MFC / C++" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - C#" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - ASP.NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - .NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5" 
+type=application/rss+xml rel=alternate>
+<META http-equiv=Reply-to content=mailto:webmaster@codeproject.com><LINK 
+href="/favicon.ico" type=image/ico rel=icon><LINK href="/favicon.ico" 
+rel="SHORTCUT ICON"><LINK 
+href="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/global.css" 
+type=text/css rel=stylesheet>
+<SCRIPT language=javascript 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/oncopy.js"></SCRIPT>
+
+<META content="MSHTML 6.00.2900.2769" name=GENERATOR></HEAD>
+<BODY oncopy="return copyCode();" text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=3 topMargin=3>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#ff9900 border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%">
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ff9900 
+        border=0><TBODY>
+        <TR>
+          <TD vAlign=top><A href="http://www.codeproject.com/"><IMG height=72 
+            alt="The Code Project" 
+            src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/logo225x72.gif" 
+            width=225 border=0></A></TD>
+          <TD align=right><SPAN id=AdBanner4>
+            <TABLE cellSpacing=0 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TD><A class=AdLink 
+                  href="http://www.codeproject.com/script/admentor/ads.asp">View 
+                  our advertisers</A></TD>
+                <TD align=right><A class=AdLink 
+                  href="http://www.codeproject.com/info/mediakit">Advertise with 
+                  us</A></TD></TR>
+              <TR>
+                <TD colSpan=2>
+                  <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=402&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvsnet468x60%5Fmfc%2Egif&C=False&id=402\" alt=\"Support Code Project and purchase Visual Studio .NET from $899\" border=0 width=468 height=60></a>");</SCRIPT>
+                </TD></TR></TBODY></TABLE></SPAN></TD></TR>
+        <TR>
+          <TD bgColor=#fbedbb colSpan=2>
+            <TABLE cellPadding=3 width="100%" bgColor=#fbedbb border=0>
+              <TBODY>
+              <TR vAlign=top>
+                <TD width="100%"><FONT style="FONT-SIZE: 8pt"><A 
+                  href="http://www.codeproject.com/?cat=1">All Topics</A>, <A 
+                  href="http://www.codeproject.com/?cat=2">MFC / C++</A> 
+                  &gt;&gt; <A 
+                  href="http://www.codeproject.com/threads/">Threads, Processes 
+                  &amp; IPC</A> &gt;&gt; <A 
+                  href="http://www.codeproject.com/threads/#Inter%2DProcess+Communication">Inter-Process 
+                  Communication</A></FONT><BR><BR><B><FONT 
+                  style="FONT-SIZE: 16pt" size=4>Sending a message to the Main 
+                  Frame Window of Another Application, given only the Process 
+                  Handle</FONT></B><BR><B>By <A 
+                  href="http://www.codeproject.com/script/profile/whos_who.asp?id=146">Martin-Pierre 
+                  Frenette</A> </B><BR><BR><FONT style="FONT-SIZE: 9pt">Explains 
+                  how to send a message between windows when you only have the 
+                  Process handle&nbsp;</FONT> </TD>
+                <TD vAlign=top align=right>
+                  <TABLE cellSpacing=0 cellPadding=1 width=200 border=0>
+                    <TBODY>
+                    <TR vAlign=top>
+                      <TD>&nbsp;</TD>
+                      <TD class=SmallText>C++ (VC6)<BR>Windows (Win95, Win98, 
+                        WinME)<BR>MFC, Win32, VS<BR>Dev</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD class=SmallText noWrap>Posted 9 Dec 1999</TD></TR>
+                    <TR vAlign=top>
+                      <TD><IMG height=16 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/hlp.gif" 
+                        width=16></TD>
+                      <TD class=SmallText noWrap><A 
+                        href="http://www.codeproject.com/script/Articles/list_articles.asp?userid=146">Articles 
+                        by this author</A></TD></TR>
+                    <TR vAlign=top>
+                      <TD></TD>
+                      <TD class=SmallText noWrap><B>61,647</B> 
+                    views</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD colSpan=2>
+            <TABLE id=tblSiteToolbar cellSpacing=0 cellPadding=1 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <FORM name=Search action=/info/search.asp method=post>
+                <TD vAlign=top align=left width="100%">
+                  <TABLE cellSpacing=0 cellPadding=1 border=0>
+                    <TBODY>
+                    <TR vAlign=center>
+                      <TD class=smallText><B><FONT 
+                        color=white>Search:</FONT></B></TD>
+                      <TD class=navbar noWrap><INPUT class=smallText 
+                        maxLength=255 size=18 name=target></TD>
+                      <TD vAlign=top><SELECT class=smallText name=st> 
+                          <OPTION value=kw selected>Articles</OPTION> <OPTION 
+                          value=au>Authors</OPTION></SELECT></TD>
+                      <TD><INPUT class=formButton type=submit value=Go></TD></TR></TBODY></TABLE></TD></FORM>
+                <TD>
+                  <DIV id=MenuPos 
+                  style="WIDTH: 380px; POSITION: relative; HEIGHT: 20px">
+                  <TABLE height=20 cellSpacing=0 cellPadding=2 width=375>
+                    <TBODY>
+                    <TR>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/info/faq.asp">Help!</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/info/latest.asp">Articles</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/script/comments/forums.asp">Message 
+                        Boards</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/store/">StoreFront</A></TD>
+                      <TD><A class=NavMenuItem 
+                        href="http://www.codeproject.com/lounge.asp">Lounge</A></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
+            <SCRIPT type=text/javascript>function Go(){return}</SCRIPT>
+
+            <SCRIPT 
+            src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/cpmenu_var.js" 
+            type=text/javascript></SCRIPT>
+
+            <SCRIPT 
+            src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/menu10_com.js" 
+            type=text/javascript></SCRIPT>
+          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=1 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD vAlign=top bgColor=#fbedbb rowSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <SCRIPT language=javascript>
+function ErrorHandle() {}
+window.onerror = ErrorHandle;
+
+function OnNLSubmit(option)
+{
+	if (option=="up")
+		document.subForm.action = "/script/profile/modify.asp?ct=%2Fthreads%2Fsendmsg%2Easp";
+	else if (option=="in")
+		document.subForm.action = "/script/profile/process_logon.asp?ct=%2Fthreads%2Fsendmsg%2Easp";
+	document.subForm.submit();
+	return true;
+}
+</SCRIPT>
+
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=3 cellPadding=0>
+              <TBODY>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD class=InfoBarHeader>Toolbox</TD></TR>
+              <TR>
+                <TD bgColor=black colSpan=2><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/sitebuild_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/script/submit/ReportProblem.asp?GUID=%2Fthreads%2Fsendmsg%2Easp">Broken 
+                  Article?</A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/support_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/store/"><B>VS.NET 2003 for 
+                  $899</B></A></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/support_icon.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/store/"><B>Ultimate Toolbox 
+                  $499</B></A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/print.gif" 
+                  width=16></TD>
+                <TD class=smallText><A 
+                  href="http://www.codeproject.com/threads/sendmsg.asp?print=true" 
+                  target=_print>Print version</A></TD></TR>
+              <TR vAlign=top>
+                <TD><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/mail.gif" 
+                  width=16></TD>
+                <TD class=SmallText><A 
+                  href="http://www.codeproject.com/script/recommend/form.asp?guid=%2Fthreads%2Fsendmsg%2Easp">Send 
+                  to a friend</A></TD></TR>
+              <TR vAlign=top>
+                <TD></TD>
+                <TD></TD></TR>
+              <TR>
+                <TD bgColor=black colSpan=2><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD class=InfoBarHeader colSpan=2><BR>Sign in / Sign 
+              up</TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class=smallText>
+            <FORM id=subForm name=subForm 
+            action=/script/profile/process_logon.asp method=post>
+            <TABLE cellSpacing=0 cellPadding=0 width=125 bgColor=#ffcc99 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif"></TD></TR>
+              <TR>
+                <TD class=smallText>&nbsp;Email</TD>
+                <TD class=smallText><INPUT class=smallText id=Email 
+                  style="WIDTH: 60px" name=Email> </TD></TR>
+              <TR>
+                <TD class=smallText>&nbsp;Password</TD>
+                <TD><INPUT class=smallText id=Password style="WIDTH: 60px" 
+                  type=password name=Password></TD></TR>
+              <TR>
+                <TD class=smallText vAlign=center colSpan=2><INPUT 
+                  type=checkbox CHECKED name=cookie>Remember me</TD></TR>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif"></TD></TR>
+              <TR>
+                <TD align=middle><A 
+                  href="http://www.codeproject.com/script/profile/modify.asp"><IMG 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/signup.gif" 
+                  border=0></A></TD>
+                <TD align=middle><INPUT type=image 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/signin.gif" 
+                  border=0></TD></TR>
+              <TR>
+                <TD colSpan=2><IMG height=3 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif"></TD></TR></FORM></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class=smallText><A class=smallText 
+            href="http://www.codeproject.com/script/profile/forgot.asp" 
+            name=HLLink>Lost your Password?</A></TD></TR>
+        <TR>
+          <TD>&nbsp;</TD></TR>
+        <TR>
+          <TD>
+            <CENTER>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=1052&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FUltimateToolbox120x600%2Egif&C=False&id=1052\" alt=\"Ultimate Toolbox 9.0 - MFC 7.0 Compliant, with Office 2003 like and Office XP like classes and hundreds more, all with 100% MFC source code\" border=0 width=120 height=600></a>");</SCRIPT>
+            <BR></CENTER><BR></TD></TR></TBODY></TABLE></TD>
+    <TD width=5 rowSpan=2><IMG height=1 
+      src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif" 
+      width=5> </TD>
+    <TD align=right width="100%" bgColor=white>
+      <TABLE width="100%">
+        <TBODY>
+        <TR vAlign=top>
+          <TD class=smallText vAlign=top noWrap></TD>
+          <TD noWrap align=right><A name=__top></A>
+            <TABLE>
+              <TBODY>
+              <TR>
+                <TD class=smallText align=right>42 members have rated this 
+                  article. Result:</TD>
+                <TD>
+                  <TABLE cellSpacing=0 cellPadding=0 border=2>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/red.gif" 
+                        width=20 border=0></TD>
+                      <TD><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/red.gif" 
+                        width=2 border=0><IMG height=5 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/white.gif" 
+                        width=18 border=0></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD class=smallText align=right colSpan=2><A 
+                  title="Calculated as rating x Log10(# votes)" 
+                  href="http://www.codeproject.com/script/articles/top_articles.asp?st=2">Popularity: 
+                  6.69</A>. Rating: <B>4.12</B> out of 
+        5.</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top width="100%">
+      <DIV id=contentdiv><!-- Article Starts --><!-- Article Starts -->
+      <P>In order to send a message to another process, it is necessary to know 
+      the handle of the receiving window. However, if that process is created 
+      using CreateProcess or opened using OpenProcess, only the handles of the 
+      process and of it's main thread are known. 
+      <P>It is normally possible to find the window, if the title is known, 
+      simply by enumerating all windows and searching for the right window. When 
+      the name is unknown however, it is a little more complex to get its 
+      handle. 
+      <P>In order to find that handle it is, however, possible to scan all 
+      top-level windows and compare each window process Id with the Id received 
+      from the CreateProcess or the OpenProcess function. Please take note that 
+      not all Windows messages can be sent between processes. It is why use 
+      WM_COPYDATA is recommended. 
+      <P>Finally, remember that the message will need to be sent to the Main 
+      Frame. If it is intended for a child window ( a CView-derived class, for 
+      example ), it should be sent to the Main Frame, and then redirected in the 
+      target application. 
+      <P>In a private communication with a Senior Support Engineer at Microsoft, 
+      it has been noted that there is no guarantee that a process has any 
+      windows at all. It is also possible that a process has more than one 
+      window. Even if you get the correct window, it must know about and be able 
+      to handle the message being sent. A window always has a process, but a 
+      process can have zero to any number of windows, so there is no way to make 
+      a correlation between a process and a particular window. 
+      <P>I personally recommand a lot of care when using this method. However, 
+      this technique is working well in my projects, and I now use it for all 
+      inter-process communication. Furthermore, since I have included my code in 
+      several different projects, I have found only two problems with this code: 
+
+      <OL>
+        <LI>The Process must have finished it's initialization. This can be 
+        verified with the following call made before the call to SendMessage : <PRE>WaitForInputIdle( ProcessInfo.hProcess, INFINITE );</PRE>
+        <LI>The Process must be receiving its messages. In order to go around 
+        this problem, I place my calls to SendMessageToProcess in a while loop, 
+        which waits to the receiving application to send back a WM_COPYDATA 
+        message confirming reception. </LI></OL>
+      <P>To add a function that send a message to a Process, perfoms the steps 
+      listed bellow. <B>NOTE</B>: These steps assume that the name of the 
+      CWinApp-derived object is CMyWinApp. 
+      <OL>
+        <LI>Add the Following members to the declaration of CMyWinApp in 
+        MYWINAPP.H: <PRE><SPAN class=cpp-keyword>public</SPAN>:
+	<SPAN class=cpp-keyword>void</SPAN> SendMessageToProcess(LPPROCESS_INFORMATION lpProcessInformation, 
+	                          UINT Msg, WPARAM wParam, LPARAM lParam);
+<SPAN class=cpp-keyword>protected</SPAN>:
+	<SPAN class=cpp-keyword>static</SPAN> BOOL CALLBACK EnumWindowCallBack(HWND hwnd, LPARAM lParam);
+</PRE>
+        <LI>Define the CMyWinApp::SendMessageToProcess function. <PRE>                     
+<SPAN class=cpp-keyword>void</SPAN> CMyWinApp:: SendMessageToProcess(LPPROCESS_INFORMATION lpProcessInformation, 
+                                      UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+	FINDWINDOWHANDLESTRUCT fwhs;
+	fwhs.ProcessInfo = lpProcessInformation;
+	fwhs.hWndFound  = NULL;
+
+	EnumWindows ( EnumWindowCallBack, (LPARAM)&amp;fwhs ) ;
+
+	SendMessage ( fwhs.hWndFound, Msg, wParam, lParam );
+}
+</PRE>
+        <LI>Define the CMyWinApp::EnumWindowCallBack function. <PRE>BOOL CALLBACK CMyWinApp::EnumWindowCallBack(HWND hwnd, LPARAM lParam) 
+{ 
+	FINDWINDOWHANDLESTRUCT * pfwhs = (FINDWINDOWHANDLESTRUCT * )lParam; 
+	DWORD ProcessId; 
+	CString Title; 
+	GetWindowThreadProcessId ( hwnd, &amp;ProcessId ); 
+
+	<SPAN class=cpp-comment>// note: In order to make sure we have the MainFrame, verify that the title </SPAN>
+	<SPAN class=cpp-comment>// has Zero-Length. Under Windows 98, sometimes the Client Window ( which doesn't </SPAN>
+	<SPAN class=cpp-comment>// have a title ) is enumerated before the MainFrame </SPAN>
+
+	CWnd::FromHandle( hwnd )-&gt;GetWindowText(Title);
+	<SPAN class=cpp-keyword>if</SPAN> ( ProcessId  == pfwhs-&gt;ProcessInfo-&gt;dwProcessId &amp;&amp; Title.GetLength() != <SPAN class=cpp-literal>0</SPAN>) 
+	{ 
+		pfwhs-&gt;hWndFound = hwnd; 
+		<SPAN class=cpp-keyword>return</SPAN> <SPAN class=cpp-keyword>false</SPAN>; 
+	} 
+	<SPAN class=cpp-keyword>else</SPAN> 
+	{ 
+		<SPAN class=cpp-comment>// Keep enumerating </SPAN>
+		<SPAN class=cpp-keyword>return</SPAN> <SPAN class=cpp-keyword>true</SPAN>; 
+	} 
+}
+</PRE></LI></OL><!-- Article Ends --></DIV>
+      <H2>Martin-Pierre Frenette</H2>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD class=smallText noWrap><BR></TD>
+          <TD class=smallText width="100%">
+            <P class=smallText>Click <A 
+            href="http://www.codeproject.com/script/profile/whos_who.asp?vt=arts&amp;id=146">here</A> 
+            to view Martin-Pierre Frenette's online 
+      profile.</P></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellPadding=4 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD width="100%">
+            <H2>Other popular articles:</H2>
+            <UL>
+              <LI><A 
+              href="http://www.codeproject.com/threads/StackWalker.asp">Walking 
+              the callstack</A><BR><SPAN class=smalltext>This article describes 
+              the (documented) way to walk a callstack for any thread (own, 
+              other and remote). It has an abstraction layer, so the calling app 
+              does not need to know the internals.</SPAN>
+              <LI><A href="http://www.codeproject.com/threads/XQueue.asp">XQueue 
+              - a non-MFC C++ class to manage an interprocess queue</A><BR><SPAN 
+              class=smalltext>XQueue implements a shared-memory first-in 
+              first-out (FIFO) queue, based on memory-mapped files, that works 
+              on all versions of Windows.</SPAN>
+              <LI><A 
+              href="http://www.codeproject.com/threads/work_queue.asp">Work 
+              Queue</A><BR><SPAN class=smalltext>Simple and elegant thread 
+              pool.</SPAN>
+              <LI><A href="http://www.codeproject.com/threads/winspy.asp">Three 
+              Ways to Inject Your Code into Another Process</A><BR><SPAN 
+              class=smalltext>How to inject code into another processes address 
+              space, and then execute it in the context of this 
+              process.</SPAN></LI></UL></TD>
+          <TD width=360>
+            <SCRIPT language=javascript>document.write("<IFRAME src=\"/script/admentor/include/ServeAdHTML.aspx?C=False&id=786\" border=0 frameborder=0 scrolling=no width=300 height=250></IFRAME>");</SCRIPT>
+          </TD></TR></TBODY></TABLE>
+      <FORM action=/script/rating/code/app/insert_vote.asp method=post><INPUT 
+      type=hidden value=/threads/sendmsg.asp name=vote_name> <INPUT type=hidden 
+      value=/threads/sendmsg.asp name=goal> 
+      <TABLE cellSpacing=0 cellPadding=1 width="100%" bgColor=#ff9900 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=0 cellPadding=4 width="100%" bgColor=#fbedbb 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=smalltext vAlign=center>[<A 
+                  href="http://www.codeproject.com/threads/sendmsg.asp#__top">Top</A>]</TD>
+                <TD vAlign=center noWrap align=right><A 
+                  href="http://www.codeproject.com/script/profile/logon.asp?ct=%2Fthreads%2Fsendmsg%2Easp"><B>Sign 
+                  in</B></A> to vote for this article:&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <I>Poor</I><INPUT style="disabled: true" type=radio value=1 
+                  name=rate><INPUT style="disabled: true" type=radio value=2 
+                  name=rate><INPUT style="disabled: true" type=radio value=3 
+                  name=rate><INPUT style="disabled: true" type=radio value=4 
+                  name=rate><INPUT style="disabled: true" type=radio value=5 
+                  name=rate><I>Excellent</I>&nbsp;&nbsp;<INPUT class=FormButton style="disabled: true" type=submit value=Vote> 
+                </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD vAlign=top>
+            <CENTER>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=1298&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Futb%5F120x60%2Egif&C=False&id=1298\" alt=\"Hundreds of MFC extension classes to enhance the usability and User Interfaces of MFC applications\" border=0 width=120 height=60></a>");</SCRIPT>
+            </CENTER><BR></TD>
+          <TD vAlign=top noWrap align=middle><SPAN id=AdBanner5>
+            <SCRIPT language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=648&way=ban\" target=_blank><img src=\"/script/admentor/include/ServeAd.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvsnet468x60%5Fmfc%2Egif&C=False&id=648\" alt=\"Support Code Project and purchase Visual Studio .NET from $899\" border=0 width=468 height=60></a>");</SCRIPT>
+            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+name=__comments></A>
+<SCRIPT language=JavaScript>
+
+var Selected = "";
+var AdTime = new Date();
+
+function SwitchMessage(elm)
+{
+	
+	var elmref;
+	if (Selected != "")
+	{
+		elmref = eval("document.getElementById('" + Selected + "_h1')");
+		if (elmref) elmref.style.display = 'none';
+		elmref = eval("document.getElementById('" + Selected + "_h0')");
+		if (elmref) elmref.bgColor = '#FEF9E7';
+	}
+	if (Selected != elm.name) 
+	{
+		Selected = elm.name;
+		elmref = eval("document.getElementById('" + Selected + "_h1')");
+		if (elmref) 
+		{
+			if (elmref.style.display=='none') elmref.style.display='';
+			else elmref.style.display = 'none';
+		}
+		elmref = eval("document.getElementById('" + Selected + "_h0')");
+		if (elmref) 
+			elmref.bgColor = '#99CCFF';
+	}
+	else
+		Selected="";
+		
+	window.location = "#xx" + Selected + "xx";
+
+	return false;
+}
+
+</SCRIPT>
+
+<SCRIPT language=javascript event=onclick for=DynMessLink>
+return SwitchMessage(this);
+</SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#ff9900 border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%">
+      <TABLE id=ForumTable cellSpacing=1 cellPadding=0 width="100%" 
+      bgColor=#ff9900 border=0>
+        <FORM 
+        action=/script/comments/app/do_filtermessages.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120 
+        method=post>
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=3 width="100%" bgColor=white 
+            border=0>
+              <TBODY>
+              <TR bgColor=#fbedbb>
+                <TD class=smalltext noWrap><A 
+                  href="http://www.codeproject.com/script/comments/faq.asp"><IMG 
+                  height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/forum_faq.gif" 
+                  width=16 align=absMiddle border=0> <B>FAQ</B></A>&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap align=right>Noise 
+                  tolerance <SELECT class=smalltext size=1 name=noise><OPTION 
+                    value=1>Very High</OPTION> <OPTION value=2>High</OPTION> 
+                    <OPTION value=3 selected>Medium</OPTION> <OPTION 
+                    value=4>Low</OPTION> <OPTION value=5>Very 
+                  low</OPTION></SELECT>&nbsp;&nbsp;</TD>
+                <TD class=smalltext vAlign=center noWrap align=right 
+                  colSpan=2><A 
+                  href="http://www.codeproject.com/script/comments/search_comments.asp?forumid=120"><IMG 
+                  height=15 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/forum_search.gif" 
+                  width=16 border=0> Search comments</A> &nbsp;</TD>
+                <TD vAlign=top align=right><INPUT class=FormButton type=submit value="Set Options" name=submit></TD></TR>
+              <TR bgColor=#ff9900>
+                <TD width="100%">&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap align=right>View <SELECT 
+                  class=smalltext size=1 name=expand><OPTION value=0>Normal 
+                    (slow)</OPTION> <OPTION value=2>Preview (slow)</OPTION> 
+                    <OPTION value=5 selected>Message View</OPTION> <OPTION 
+                    value=6>Topic View</OPTION> <OPTION value=1>Thread 
+                    View</OPTION> <OPTION value=3>Expanded (Supporters 
+                    only)</OPTION></SELECT>&nbsp;&nbsp;</TD>
+                <TD class=smalltext vAlign=top noWrap>Per page <SELECT 
+                  class=smalltext size=1 name=perpage><OPTION 
+                    value=10>10</OPTION> <OPTION value=25 selected>25</OPTION> 
+                    <OPTION value=50>50 (must logon)</OPTION></SELECT></TD>
+                <TD colSpan=2>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></FORM>
+        <TR bgColor=#fbedbb>
+          <TD><A name=xx0xx></A>
+            <TABLE cellPadding=2 width="100%" bgColor=#fbedbb border=0>
+              <TBODY>
+              <TR>
+                <TD class=messagetitle><IMG height=16 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/forum_newmsg.gif" 
+                  width=16 align=top border=0><A class=HoverLink 
+                  title="Add a new message to the discussions" 
+                  href="http://www.codeproject.com/script/comments/user_new.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120" 
+                  target=_top name=HoverNL><B>New Message</B></A></TD>
+                <TD class=messagetitle>Msgs 1 to 21 of 21 (Total: 21) (<A 
+                  href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120">Refresh</A>)</TD>
+                <TD noWrap align=right><FONT class=messagetitle><SPAN 
+                  class=HoverLink>First</SPAN> <SPAN class=HoverLink>Prev</SPAN> 
+                  <SPAN class=HoverLink>Next</SPAN> <SPAN 
+                  class=HoverLink>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR>
+        <TR bgColor=white>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=2 bgColor=#fbedbb border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=messagetitle width="100%">Subject&nbsp;</TD>
+                      <TD class=messagetitle noWrap width=140>Author&nbsp;</TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT 
+                    class=messagetitle>Date&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=1086386_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx1086386xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=1086386#xx1086386xx" 
+                        name=1086386><B>Thank you</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1297425"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>tsurutsuru</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>12:14 18 Apr 
+                        '05</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=1086386_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>I've 
+                                been looking for a way to do this all weekend. 
+                                Thanks! <IMG 
+                                src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/smiley_cool.gif" 
+                                align=absMiddle> <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=1086386">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=1086386">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=1086386&amp;forumid=120&amp;select=1086386#xx1086386xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=1086386#xx1086386xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=1086386"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=1086386"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=963563_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx963563xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=963563#xx963563xx" 
+                        name=963563><B>how to use it</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1408575"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>roel 
+                        the reds</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>2:16 3 Nov 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=963563_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>would 
+                                you please give me an example how to call this 
+                                method, what should be the 
+                                parameter?<BR><BR>SendMessageToProcess(LPPROCESS_INFORMATION 
+                                lpProcessInformation, <BR>UINT Msg, WPARAM 
+                                wParam, LPARAM lParam) 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=963563">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=963563">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=963563&amp;forumid=120&amp;select=963563#xx963563xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=963563#xx963563xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=963563"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=963563"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=908219_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx908219xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=908219#xx908219xx" 
+                        name=908219><B>Give me some example of inter process 
+                        communication using call back function</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=1095298"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>umer 
+                        shabbir</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>2:22 26 Aug 
+                        '04</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=908219_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Give me 
+                                some example of inter process communication 
+                                using call back function 
+                                <BR><BR>Umer<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=908219">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=908219">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=908219&amp;forumid=120&amp;select=908219#xx908219xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=908219#xx908219xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=908219"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=908219"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=698959_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx698959xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=698959#xx698959xx" 
+                        name=698959><B>Send message to another 
+                        application</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=753106"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>xenia27</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>3:40 25 Dec 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=698959_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hi,<BR><BR>I have this 
+                                problem...I know the handle of the destination 
+                                application...and the handle is created by 
+                                CreateProcess...<BR><BR>Now I try to use 
+                                SendMessage with WM_COPYDATA and I got this 
+                                error message (error code 183..which means 
+                                ERROR_ALREADY_EXISTS) What should I 
+                                do???<BR><BR><BR>Xenia 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=698959">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=698959">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=698959&amp;forumid=120&amp;select=698959#xx698959xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=698959#xx698959xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=698959"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=698959"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=687094_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx687094xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=687094#xx687094xx" 
+                        name=687094><B>Sending Message to MessageBox</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=67039"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle><B>Ahmer 
+                        Syed</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>0:53 10 Dec 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=687094_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hello<BR>My aim is to send 
+                                a message of Yes to a messagebox of other 
+                                application can u help me on it i will be really 
+                                thankfull to u <BR><BR>Thanx <BR><BR>Ahmer 
+                                Syed<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=687094">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=687094">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=687094&amp;forumid=120&amp;select=687094#xx687094xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=687094#xx687094xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=687094"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=687094"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=669293_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx669293xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=669293#xx669293xx" 
+                        name=669293><B>How to find window?</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=417209"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>darwinw</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>14:24 18 Nov 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=669293_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>if an 
+                                app is minimized/hide or sits in system tray, 
+                                can we still find a handle to that app? is 
+                                FindWindow works if so? 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=669293">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=669293">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=669293&amp;forumid=120&amp;select=669293#xx669293xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=669293#xx669293xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=669293"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=669293"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=808120_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx808120xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=808120#xx808120xx" 
+                        name=808120>Re: How to find window?</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=666963"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>crouchie1998&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>19:01 30 Apr 
+                        '04&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=808120_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Yep 
+                                <IMG 
+                                src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/smiley_tongue.gif" 
+                                align=absMiddle> <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=808120">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=808120">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=669293&amp;forumid=120&amp;select=808120#xx808120xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=808120#xx808120xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=808120"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=808120"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=581587_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx581587xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=581587#xx581587xx" 
+                        name=581587><B>Passing instruction to the createprocess 
+                        command prompt</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=20721"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>vgandhi</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>19:48 13 Aug 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=581587_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Hi 
+                                there,<BR>I wanted to ask you if we use the 
+                                createprocess command for some command line 
+                                function and if that function requires a prompt 
+                                for (y/n) confirmation how do we pass in yes or 
+                                no to that command prompt window. for example 
+                                the cacls function if i have something where my 
+                                strcommand looks like<BR>cacls temp \t \g user:W 
+                                and i make a call to <BR>CreateProcess(NULL, // 
+                                command is part of input string<BR>strcommand , 
+                                // (writeable) command string<BR>NULL, // 
+                                process security<BR>NULL, // thread 
+                                security<BR>TRUE, // inherit handles flag<BR>0, 
+                                // flags<BR>NULL, // inherit 
+                                environment<BR>NULL, // inherit 
+                                directory<BR>&amp;startup, // 
+                                STARTUPINFO<BR>&amp;procinfo); <BR>now if i want 
+                                to type in Y at the confirmation window so that 
+                                the user doesnt have a choice how do I do that. 
+                                The application that I am running will call 
+                                createprocess and give the user a chance to type 
+                                Y Please let me know thanks 
+                                <BR><BR>vg<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=581587">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=581587">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=581587&amp;forumid=120&amp;select=581587#xx581587xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=581587#xx581587xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=581587"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=581587"><I>Delete</I></A>]<BR>Score: 
+                                2.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=413935_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx413935xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=413935#xx413935xx" 
+                        name=413935><B>confused</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=218341"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>ratass2002</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>1:07 11 Feb 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=413935_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>who-&gt;ProcessInfo-&gt;dwProcessId=(DWORD)1626472448;<BR>SendMessageToProcess(who-&gt;ProcessInfo 
+                                ,LVM_GETITEMCOUNT,0,0);<BR><BR>I keep getting 
+                                type errors.<BR>what is the correct way to call 
+                                SendMessageToProcess?<BR><BR>I just want to send 
+                                a message to a ListView on another DialogBox. I 
+                                can find the process id and window handle using 
+                                Spy++ for now. Also if I want to send a message 
+                                to a control of another app, can I directly talk 
+                                to it using its handle?<BR><BR><BR><IMG 
+                                src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/smiley_confused.gif" 
+                                align=absMiddle> <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413935">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413935">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=413935&amp;forumid=120&amp;select=413935#xx413935xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=413935#xx413935xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413935"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413935"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=413917_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx413917xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=413917#xx413917xx" 
+                        name=413917><B>give me an example</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=218341"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>ratass2002</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>1:00 11 Feb 
+                        '03</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=413917_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>How do 
+                                I actually use this function? 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413917">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413917">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=413917&amp;forumid=120&amp;select=413917#xx413917xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=413917#xx413917xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413917"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=413917"><I>Delete</I></A>]<BR>Score: 
+                                3.0 (3 votes). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=229082_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx229082xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=229082#xx229082xx" 
+                        name=229082><B>getguithreadmessage()</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070><B>Anonymous</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle 
+                        color=#707070><B>17:21 8 Jul 
+                    '02</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=229082_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>getguithreadmessage() fails 
+                                why? <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=229082">Reply</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=229082&amp;forumid=120&amp;select=229082#xx229082xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=229082#xx229082xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=229082"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=229082"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=205983_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx205983xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=205983#xx205983xx" 
+                        name=205983><B>Window event listener</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070><B>Anonymous</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle color=#707070><B>8:37 
+                        11 Jun '02</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=205983_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hi!<BR><BR>Would it be 
+                                possible to listen to window events from another 
+                                process?<BR><BR>For example, my application 
+                                starts another application that displays<BR>a 
+                                simple form with a button. When the user presses 
+                                that button, my<BR>application should be 
+                                notified about the BN_CLICKED(BUTTONID) 
+                                event.<BR><BR>Thanks<BR><BR>/// M R 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=205983">Reply</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=205983&amp;forumid=120&amp;select=205983#xx205983xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=205983#xx205983xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=205983"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=205983"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=843287_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx843287xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=843287#xx843287xx" 
+                        name=843287>Re: Window event listener</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=705313"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle>Silent 
+                        Mobius&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>6:05 7 Jun 
+                        '04&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=843287_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>You 
+                                should hook the process (look at 
+                                <CODE>::SetWindowsHookEx</CODE>). Then you get 
+                                every messages from the process, for what you 
+                                are looking for. I hope it helps<BR>Mobius 
+                                <BR><BR>-----------------------------------------------------------<BR>"Eritis 
+                                sicut deus, scientes bonum et 
+                                malum"<BR>Faust<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=843287">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=843287">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=205983&amp;forumid=120&amp;select=843287#xx843287xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=843287#xx843287xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=843287"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=843287"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=91528_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx91528xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=91528#xx91528xx" 
+                        name=91528><B>how to set window to foregroun in 
+                        win2k</B></A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=25847"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle><B>jodon</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle><B>0:19 25 Dec 
+                        '01</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=91528_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>When I 
+                                use SetForegroundWindow API, but this API didn't 
+                                general true result.<IMG 
+                                src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/smiley_confused.gif" 
+                                align=absMiddle> <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=91528">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=91528">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=91528&amp;forumid=120&amp;select=91528#xx91528xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=91528#xx91528xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=91528"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=91528"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=68311_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx68311xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=68311#xx68311xx" 
+                        name=68311><B>How to send VK_? message?</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070><B>Xuqiang Bai</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle 
+                        color=#707070><B>21:06 16 Oct 
+                    '01</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=68311_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT 
+                                class=messagecontent>Hi,<BR><BR>I want to send 
+                                VK_? message to another window(process), like 
+                                "Alt + E" message.<BR>So i do as 
+                                <BR>SendMessageToProcess(&amp;processInfo, 
+                                WM_COMMAND, VK_MENU, 
+                                0);<BR>SendMessageToProcess(&amp;processInfo, 
+                                WM_COMMAND, 0x45, 0); //0x45 is VK_E<BR>but it 
+                                does not work.<BR>Is something wrong with 
+                                me?<BR><BR>Thanks for any advice.<BR><BR>Bai. 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68311">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68311">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=68311&amp;forumid=120&amp;select=68311#xx68311xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=68311#xx68311xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68311"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68311"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=68673_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx68673xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=68673#xx68673xx" 
+                        name=68673>Re: How to send VK_? message?</A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070>Anonymous&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle color=#707070>14:39 
+                        17 Oct '01&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=68673_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>dafd 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68673">Reply</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=68311&amp;forumid=120&amp;select=68673#xx68673xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=68673#xx68673xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68673"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68673"><I>Delete</I></A>]<BR>Score: 
+                                3.0 (2 votes). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=68682_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx68682xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=68682#xx68682xx" 
+                        name=68682>Re: How to send VK_? message?</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=10710"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle>Tim 
+                        Smith&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>15:15 17 Oct 
+                        '01&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=68682_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Take a 
+                                look at the WM_CHAR and WM_KEYDOWN/WM_KEYUP 
+                                messages. <BR><BR>Tim Smith<BR>Descartes Systems 
+                                Sciences, Inc.<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68682">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68682">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=68311&amp;forumid=120&amp;select=68682#xx68682xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=68682#xx68682xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68682"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68682"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=68686_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx68686xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=68686#xx68686xx" 
+                        name=68686>Re: How to send VK_? message?</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=20875"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>Navin&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>15:19 17 Oct 
+                        '01&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=68686_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>The 
+                                problem is that the VK_(whatever) are key codes, 
+                                not Windows messages. So you have a few options, 
+                                depending on what you want to do:<BR><BR>1. If, 
+                                in this example, Alt-E might bring up a menu, 
+                                you can send a WM_COMMAND message for that 
+                                item:<BR>SendMessage(hwnd, WM_COMMAND, 
+                                IDR_SOME_MENU_ITEM, 0);<BR><BR>2. If you have 
+                                the code for both processes, you can use 
+                                custom-defined messages to communicate in this 
+                                way.<BR><BR>3. Although I've never tried it, you 
+                                can try sending a WM_CHAR, WM_KEYDOWN, and/or 
+                                WM_KEYUP message.<BR><BR><BR><BR>The early bird 
+                                may get the worm, but the second mouse gets the 
+                                cheese.<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68686">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68686">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=68311&amp;forumid=120&amp;select=68686#xx68686xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=68686#xx68686xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68686"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68686"><I>Delete</I></A>]<BR>Score: 
+                                1.5 (2 votes). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=68688_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx68688xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=36><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=68688#xx68688xx" 
+                        name=68688>If you have the code of both projects</A></TD>
+                      <TD vAlign=bottom><A 
+                        href="http://www.codeproject.com/script/profile/whos_who.asp?id=146"><IMG 
+                        title="Click for User Profile" height=15 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/userinfo.gif" 
+                        width=14 border=0></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT 
+                        class=messagetitle>Martin-Pierre 
+Frenette&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle>15:25 17 Oct 
+                        '01&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=68688_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=36><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>If you 
+                                have the code of both projects, you should 
+                                really use the : WM_COPYDATA message.<BR><BR>If 
+                                I remember correctly ( and please bear in mind 
+                                that I wrote this article a few years ago ), 
+                                only the WM_COPYDATA message was really properly 
+                                sent.<BR><BR>If someone tries it succesfully 
+                                thought, I would like to hear about it ! 
+                                <BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68688">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68688">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=68311&amp;forumid=120&amp;select=68688#xx68688xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=68688#xx68688xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68688"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=68688"><I>Delete</I></A>]<BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR height=1>
+                <TD bgColor=#ff9900><IMG height=1 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1></TD></TR>
+              <TR id=16962_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx16962xx></A><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle width="100%"><A 
+                        class=messagetitle id=DynMessLink 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=16962#xx16962xx" 
+                        name=16962><B>FINDWINDOWHANDLESTRUCT ?</B></A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        color=#707070><B>Luc</B>&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle color=#707070><B>6:07 
+                        18 Jan '01</B>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=16962_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>Hi 
+                                <BR><BR>can you tell me where I can find the 
+                                FINDWINDOWHANDLESTRUCT<BR><BR>Tanx<BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=16962">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=16962">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=16962&amp;forumid=120&amp;select=16962#xx16962xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=16962#xx16962xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right>[<A 
+                                href="http://www.codeproject.com/script/comments/owner_modify_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=16962"><I>Modify</I></A>|<A 
+                                href="http://www.codeproject.com/script/comments/owner_delete_pw.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=16962"><I>Delete</I></A>]<BR>Score: 
+                                1.0 (1 vote). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=6 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR>
+              <TR id=28782_h0 bgColor=#fef9e7>
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=white><A name=xx28782xx></A><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD class=messagetitle style="COLOR: #aaaaaa" 
+                        width="100%"><A class=messagetitle id=DynMessLink 
+                        style="COLOR: #aaaaaa" 
+                        href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;forumid=120&amp;select=28782#xx28782xx" 
+                        name=28782>Re: FINDWINDOWHANDLESTRUCT ?</A></TD>
+                      <TD vAlign=bottom><IMG height=13 
+                        alt="Unconfirmed/Anonymous posting" 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/usersuss.gif" 
+                        width=15></A>&nbsp;</TD>
+                      <TD noWrap width=140><FONT class=messagetitle 
+                        style="COLOR: #aaaaaa" color=#707070>ck&nbsp;</FONT></TD>
+                      <TD style="WIDTH: 9em" noWrap align=right 
+                        width=120><FONT class=messagetitle 
+                        style="COLOR: #aaaaaa" color=#707070>7:14 7 May 
+                        '01&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+              <TR id=28782_h1 style="DISPLAY: none">
+                <TD width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><IMG height=1 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/ind.gif" 
+                        width=18><IMG 
+                        src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_blank.gif" 
+                        align=absMiddle>&nbsp;</TD>
+                      <TD width="100%" bgColor=#d5eaff>
+                        <TABLE cellSpacing=5 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                                <TR>
+                                <TD colSpan=2><FONT class=messagecontent>typedef 
+                                struct _FINDWINDOWHANDLESTRUCT 
+                                {<BR>LPPROCESS_INFORMATION ProcessInfo;<BR>HWND 
+                                hWndFound;<BR>} 
+                                FINDWINDOWHANDLESTRUCT;<BR><BR><IMG 
+                                src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/smiley_redface.gif" 
+                                align=absMiddle><BR>&nbsp;</FONT></TD></TR>
+                                <TR vAlign=top>
+                                <TD class=messagetitle>[<A 
+                                title="Reply to this current thread" 
+                                href="http://www.codeproject.com/script/comments/user_reply.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=28782">Reply</A>][<A 
+                                title="Email a reply to the author of this message" 
+                                href="http://www.codeproject.com/script/comments/user_mail.asp?main=/threads/sendmsg.asp&amp;df=100&amp;forumid=120&amp;select=28782">Email</A>][<A 
+                                title="View only messages within this thread" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?df=100&amp;tid=16962&amp;forumid=120&amp;select=28782#xx28782xx">View 
+                                Thread</A>][<A 
+                                title="Get the URL for this message" 
+                                href="http://www.codeproject.com/threads/sendmsg.asp?msg=28782#xx28782xx">Get 
+                                Link</A>]</TD>
+                                <TD class=messagetitle align=right><BR>Score: 
+                                1.5 (4 votes). 
+                          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              <TR>
+                <TD><IMG height=5 
+                  src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/t.gif" 
+                  width=1 border=0></TD></TR></TBODY></TABLE></TD></TR>
+        <TR bgColor=#fbedbb>
+          <TD>
+            <TABLE cellPadding=2 width="100%">
+              <TBODY>
+              <TR>
+                <TD class=messagetitle>Last Visit: 13:12 Thursday 20th 
+                  October, 2005</TD>
+                <TD noWrap align=right><FONT class=messagetitle><SPAN 
+                  class=HoverLink>First</SPAN> <SPAN class=HoverLink>Prev</SPAN> 
+                  <SPAN class=HoverLink>Next</SPAN> <SPAN 
+                  class=HoverLink>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<P class=smallText><IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_general.gif" 
+align=absMiddle> General comment &nbsp;&nbsp; <IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_info.gif" 
+align=absMiddle> News / Info &nbsp;&nbsp; <IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_question.gif" 
+align=absMiddle> Question &nbsp;&nbsp; <IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_answer.gif" 
+align=absMiddle> Answer &nbsp;&nbsp; <IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_game.gif" 
+align=absMiddle> Joke / Game &nbsp;&nbsp; <IMG 
+src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/news_sticky.gif" 
+align=absMiddle> Admin message</P><BR>
+<TABLE cellSpacing=5 width="100%">
+  <TBODY>
+  <TR vAlign=top>
+    <TD><FONT style="FONT-SIZE: 7pt" size=1><A 
+      href="http://www.codeproject.com/?cat=1">All Topics</A>, <A 
+      href="http://www.codeproject.com/?cat=2">MFC / C++</A> &gt;&gt; <A 
+      href="http://www.codeproject.com/threads/">Threads, Processes &amp; 
+      IPC</A> &gt;&gt; <A 
+      href="http://www.codeproject.com/threads/#Inter%2DProcess+Communication">Inter-Process 
+      Communication</A> <BR>Updated: 9 Dec 1999 </FONT></TD>
+    <TD align=right><FONT style="FONT-SIZE: 7pt" size=1>Article content 
+      copyright Martin-Pierre Frenette, 1999<BR>everything else Copyright © <A 
+      href="mailto:webmaster@codeproject.com">CodeProject</A>, 1999-2005</A>. 
+      <BR><A href="http://www.codeproject.com/info/MediaKit">Advertise on The 
+      Code Project</A> | <A 
+      href="http://www.codeproject.com/info/privacy.asp">Privacy</A> 
+  </FONT></TD></TR></TBODY></TABLE><BR>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width="95%" border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ff9900 height=1><IMG height=1 
+      src="Sending a message to the Main Frame Window of Another Application, given only the Process Handle - The Code Project - Threads, Processes &amp; IPC_file/space.gif"></TD></TR>
+  <TR>
+    <TD align=middle><FONT size=1><A 
+      href="http://www.theultimatetoolbox.com/">The Ultimate Toolbox</A> • <A 
+      href="http://www.codeproject.com/redir.asp?id=235">MSDN Communities</A> | 
+      <A href="http://www.aspalliance.com/">ASP Alliance</A> • <A 
+      href="http://www.developerfusion.co.uk/">Developer Fusion</A> • <A 
+      href="http://www.developersdex.com/">Developersdex</A> • <A 
+      href="http://www.devguru.com/">DevGuru</A> • <A 
+      href="http://www.programmersheaven.com/">Programmers Heaven</A> • <A 
+      href="http://www.planet-source-code.com/">Planet Source Code</A> • <A 
+      href="http://www.tek-tips.com/">Tek-Tips Forums</A> • 
+</FONT></TD></TR></TBODY></TABLE></CENTER></BODY></HTML>
