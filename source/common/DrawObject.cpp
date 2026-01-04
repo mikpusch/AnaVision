@@ -2562,6 +2562,25 @@ PolygonObject::PolygonObject(){
 PolygonObject::~PolygonObject(){
 }
 
+double PolygonObject::GetMaxDifferenceLengthOfVertices(){
+	if (this->pointlist.size() < 2 ){
+		return 0.0;
+	}
+	double l=0;
+
+	for (int i=0; i<pointlist.size(); i++){
+		for (int j=(i+1); j<pointlist.size(); j++){
+			double d = Vect::SquareDistance(pointlist[i], pointlist[j]);
+			if (d>l){
+				l=d;
+			}
+		}
+	}
+//	ShowFloat(sqrt(l), "l");
+	return sqrt(l);
+
+}
+
 double PolygonObject::CalcLength(){
 	double l=0.0;
 	if (this->pointlist.size() < 2 ){

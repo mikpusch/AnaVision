@@ -382,6 +382,7 @@ public:
 						 AnaVisionImageDataType ** TrackImage,int xsize, int ysize);
 
 	void GetPoint(int index , CPoint & p);
+	double GetMaxDifferenceLengthOfVertices();
 
 	void ShiftPoints(int dx, int dy);
 	int GetNumberOfVertices();

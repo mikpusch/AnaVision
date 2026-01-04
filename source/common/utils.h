@@ -219,6 +219,7 @@ bool FindNextStringBackward(CString & instring, CString c, unsigned __int64 & po
 
 
 bool BitIsIn(UINT bit, UINT word);
+bool BitIsIn(UINT bit, BYTE byte);
 void AddBit(UINT bit, UINT & word);
 
 int ConfirmOld(CString question);
@@ -492,11 +493,13 @@ bool ReadTwoDoublesInLine(FILE * fp, double & x, double & y);
 bool ReadThreeDoublesInLine(FILE * fp, double & x, double & y, double & z);
 
 bool ReadOneDoubleInString(CString & c, double & x);
+bool ReadOneDoubleInString(std::string & c, double & x);
 bool ReadOneIntInString(CString & c, int & x);
 bool ReadTwoDoublesInString(CString & c, double & x, double & y);
 bool ReadThreeDoublesInString(CString & c, double & x, double & y, double & z);
 bool GetLineFromString(CString & c, CString & line);
 bool GetLineFromStringWithPos(CString & c, CString & line, int & pos);
+bool GetLineFromStringWithPos(std::string & c, std::string & line, int & pos);
 
 
 bool ReadLine(CFile & f, CString & c, int EstimatedLength = 81); // removes all eol chararcters!
@@ -540,7 +543,7 @@ bool ReadSystemTimeFromFile(SYSTEMTIME * pt, CFile * fp);
 
 __int32 SwapInt32(__int32 i);
 __int16 SwapInt16(__int16 i);
-
+float SwapFloat(float x);
 double SwapDouble(double x);
 
 double SystemTimeDifferenceInSeconds(SYSTEMTIME & st1, SYSTEMTIME & st2);
@@ -781,6 +784,7 @@ int Calci2(int i1, double prod);
 
 void CopyTextToClipboard(CString & source);
 void GetTextFromClipboard(CString & source);
+void GetTextFromClipboard(std::string & source);
 
 void CalcBesselPolynomialCoefficients(int order, double * coeffs);
 void CalcReverseBesselPolynomialCoefficients(int order, double * coeffs);
@@ -1401,3 +1405,68 @@ void extractIntegerWords(std::string & str, vector <int> & numbers);
 
 // s is altered
 bool GetNextWordInLine(CString & s, CString & w);
+
+double GetLargerAbsValue(double d1, double d2);
+
+int ReadDoublesInLine(std::string line, vector<double> & result);
+
+bool StringsAreEqualNotRegardingCase(CString c1, CString c2);
+
+template <class T>
+void QuickSortNonRecursive(vector <T> & arr, bool Compare(T &, T &)){
+	int NP = arr.size();
+	T piv;
+	vector<int> beg;
+	vector<int> end;
+//	, beg[MAX_LEVELS], end[MAX_LEVELS], i = 0, L, R;
+	int i=0;
+	int L, R;
+	beg.push_back(0); //    beg[0] = 0;
+	end.push_back(NP); //    end[0] = elements;
+
+    while (i >= 0) {
+        L = beg[i];
+        R = end[i] - 1;
+        if (L < R) {
+            piv = arr[L];
+//			if (i == beg.size()){
+//
+//
+//				MAX_LEVELS - 1)
+ //              return NO;
+		
+            while (L < R) {
+//                while (arr[R] >= piv && L < R)
+                while (Compare(piv, arr[R]) && L < R)
+                    R--;
+                if (L < R)
+                    arr[L++] = arr[R];
+//                while (arr[L] <= piv && L < R)
+                while (Compare(arr[L], piv) && L < R)
+                    L++;
+                if (L < R)
+                    arr[R--] = arr[L];
+            }
+            arr[L] = piv;
+			if ((i+1)>=beg.size()){
+				beg.push_back(L+1);
+				end.push_back(end[i]);
+			}
+			else{
+				beg[i + 1] = L + 1;
+		        end[i + 1] = end[i];
+			}
+//			end[i]
+            end[i++] = L;
+        } else {
+            i--;
+
+        }
+    }
+}
+
+template  <typename T>
+T GetMin(T A, T B){
+	if (A<B) return A;
+	return B;
+}

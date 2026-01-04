@@ -12,171 +12,6 @@
 #include "nrutil.h"
 #include "simplex.h"
 #include "../common/MTRand.h"
-/*
-int n, i, j, k;
-//int *lpoint, *mpoint;
-int lpoint [10000], mpoint[10000];
-if (n1>(10000-1)){
-	Alert0(_T("Error: too large matrix (>10000) in InvertDoubleMat"));
-	return -1;
-}
-double Big, temp, t;
-
-if (n1 < 1)
- {
-   *determ = 0.0;
-   return -1;
- }
- //    account for first index=0. 
-n = n1 - 1;   ///   Search for largest element 
-
-//lpoint = ivector(0,n);
-//mpoint = ivector(0,n);
-
-for (i=0; i<n1; i++)
- for (j=0; j<n1; j++)
-    A[i][j] = B[i][j];
-
-*determ = 1.0;
-
-for (k=0; k<n1; k++)
- {
-  lpoint[k] = k;
-  mpoint[k] = k;
-  Big = A[k][k];
-
-  for (j=k; j<n1; j++)
-   for (i=k; i<n1; i++)
-    {
-     if (fabs(Big) < fabs(A[i][j]))
-      {
-	Big = A[i][j];
-	lpoint[k] = i;
-	mpoint[k] = j;
-      }
-     }
-
-//     interchange rows 
-  j = lpoint[k];
-
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = -A[k][i];
-      A[k][i] = A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-//     interchange columns 
-   i = mpoint[k];
-   if (i>k)
-    {
-     for (j=0; j<n1; j++)
-      {
-	temp = -A[j][k];
-	A[j][k] = A[j][i];
-	A[j][i] = temp;
-      }
-    }
-
-//     divide column by minus pivot.     Value of pivot elementis in Big. 
-
-  if (Big==0.0)
-   {
-    *determ = 0.0;
-    //free_ivector(lpoint, 0, n);
-    //free_ivector(mpoint, 0, n);
-    return -1;
-   }
-
-  for (i=0; i<n1; i++)
-   {
-    if (i!=k)
-     {
-       A[i][k] = -A[i][k] / Big;
-     }
-   }
-//     reduce matrix. 
-
-  for (i=0; i<n1; i++)
-   {
-    temp = A[i][k];
-    for (j=0; j<n1; j++)
-     {
-      if (i !=  k)
-       {
-	if (j!= k)
-	 {
-	   t = temp * A[k][j];
-	   A[i][j] = A[i][j] + t;
-	 }
-       }
-     }
-   }
-
-//     divide row by pivots. 
-  for (j=0; j<n1; j++)
-   {
-    if (j!=k)
-     {
-       A[k][j] = A[k][j] / Big;
-     }
-   }
-
-//     product of pivots. 
-
-  *determ *= Big;
-
-//     replace pivot by reciprocal. 
-  temp = 1.0;
-  A[k][k] = temp / Big;
-} // NEXT k 
-
-//   final row and column interchange. 
-
-/// DEC( k% ) 
-
-k = k - 1;
-while (k > -1)
-{
-// DO UNTIL k% = -1 
-//   WHILE (k%>-1) DO 
-
-  i = lpoint[k];
-  if (i>k)
-   {
-    for (j=0; j<n1; j++)
-     {
-      temp = A[j][k];
-      A[j][k]= -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  j = mpoint[k];
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = A[k][i];
-      A[k][i] = -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-  k = k - 1;
-}
-
-// LOOP '  END ; (* WHILE *) 
-
-//   all done 
-
-//free_ivector(lpoint, 0, n);
-//free_ivector(mpoint, 0, n);
-*/
-
-
 #include "ComplexEV.h"
 
 #include "../alglib370/cpp/src/ap.h"
@@ -268,22 +103,11 @@ double LogBinom2(int N, int k){
 	}
 
 	return (sumlog[N]-sumlog[k]-sumlog[N-k]);
-/*
-	double t1 = N;
-	double t2 = k;
-	double t3 = N - k;
-#define halflog2pi .9189385332046727
-
-	return ( (t1 + .5) * logn[N] - halflog2pi -
-		     (t2 + .5) * logn[k] -
-			 (t3 + .5) * logn[N-k]);
-*/
 }
 
 
 double LogBinom(int N, int k){
 	if ((N<1) | (k>=N) | (k<1)) return 0.0;
-//	if (N<10) return TrueLogBinom(N, k);
 	if (N<MaxLogBinomN) return LogBinom2(N, k);
 #define halflog2pi .9189385332046727
 
@@ -342,24 +166,11 @@ double LogTrinom2(int N, int k1, int k2){
 	}
 
 	return (sumlog[N]-sumlog[k1]-sumlog[k2]-sumlog[N-k1-k2]);
-/*
-	double t1 = N;
-	double t2 = k1;
-	double t3 = k2;
-	double t4 = N-k1-k2;
-#define log2pi 1.837877066409345
-
-	return ( (t1 + .5) * logn[N] - log2pi -
-		     (t2 + .5) * logn[k1] -
-		     (t3 + .5) * logn[k2] -
-			 (t4 + .5) * logn[N-k1-k2]);
-*/
 }
 
 
 double LogTrinom(int N, int k1, int k2){
 	if ((N<1) | (k1<0) | (k2<0) | ((k1+k2)>N)) return 0.0;
-//	if (N<20) return TrueLogTrinom(N, k1, k2);
 	if (N<MaxLogBinomN) return LogTrinom2(N, k1, k2);
 #define log2pi 1.837877066409345
 
@@ -383,6 +194,13 @@ bool BitIsIn(UINT bit, UINT word){
 	else
 		return false;
 }
+bool BitIsIn(UINT bit, BYTE byte){
+	if (bit>8) return false;
+	if (UINT(byte/UINT(pow(2.0,double(bit))) % 2))
+		return true;
+	else
+		return false;
+}
 
 void AddBit(UINT bit, UINT & word){
 	if (bit>31) return;
@@ -401,16 +219,6 @@ void GetStopValue(CString question, int & stopvalue){
 int ConfirmOld(CString question){
 	// returns 0 if not confirm
 
-/*
-  int result = MessageBoxEx(NULL, question, "Please confirm", MB_ICONQUESTION | MB_YESNO, 0x0409);
-
-  HWND hWnd,         // handle of owner window
-  LPCTSTR lpText,    // address of text in message box
-  LPCTSTR lpCaption, // address of title of message box
-  UINT uType,        // style of message box
-  WORD wLanguageId   // language identifier
-);
-*/
 	int result = MessageBox(NULL, question, _T("Please confirm"), MB_ICONQUESTION | MB_YESNO);
 
 	if (result==IDYES){
@@ -744,168 +552,6 @@ int InvertMat (float **B, float **A, int n1, float *determ)
   starting indices 0,0
 */
 	return AlgLibInvertFloatMat(B, A, n1, determ);
-
-int n, i, j, k;
-//int *lpoint, *mpoint;
-int lpoint [10000], mpoint[10000];
-if (n1>(10000-1)){
-	Alert0(_T("Error: too large matrix (>10000) in InvertMat"));
-	return -1;
-}
-float Big, temp, t;
-
-if (n1 < 1) {
-   *determ = 0.0;
-   return -1;
- }
-
-/*   account for first index=0. */
-n = n1 - 1;   /*   Search for largest element */
-
-//lpoint = ivector(0,n);
-//mpoint = ivector(0,n);
-
-for (i=0; i<n1; i++)
- for (j=0; j<n1; j++)
-    A[i][j] = B[i][j];
-
-*determ = 1.0;
-
-for (k=0; k<n1; k++)
- {
-  lpoint[k] = k;
-  mpoint[k] = k;
-  Big = A[k][k];
-
-  for (j=k; j<n1; j++)
-   for (i=k; i<n1; i++)
-    {
-     if (fabs(Big) < fabs(A[i][j]))
-      {
-	Big = A[i][j];
-	lpoint[k] = i;
-	mpoint[k] = j;
-      }
-     }
-
-/*     interchange rows */
-  j = lpoint[k];
-
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = -A[k][i];
-      A[k][i] = A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  /*     interchange columns */
-   i = mpoint[k];
-   if (i>k)
-    {
-     for (j=0; j<n1; j++)
-      {
-	temp = -A[j][k];
-	A[j][k] = A[j][i];
-	A[j][i] = temp;
-      }
-    }
-
-  /*     divide column by minus pivot.     Value of pivot elementis in Big. */
-
-  if (Big==0.0)
-   {
-    *determ = 0.0;
-    //free_ivector(lpoint, 0, n);
-    //free_ivector(mpoint, 0, n);
-    return -1;
-   }
-
-  for (i=0; i<n1; i++)
-   {
-    if (i!=k)
-     {
-       A[i][k] = -A[i][k] / Big;
-     }
-   }
-/*     reduce matrix. */
-
-  for (i=0; i<n1; i++)
-   {
-    temp = A[i][k];
-    for (j=0; j<n1; j++)
-     {
-      if (i !=  k)
-       {
-	if (j!= k)
-	 {
-	   t = temp * A[k][j];
-	   A[i][j] = A[i][j] + t;
-	 }
-       }
-     }
-   }
-
-/*     divide row by pivots. */
-  for (j=0; j<n1; j++)
-   {
-    if (j!=k)
-     {
-       A[k][j] = A[k][j] / Big;
-     }
-   }
-
-/*     product of pivots. */
-
-  *determ *= Big;
-
-/*     replace pivot by reciprocal. */
-  temp = 1.0;
-  A[k][k] = temp / Big;
-} /* NEXT k */
-
-/*   final row and column interchange. */
-
-/* DEC( k% ) */
-
-k = k - 1;
-while (k > -1)
-{
-/* DO UNTIL k% = -1 */
-/*   WHILE (k%>-1) DO */
-
-  i = lpoint[k];
-  if (i>k)
-   {
-    for (j=0; j<n1; j++)
-     {
-      temp = A[j][k];
-      A[j][k]= -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  j = mpoint[k];
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = A[k][i];
-      A[k][i] = -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-  k = k - 1;
-}
-
-/* LOOP '  END ; (* WHILE *) */
-
-/*   all done */
-
-//free_ivector(lpoint, 0, n);
-//free_ivector(mpoint, 0, n);
 }
 
 
@@ -925,172 +571,6 @@ int InvertDoubleMat (double **B, double **A, int n1, double *determ)
 */
 
 	return AlgLibInvertRealMat(B, A, n1, determ);
-
-
-/*
-int n, i, j, k;
-//int *lpoint, *mpoint;
-int lpoint [10000], mpoint[10000];
-if (n1>(10000-1)){
-	Alert0(_T("Error: too large matrix (>10000) in InvertDoubleMat"));
-	return -1;
-}
-double Big, temp, t;
-
-if (n1 < 1)
- {
-   *determ = 0.0;
-   return -1;
- }
- //    account for first index=0. 
-n = n1 - 1;   ///   Search for largest element 
-
-//lpoint = ivector(0,n);
-//mpoint = ivector(0,n);
-
-for (i=0; i<n1; i++)
- for (j=0; j<n1; j++)
-    A[i][j] = B[i][j];
-
-*determ = 1.0;
-
-for (k=0; k<n1; k++)
- {
-  lpoint[k] = k;
-  mpoint[k] = k;
-  Big = A[k][k];
-
-  for (j=k; j<n1; j++)
-   for (i=k; i<n1; i++)
-    {
-     if (fabs(Big) < fabs(A[i][j]))
-      {
-	Big = A[i][j];
-	lpoint[k] = i;
-	mpoint[k] = j;
-      }
-     }
-
-//     interchange rows 
-  j = lpoint[k];
-
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = -A[k][i];
-      A[k][i] = A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-//     interchange columns 
-   i = mpoint[k];
-   if (i>k)
-    {
-     for (j=0; j<n1; j++)
-      {
-	temp = -A[j][k];
-	A[j][k] = A[j][i];
-	A[j][i] = temp;
-      }
-    }
-
-//     divide column by minus pivot.     Value of pivot elementis in Big. 
-
-  if (Big==0.0)
-   {
-    *determ = 0.0;
-    //free_ivector(lpoint, 0, n);
-    //free_ivector(mpoint, 0, n);
-    return -1;
-   }
-
-  for (i=0; i<n1; i++)
-   {
-    if (i!=k)
-     {
-       A[i][k] = -A[i][k] / Big;
-     }
-   }
-//     reduce matrix. 
-
-  for (i=0; i<n1; i++)
-   {
-    temp = A[i][k];
-    for (j=0; j<n1; j++)
-     {
-      if (i !=  k)
-       {
-	if (j!= k)
-	 {
-	   t = temp * A[k][j];
-	   A[i][j] = A[i][j] + t;
-	 }
-       }
-     }
-   }
-
-//     divide row by pivots. 
-  for (j=0; j<n1; j++)
-   {
-    if (j!=k)
-     {
-       A[k][j] = A[k][j] / Big;
-     }
-   }
-
-//     product of pivots. 
-
-  *determ *= Big;
-
-//     replace pivot by reciprocal. 
-  temp = 1.0;
-  A[k][k] = temp / Big;
-} // NEXT k 
-
-//   final row and column interchange. 
-
-/// DEC( k% ) 
-
-k = k - 1;
-while (k > -1)
-{
-// DO UNTIL k% = -1 
-//   WHILE (k%>-1) DO 
-
-  i = lpoint[k];
-  if (i>k)
-   {
-    for (j=0; j<n1; j++)
-     {
-      temp = A[j][k];
-      A[j][k]= -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  j = mpoint[k];
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = A[k][i];
-      A[k][i] = -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-  k = k - 1;
-}
-
-// LOOP '  END ; (* WHILE *) 
-
-//   all done 
-
-//free_ivector(lpoint, 0, n);
-//free_ivector(mpoint, 0, n);
-*/
-
 }
 
 double MyCAbs2(complex<double> x){
@@ -1115,168 +595,6 @@ int InvertComplexMat (complex<double> **B, complex<double> **A,
 */
 	return AlgLibInvertComplexMat(B, A, n1, determ);
 
-int n, i, j, k;
-//int *lpoint, *mpoint;
-int lpoint [10000], mpoint[10000];
-if (n1>(10000-1)){
-	Alert0(_T("Error: too large matrix (>10000) in InvertComplexMat"));
-	return -1;
-}
-complex<double> Big, temp, t;
-
-if (n1 < 1)
- {
-   *determ = 0.0;
-   return -1;
- }
-
-/*   account for first index=0. */
-n = n1 - 1;   /*   Search for largest element */
-
-//lpoint = ivector(0,n);
-//mpoint = ivector(0,n);
-
-for (i=0; i<n1; i++)
- for (j=0; j<n1; j++)
-    A[i][j] = B[i][j];
-
-*determ = 1.0;
-
-for (k=0; k<n1; k++)
- {
-  lpoint[k] = k;
-  mpoint[k] = k;
-  Big = A[k][k];
-
-  for (j=k; j<n1; j++)
-   for (i=k; i<n1; i++)
-    {
-     if (MyCAbs2(Big) < MyCAbs2(A[i][j]))
-      {
-	Big = A[i][j];
-	lpoint[k] = i;
-	mpoint[k] = j;
-      }
-     }
-
-/*     interchange rows */
-  j = lpoint[k];
-
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = -A[k][i];
-      A[k][i] = A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  /*     interchange columns */
-   i = mpoint[k];
-   if (i>k)
-    {
-     for (j=0; j<n1; j++)
-      {
-	temp = -A[j][k];
-	A[j][k] = A[j][i];
-	A[j][i] = temp;
-      }
-    }
-
-  /*     divide column by minus pivot.     Value of pivot elementis in Big. */
-
-  if (Big==0.0)
-   {
-    *determ = 0.0;
-    //free_ivector(lpoint, 0, n);
-    //free_ivector(mpoint, 0, n);
-    return -1;
-   }
-
-  for (i=0; i<n1; i++)
-   {
-    if (i!=k)
-     {
-       A[i][k] = -A[i][k] / Big;
-     }
-   }
-/*     reduce matrix. */
-
-  for (i=0; i<n1; i++)
-   {
-    temp = A[i][k];
-    for (j=0; j<n1; j++)
-     {
-      if (i !=  k)
-       {
-	if (j!= k)
-	 {
-	   t = temp * A[k][j];
-	   A[i][j] = A[i][j] + t;
-	 }
-       }
-     }
-   }
-
-/*     divide row by pivots. */
-  for (j=0; j<n1; j++)
-   {
-    if (j!=k)
-     {
-       A[k][j] = A[k][j] / Big;
-     }
-   }
-
-/*     product of pivots. */
-
-  *determ *= Big;
-
-/*     replace pivot by reciprocal. */
-  temp = 1.0;
-  A[k][k] = temp / Big;
-} /* NEXT k */
-
-/*   final row and column interchange. */
-
-/* DEC( k% ) */
-
-k = k - 1;
-while (k > -1)
-{
-/* DO UNTIL k% = -1 */
-/*   WHILE (k%>-1) DO */
-
-  i = lpoint[k];
-  if (i>k)
-   {
-    for (j=0; j<n1; j++)
-     {
-      temp = A[j][k];
-      A[j][k]= -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-
-  j = mpoint[k];
-  if (j>k)
-   {
-    for (i=0; i<n1; i++)
-     {
-      temp = A[k][i];
-      A[k][i] = -A[j][i];
-      A[j][i] = temp;
-     }
-   }
-  k = k - 1;
-}
-
-/* LOOP '  END ; (* WHILE *) */
-
-/*   all done */
-
-//free_ivector(lpoint, 0, n);
-//free_ivector(mpoint, 0, n);
 }
 
 double Det (float **x, int n)
@@ -1480,58 +798,6 @@ free_dmatrix(work, 0, npoly-1, 0, npoly-1);
 
 
 }
-/*
-void MulMat (float **A, float **B, float **c,
-	     int n, int m, int l)
-{
-//    A= B * C 
-
-	int i, j, k;
-	float temp;
-
-	if ((n < 1) | (m < 1) | (l < 1)) {
-		return;
-	}
-
-	for (i=0; i<n; i++){
-		for (j=0; j<l; j++){
-			temp = 0.0;
-			for (k=0; k<m; k++) {
-				temp += B[i][k] * c[k][j];
-			}
-			A[i][j] = temp;
-		}
-	}
-
-}
-
-void DMulMat (double **A, double **B, double **c,
-	     int n, int m, int l)
-{
-//    A= B * C 
-
-int i, j, k;
-double temp;
-
-if ((n < 1) | (m < 1) | (l < 1))
- {
-  return;
- }
-
-for (i=0; i<n; i++)
- {
-  for (j=0; j<l; j++)
-   {
-     temp = 0.0;
-     for (k=0; k<m; k++)
-      {
-	temp += B[i][k] * c[k][j];
-      }
-     A[i][j] = temp;
-   }
-  }
-}
-*/
 void DMatTimesVect (double *A, double **B, double *c,
 	     int n, int m)
 {
@@ -1580,15 +846,6 @@ if ((m < 1) | (l < 1))
    }
 }
 
-//void GetExCoeffs (int nexps,
-//				  int ndata, 
-//				  //float *xdata,
-//		          int  *ydata,
-//				  double *params,
-//				  double *coeffs,
-//				  int CalcSD,
-//		          double *sd,
-//				  int KeepOldWork)
 void GetExCoeffs (int nexps,
 				  int ndata, 
 				  //float *xdata,
@@ -1888,12 +1145,6 @@ for (k=0; k<ndata; k++)
  }
 }
 
-
-
-
-//void GetFuncCoeffs (int nfunc, int ndata, float **funcs,
-//		    float *ydata, float *params,
-//		    int CalcSD, double *sd, int KeepOldWork)
 void GetFuncCoeffs (int nfunc, int ndata, float **funcs,
 		    float *ydata, float *params,
 		    int CalcSD, double *sd, float * fit )
@@ -2170,7 +1421,8 @@ double AbsMaxDouble (double * d, int np){ //returns  max of an array
 	if (np<=0) return 0.0;
 	double res=fabs(d[0]);
 	for (int i=1; i<np; i++)
-		if (fabs(d[i])>res) res=fabs(d[i]);
+		res = GetLargerAbsValue(res, d[i]);
+//		if (fabs(d[i])>res) res=fabs(d[i]);
 	return res;
 }
 
@@ -3162,6 +2414,57 @@ EndGetLineFromString:
 
 }
 
+bool GetLineFromStringWithPos(std::string & c, std::string & line, int & pos){
+//	return false;
+//	CString c;
+//	CString line;
+	int length=c.length();
+
+	line=std::string(' ', 81);
+	line="";
+	int count=0;
+	char b;
+//	int pos=0;
+	while(true){
+		if (pos>=length){
+			goto EndGetLineFromStringstd;
+		}
+		b = c.at(pos);
+		pos++;
+		if (b==10){
+			// EOL
+			goto EndGetLineFromStringstd;
+		}
+		if (b==13){
+			// check if next char is 10
+			if (pos==length){
+				goto EndGetLineFromStringstd;
+			}
+
+		    b=c.at(pos); //read=f.Read (&b, 1);
+			pos++;
+
+			if (b==10 ){	// EOL
+				goto EndGetLineFromStringstd;
+			}
+			// so next character is good, have to step back one:
+			pos--;
+			goto EndGetLineFromStringstd;
+		}
+		count ++;
+		line += b;
+	}
+EndGetLineFromStringstd:
+//	c = c.Right(length-pos);
+	if (count>0){
+		return true;
+	}
+	else{
+		return false;
+	}
+
+}
+
 bool ReadNDoublesInString(int N, CString & cc, double * x){
 	if (N==1){
 		double value;
@@ -3175,6 +2478,49 @@ bool ReadNDoublesInString(int N, CString & cc, double * x){
 }
 
 bool ReadOneDoubleInString(CString & cc, double & x){
+	CString c = cc.TrimLeft();
+	int l=c.GetLength();
+	if (l<3) return false;
+
+	CString space = CString(_T(" "));
+	int ispace = -1;
+	for (int i=1; i<l; i++){
+		int j=c.GetAt(i);
+		if (j<33){
+			ispace=i;
+			break;
+		}
+	}
+//	int ispace = c.Find(_T(" "));
+//	int ispace = c.Find(space);
+//	Alert0(c);
+//	ShowFloat(ispace, _T("isp"));
+
+	
+	if (ispace>=(l-1)){
+//		Alert0(_T(">="));
+		ispace = l-1;
+//		return false;
+	}
+	if (ispace <= 0){
+//		Alert0(_T("<="));
+		ispace = l-1;
+//		return false;
+	}
+
+	CString cx = c.Left(ispace+1);
+	CString cy = c.Right(l-ispace);
+
+//	Alert0(cx);
+	x=atof(CStringA(cx));
+//	y=atof(CStringA(cy));
+//	ShowFloat(x, _T("x"));
+	cc = cy;
+	return true;
+}
+bool ReadOneDoubleInString(std::string & ccc, double & x){
+	return false;
+	CString cc;
 	CString c = cc.TrimLeft();
 	int l=c.GetLength();
 	if (l<3) return false;
@@ -4321,6 +3667,14 @@ double SwapDouble(double x){
 	 return x;
 }
 
+float SwapFloat(float var){
+	__int32 * iptr = (__int32 *)  &var;
+	__int32 swapped = SwapInt32(*iptr);
+	float * floatptr = (float *) &swapped;
+	return *floatptr;
+}
+
+
 double SystemTimeDifferenceInSeconds(SYSTEMTIME & st1, SYSTEMTIME & st2){
 	// works only for time-differences < 23.99 hours
 
@@ -4624,7 +3978,7 @@ bool PermutationsAreEquivalent(int Length, int * p1, int * p2){
 }
 
 bool PermutationsAreReverseEquivalent(int Length, int * p1, int * p2){
-// e.g. (1,2,3) is reverse equivalent to (3,2,1) and to (2,1,3)	int i;
+// e.g. (1,2,3) is reverse equivalent to (3,2,1) and to (2,1,3)
 	int i;
 	for (i=0; i<Length; i++){
 		bool Equal = true;
@@ -6095,26 +5449,6 @@ CString DecrementFileName(CString name){
 }
 
 
-/*
-CString DecrementFileName(CString name){
-	CString pre, num, post;
-
-	GetPreNumPost(name, pre, num, post);
-
-	if (num.GetLength()<1){
-		return pre+CString("-1")+post;
-	}
-
-	int inum = atoi(CStringA(num))-1;
-
-	char s[20];
-
-	_itoa(inum, s, 10);
-
-	return pre+CString(s)+post;
-
-}
-*/
 CString CopyCString(CString * pc){
 	if (!pc){
 		return CString("");
@@ -6164,6 +5498,39 @@ void GetTextFromClipboard(CString & source){
 		while (*cc!=0){
 //			Alert0(CString(*cc));
 			source += CString(*cc);
+			cc++;
+		}
+
+//		clipbuffer = GlobalAlloc(GMEM_DDESHARE, source.GetLength()+1);
+		
+/*
+buffer = (char*)GlobalLock(clipbuffer);
+		strcpy(buffer, (LPCSTR)CStringA(source));
+		strcpy(buffer, (LPCSTR)CStringA(source));
+//		GlobalUnlock(clipbuffer);
+//		SetClipboardData(CF_TEXT,clipbuffer);
+*/
+		CloseClipboard();
+	}
+}
+
+void GetTextFromClipboard(std::string & source){
+	if(OpenClipboard(NULL))
+	{
+		HGLOBAL clipbuffer;
+//		char * buffer;
+//		EmptyClipboard();
+		clipbuffer = GetClipboardData( CF_TEXT);
+		if (!clipbuffer){
+			//Alert0(_T("no txt"));
+			CloseClipboard();
+			return;
+		}
+
+		char * cc = (char *)clipbuffer;
+		while (*cc!=0){
+//			Alert0(CString(*cc));
+			source += *cc;
 			cc++;
 		}
 
@@ -7639,5 +7006,47 @@ bool GetNextWordInLine(CString & line, CString & Word){
 	}
 
 
+	return false;
+}
+
+double GetLargerAbsValue(double d1, double d2){
+	if (fabs(d1)>fabs(d2)){
+		return fabs(d1);
+	}
+	else{
+		return fabs(d2);
+	}
+}
+int ReadDoublesInLine(std::string line, vector<double> & result){
+	std::istringstream iss(line);
+
+    // Iterate the istringstream
+    // using do-while loop
+	while(true){
+		std::string substring;
+
+        // Get the word from the istringstream
+        iss >> substring;
+//		CString cc=CString(substring.c_str());
+//		Alert0(CString(substring.c_str()));
+	
+		if (substring.length()>0){
+//			result.push_back(substring.at.stod());
+			result.push_back(atof(substring.c_str()));
+		}
+		else{
+			break;
+		}
+		if (!iss){
+			break;
+		}
+    }
+	return result.size();
+}
+
+bool StringsAreEqualNotRegardingCase(CString c1, CString c2){
+	if (c1.CompareNoCase(c2)==0){
+		return true;
+	}
 	return false;
 }
