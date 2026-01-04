@@ -18,6 +18,28 @@ class CChildFrame;
 class CAnaVisionDoc;
 //class ConnectedComponent;
 
+class CountPoint{
+public:
+	CPoint point;
+	int radius;
+	double SD;
+
+	bool IsInsideCircle(CPoint p);
+
+	static int IsVesicle(vector<CountPoint> & vec, CPoint point);
+	static void DeleteVesicle(vector<CountPoint> & vec, int index);
+
+	static bool Compare(CountPoint & p1, CountPoint & p2);
+	static int CompareBytes(const void* a, const void* b);
+	static int partition(vector<CountPoint> &vec, int low, int high); 
+	static void quickSort(vector<CountPoint> &vec, int low, int high);
+	static bool quickSortNR(vector<CountPoint> & arr);
+	static bool PointClashes(CountPoint p, vector<CountPoint> &vec);
+	static void swap(CountPoint & a, CountPoint & b); 
+	static bool IsPresentInBadCircles(CountPoint p, vector<CountPoint> &vec);
+
+};
+
 
 class Traces : public CScrollView
 {
@@ -44,12 +66,20 @@ public:
 	__int64 * Hidden64Buff;
 	void UpdateBitmapBuffer(int size);
 	int SizeBitmapBuffer;
+	bool DoShowSDVesicle;
 
 	float lowThreshold, highThreshold;
 	UINT MaxDistPolyPoint;
 	int MaxPolyPoints;
 	float gaussianKernelRadius, gaussianKernelWidth ;
 
+	bool OnMoveCircle;
+//	CPoint CirclePoint;
+//	int CircleRadius;
+	CountPoint MovedCircle;
+	void MoveCircle(UINT nFlags, CPoint point);
+	double CalcCircleValue(double * Rims);
+	void DrawCircle(CDC* pDC, CountPoint p, CPen & pen);
 
 	CPoint OriginDC;
 	void CorrectClickedPointForOrigin(CPoint & point);
@@ -61,10 +91,27 @@ public:
 	void OnLButtonControl(CPoint point); 
 	void OnLButtonShift(CPoint point);
 	void OnCountStart();
+	void OnCountStartvesiclecount();
+	void OnCountSetrimsize();
+	void OnCountWritevesiclestoclipboard();
+	void OnCountReadvesiclesfromclipboard();
+	void OnCountSetcutoffsd();
+
 	bool ClickingIsTracked(bool ShowWarning = false);
 	bool IsCounting;
-	vector<CPoint> Counts;
-	void AddPointToCount(CPoint NewPoint);
+	bool IsVesicleCounting;
+	vector<CountPoint> Counts;
+	void AddPointToCount(CPoint NewPoint, int radius = 5, bool DoFitVesicle = true, int MinRadius=1, int MaxRadius=1000);
+	double FitVesicle(CPoint & NewPoint, int & radius, int MinRadius, int MaxRadius, bool ShowSD = false);
+	double SDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy);
+	double GaussSDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy);
+	double GetMeanInRim(double * Params, ImageDataType ** im, int sx, int sy);
+	double GetMeanInCircle(double * Params, ImageDataType ** im, int sx, int sy);
+	double RimDiffSDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy, double BackGround);
+	void OnCountGetvesiclesinpoly();
+
+	bool OnMovingCircle;
+
 	void OnCountStop();
 	void OnCountClear();
 	void OnCountSetsize();
@@ -117,7 +164,7 @@ public:
 	bool firsttime;
 	CChildFrame * child;
 
-	CPen redPen, bluePen, blackPen, whitePen;
+	CPen redPen, bluePen, blackPen, whitePen, grayPen;
 
 	OverlayClass overlay;
 	BOOL Overlay;
@@ -318,6 +365,12 @@ public:
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnCountSetbackground();
+	afx_msg void OnCountDeletevesiclesinpolygon();
+	afx_msg void OnCountToggle();
+	afx_msg void OnCountMovecircle();
+	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnCountSetmaxradiusvesicles();
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -46,8 +46,12 @@ CMainFrame::CMainFrame()
 	PastedPhasorRadius=0.05;
 	MinSizeCellInPixles = 10;
 	PercentageAcceptanceFill = 2.8;
-	SizeCountCircle=3;
+	SizeCountCircle=2;
+	CutoffSDVesicleFit = -0.08;
+	VesicleRimSize = 3;
 	NPolyInside = 2;
+	Background = 50;
+	MaxRadiusVesicles = 100;
 
 
 	UseGlobalMeanForFill = false;

@@ -13,11 +13,13 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// English (U.S.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
+#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -27,15 +29,10 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\AnaVision.ico"
-
 IDR_ANAVISTYPE          ICON                    "res\\AnaVisionDoc.ico"
-
 IDI_ICON3               ICON                    "res\\icon1.ico"
-
 IDI_ICON4               ICON                    "res\\icon4.ico"
-
 IDI_ICON5               ICON                    "res\\icon5.ico"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -44,13 +41,12 @@ IDI_ICON5               ICON                    "res\\icon5.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR 16, 15
+IDR_MAINFRAME TOOLBAR  16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -87,7 +83,7 @@ END
 // Menu
 //
 
-IDR_MAINFRAME MENU
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "&File"
     BEGIN
@@ -111,7 +107,7 @@ BEGIN
     END
 END
 
-IDR_ANAVISTYPE MENU
+IDR_ANAVISTYPE MENU 
 BEGIN
     POPUP "&File"
     BEGIN
@@ -119,7 +115,7 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Tiff",                   ID_FILE_OPENTIFF
         MENUITEM "Open Tiff z-stack",           ID_FILE_OPENTIFFZ
-        MENUITEM "Open Standard Tiff",          ID_FILE_OPENSTANDARDTIFF
+        MENUITEM "Open Standard Tiff\tCtrl+&T", ID_FILE_OPENSTANDARDTIFF
         MENUITEM "&Close",                      ID_FILE_CLOSE
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
@@ -238,13 +234,13 @@ BEGIN
     POPUP "Region of Interest"
     BEGIN
         MENUITEM "Define new polygon\tP",       ID_CREATEAPOLYGON
-        MENUITEM "Calc Mean Values",            ID_REGIONOFINTEREST_CALCMEANVALUES
+        MENUITEM "Calc Mean Values\tCtrl+&M",   ID_REGIONOFINTEREST_CALCMEANVALUES
         MENUITEM "Calc Sum Values",             ID_REGIONOFINTEREST_CALCSUMVALUES
         MENUITEM "Calc Area",                   ID_REGIONOFINTEREST_CALCAREA
         MENUITEM "Make Membrane Polygons of selected ROI", ID_REGIONOFINTEREST_CALCULATEMEMBRANE
         MENUITEM "Make opposing closed ROIS form a linear ROI", ID_REGIONOFINTEREST_MAKEOPPOSINGCLOSEDROISFORMALINEARROI
         MENUITEM SEPARATOR
-        MENUITEM "Delete selected polygon",     ID_REGIONOFINTEREST_DELETESELECTEDPOLYGON
+        MENUITEM "Delete selected polygon\tCtrl+&D", ID_REGIONOFINTEREST_DELETESELECTEDPOLYGON
         MENUITEM "Delete ALL plygons",          ID_REGIONOFINTEREST_DELETEALLPLYGONS
         MENUITEM SEPARATOR
         MENUITEM "Calculate Circular Gradient of 1 selected polygon", ID_REGIONOFINTEREST_CALCULATEMEMBRANESUMS
@@ -304,6 +300,17 @@ BEGIN
         MENUITEM "Stop",                        ID_COUNT_STOP
         MENUITEM "Clear",                       ID_COUNT_CLEAR
         MENUITEM "Set size",                    ID_COUNT_SETSIZE
+        MENUITEM "StartVesicleCount",           ID_COUNT_STARTVESICLECOUNT
+        MENUITEM "Set Rim Size",                ID_COUNT_SETRIMSIZE
+        MENUITEM "Write Vesicles To Clipboard", ID_COUNT_WRITEVESICLESTOCLIPBOARD
+        MENUITEM "Read Vesicles From Clipboard", ID_COUNT_READVESICLESFROMCLIPBOARD
+        MENUITEM "Get Vesicles in poly",        ID_COUNT_GETVESICLESINPOLY
+        MENUITEM "Set cutoff SD",               ID_COUNT_SETCUTOFFSD
+        MENUITEM "Set background",              ID_COUNT_SETBACKGROUND
+        MENUITEM "Delete Vesicles in polygon",  ID_COUNT_DELETEVESICLESINPOLYGON
+        MENUITEM "Toggle ""show fit value""",   ID_COUNT_TOGGLE
+        MENUITEM "Move circle",                 ID_COUNT_MOVECIRCLE
+        MENUITEM "set Max Radius Vesicles",     ID_COUNT_SETMAXRADIUSVESICLES
     END
     POPUP "Track Cells"
     BEGIN
@@ -325,7 +332,7 @@ BEGIN
     END
 END
 
-IDR_MENU_POPUP_PHASOR MENU
+IDR_MENU_POPUP_PHASOR MENU 
 BEGIN
     POPUP "Popup Phasor"
     BEGIN
@@ -356,11 +363,12 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS
+IDR_MAINFRAME ACCELERATORS 
 BEGIN
     "S",            ID_ACCEL32772,          VIRTKEY, CONTROL, NOINVERT
     "G",            ID_ANALYZE_GETNUMBEROFPROTONS, VIRTKEY, CONTROL, NOINVERT
     "A",            ID_AUTO_SCALE,          VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_CREATEAPOLYGON,      VIRTKEY, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
@@ -373,19 +381,19 @@ BEGIN
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_FILE_OPENSTANDARDTIFF, VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
     VK_RETURN,      ID_GENERATE_NEXT,       VIRTKEY, CONTROL, NOINVERT
-    "M",            ID_MAN_SCALE,           VIRTKEY, CONTROL, NOINVERT
-    "M",            ID_MAN_SCALE,           VIRTKEY, CONTROL, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "M",            ID_REGIONOFINTEREST_CALCMEANVALUES, VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_REGIONOFINTEREST_DELETESELECTEDPOLYGON, VIRTKEY, CONTROL, NOINVERT
     "A",            ID_TONE_A,              VIRTKEY, NOINVERT
     "B",            ID_TONE_B,              VIRTKEY, NOINVERT
     "C",            ID_TONE_C,              VIRTKEY, NOINVERT
     "M",            ID_VIEW_SETMODEMOVE,    VIRTKEY, NOINVERT
     "R",            ID_VIEW_SETMODEROTATE,  VIRTKEY, NOINVERT
     "S",            ID_VIEW_SETMODESIZE,    VIRTKEY, NOINVERT
-    "P",            ID_CREATEAPOLYGON,      VIRTKEY, NOINVERT
 END
 
 
@@ -394,19 +402,19 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 235, 63
+IDD_ABOUTBOX DIALOGEX 0, 0, 281, 63
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About AnaVision"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "AnaVision Version 12.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2006-2025, Michael Pusch",IDC_STATIC,40,25,164,8
-    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
-    LTEXT           "Last change: 29.3.2025",IDC_STATIC,43,39,76,8
+    LTEXT           "AnaVision Version 13.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006-2026, Michael Pusch, michael.pusch@ibf.cnr.it",IDC_STATIC,38,25,236,8
+    DEFPUSHBUTTON   "OK",IDOK,224,7,50,14,WS_GROUP
+    LTEXT           "Last change: 4.1.2026",IDC_STATIC,43,39,72,8
 END
 
-IDD_DIAGIO DIALOG 0, 0, 220, 101
+IDD_DIAGIO DIALOG  0, 0, 220, 101
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "General Input"
 FONT 8, "MS Sans Serif"
@@ -497,7 +505,7 @@ BEGIN
     PUSHBUTTON      "Make Blue",IDC_MAKE_BLUE,379,377,50,25
 END
 
-IDD_DIAG_GET_FRAMES_TO_ANALYZE DIALOG 0, 0, 340, 146
+IDD_DIAG_GET_FRAMES_TO_ANALYZE DIALOG  0, 0, 340, 146
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Frames to analyze"
 FONT 8, "MS Sans Serif"
@@ -520,7 +528,7 @@ BEGIN
     CONTROL         "Track drift",IDC_TRACK_DRIFT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,116,48,10
 END
 
-IDD_DIAG_KINETICS DIALOG 0, 0, 494, 503
+IDD_DIAG_KINETICS DIALOG  0, 0, 494, 503
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Kinetics"
 FONT 8, "MS Sans Serif"
@@ -683,12 +691,12 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 228
+        RIGHTMARGIN, 274
         TOPMARGIN, 7
         BOTTOMMARGIN, 56
     END
@@ -746,33 +754,22 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// AFX_DIALOG_LAYOUT
-//
-
-IDD_ABOUTBOX AFX_DIALOG_LAYOUT
-BEGIN
-    0
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // String Table
 //
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "AnaVision"
     IDR_ANAVISTYPE          "\nAnaVis\nAnaVis\n\n\nAnaVision.Document\nAnaVis Document"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "AnaVision"
     AFX_IDS_IDLEMESSAGE     "Ready"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -782,7 +779,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create a new document\nNew"
     ID_FILE_OPEN            "Open an existing document\nOpen"
@@ -795,13 +792,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
     ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "Open this document"
     ID_FILE_MRU_FILE2       "Open this document"
@@ -821,13 +818,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open this document"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
     ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
@@ -837,7 +834,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
     ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
@@ -852,13 +849,13 @@ BEGIN
     ID_EDIT_REDO            "Redo the previously undone action\nRedo"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Change the window size"
     AFX_IDS_SCMOVE          "Change the window position"
@@ -869,19 +866,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "Restore the window to normal size"
     AFX_IDS_SCTASKLIST      "Activate Task List"
     AFX_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_EDIT_PARAMS          "\nEdit Params"
     ID_FILE_SAVEPARAMS      "\nSave Params"
@@ -896,18 +893,18 @@ BEGIN
     ShowConus               "\nShow Conus"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_VIEW_SHOWRECTANGLE   "\nShow Rectangle"
     ID_VIEW_SHOWCONUS       "\nShow Conus"
 END
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     ID_CREATEAPOLYGON       "\nDefine a Polygon"
 END
 
-#endif    // English (United States) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -915,8 +912,10 @@ END
 // Italian (Italy) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
 LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 #pragma code_page(1252)
+#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -927,13 +926,12 @@ LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "res\\ico00001.ico"
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_DIAGFITD DIALOG 0, 0, 186, 95
+IDD_DIAGFITD DIALOG  0, 0, 186, 95
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Fit D?"
 FONT 8, "MS Sans Serif"
@@ -945,7 +943,7 @@ BEGIN
     CONTROL         "Fit D",IDC_CHECKFITD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,116,60,31,10
 END
 
-IDD_DIAG_SIMULATED_FIT DIALOG 0, 0, 560, 341
+IDD_DIAG_SIMULATED_FIT DIALOG  0, 0, 560, 341
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Simulated fit"
 FONT 8, "MS Sans Serif"
@@ -991,7 +989,7 @@ BEGIN
     LTEXT           "Rmax for simulation (m)",IDC_STATIC,252,217,73,8
 END
 
-IDD_DIAG_LINFIT DIALOG 0, 0, 236, 153
+IDD_DIAG_LINFIT DIALOG  0, 0, 236, 153
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Linear fit"
 FONT 8, "MS Sans Serif"
@@ -1172,7 +1170,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_DIAGFITD, DIALOG
     BEGIN

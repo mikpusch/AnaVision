@@ -34,10 +34,14 @@ public:
 	double PhasorPlotFretEfficiency;
 
 
+	double Background;
 	int MinSizeCellInPixles;
 
 	int SizeCountCircle;
+	int VesicleRimSize;
+	double CutoffSDVesicleFit;
 	unsigned int NPolyInside;
+	unsigned int MaxRadiusVesicles;
 
 	double PercentageAcceptanceFill;
 	BOOL UseGlobalMeanForFill;

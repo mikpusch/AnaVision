@@ -216,6 +216,12 @@ public:
 	afx_msg void OnLocalizationCalccoefficients();
 	afx_msg void OnLocalizationCalcmanders1();
 	afx_msg void OnLocalizationCalcmanders2();
+	afx_msg void OnCountStartvesiclecount();
+	afx_msg void OnCountSetrimsize();
+	afx_msg void OnCountWritevesiclestoclipboard();
+	afx_msg void OnCountReadvesiclesfromclipboard();
+	afx_msg void OnCountGetvesiclesinpoly();
+	afx_msg void OnCountSetcutoffsd();
 };
 
 /////////////////////////////////////////////////////////////////////////////

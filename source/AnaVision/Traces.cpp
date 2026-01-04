@@ -38,9 +38,15 @@ Traces::Traces(){
 
 
 //	comp = NULL;
+
+	OnMoveCircle = false;
+	MovedCircle.point = CPoint(100, 100);
+	MovedCircle.radius = 10;
+
+	DoShowSDVesicle=false;
 	OnTrackingCells = false;
 	IsCounting = false;;
-
+	IsVesicleCounting = false;
 	SelectedInitialized = false;
 	ShowFill = true;
 
@@ -91,6 +97,7 @@ Traces::Traces(){
 	bluePen.CreatePen(PS_SOLID, 1, RGB(0,0,255));
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0,0,0));
 	whitePen.CreatePen(PS_SOLID, 1, RGB(255,255,255));
+	grayPen.CreatePen(PS_SOLID, 1, RGB(150,150,150));
 
 /*
 switch (pDoc->dat.p.ViewType){
@@ -161,6 +168,12 @@ BEGIN_MESSAGE_MAP(Traces, CView)
 	ON_WM_PAINT()
 	ON_WM_KEYDOWN()
 	ON_WM_VSCROLL()
+	ON_COMMAND(ID_COUNT_SETBACKGROUND, &Traces::OnCountSetbackground)
+	ON_COMMAND(ID_COUNT_DELETEVESICLESINPOLYGON, &Traces::OnCountDeletevesiclesinpolygon)
+	ON_COMMAND(ID_COUNT_TOGGLE, &Traces::OnCountToggle)
+	ON_COMMAND(ID_COUNT_MOVECIRCLE, &Traces::OnCountMovecircle)
+	ON_WM_MOUSEWHEEL()
+	ON_COMMAND(ID_COUNT_SETMAXRADIUSVESICLES, &Traces::OnCountSetmaxradiusvesicles)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -517,7 +530,7 @@ void Traces::OnDraw(CDC* pDC)
 	if (OnMovingLineWithArrowKey){
 		pDC->TextOut(tx, ty, "Moving Line - ESC to stop");
 	}
-	if (IsCounting){
+	if (IsCounting || IsVesicleCounting){
 		pDC->TextOut(tx, ty, "Counting - ESC to stop");
 	}
 
@@ -547,18 +560,59 @@ void Traces::OnDraw(CDC* pDC)
 //		_itoa(this->OriginDC.x, s, 10);
 //		pDC->TextOut(tx, ty-20, "ox: " + CString(s));
 
+		pDC->SelectObject(&redPen);
+		pDC->SelectObject(GetStockObject(NULL_BRUSH));
+
 		for (int i=0; i<NCounts; i++){
 			ObjectPoint op;
-			op.SetPos(Counts[i].x+this->OriginDC.x, Counts[i].y+this->OriginDC.y);
+			op.SetPos(Counts[i].point.x+this->OriginDC.x, Counts[i].point.y+this->OriginDC.y);
 			CPoint dp = op.GetPos(Zoom,  ZoomIn);
-			int sizecircle = DivZoom(frame->SizeCountCircle, Zoom, ZoomIn);
+//			int sizecircle = DivZoom(frame->SizeCountCircle, Zoom, ZoomIn);
+			int sizecircle = DivZoom(Counts[i].radius, Zoom, ZoomIn);
 
 			int x1=dp.x-sizecircle ;
 			int x2=x1+2*sizecircle ;
 			int y1=dp.y-sizecircle ;
 			int y2=y1+2*sizecircle ;
+//			pDC->Ellipse(x1, y1, x2, y2);
+			
+//			pDC->SetDCBrushColor(RGB((NULL_BRUSH);
 			pDC->Ellipse(x1, y1, x2, y2);
 		}
+	}
+	if (OnMoveCircle){
+		ty -= 20;
+		char s[20];
+		double Rims[3];
+		double CircleValue = CalcCircleValue(Rims);
+		_gcvt(CircleValue, 6, s);
+		CString c = "v: " + CString(s);
+		_gcvt(Rims[0], 6, s);
+		c += ", R0: "+CString(s);
+
+		_gcvt(Rims[1], 6, s);
+		c += ", R1: "+CString(s);
+		_gcvt(Rims[2], 6, s);
+		c += ", R2: "+CString(s);
+
+		pDC->TextOut(tx-200, ty, c);
+		
+
+		DrawCircle(pDC, MovedCircle, redPen);
+/*		pDC->SelectObject(&redPen);
+		pDC->SelectObject(GetStockObject(NULL_BRUSH));
+		ObjectPoint op;
+		op.SetPos(CirclePoint.x+this->OriginDC.x, CirclePoint.y+this->OriginDC.y);
+		CPoint dp = op.GetPos(Zoom,  ZoomIn);
+//			int sizecircle = DivZoom(frame->SizeCountCircle, Zoom, ZoomIn);
+		int sizecircle = DivZoom(CircleRadius, Zoom, ZoomIn);
+
+		int x1=dp.x-sizecircle ;
+		int x2=x1+2*sizecircle ;
+		int y1=dp.y-sizecircle ;
+		int y2=y1+2*sizecircle ;
+		pDC->Ellipse(x1, y1, x2, y2);
+*/
 	}
 
 
@@ -1163,7 +1217,12 @@ void Traces::OnLButtonDown(UINT nFlags, CPoint point)
 	NewPoint.y = MultZoom(NewPoint.y, Zoom, ZoomIn);
 
 	if (IsCounting){
-		AddPointToCount(NewPoint);
+		AddPointToCount(NewPoint, frame->SizeCountCircle, false);
+		return;
+	}
+	if (IsVesicleCounting){
+		AddPointToCount(NewPoint, frame->SizeCountCircle, true);
+		return;
 	}
 
 	if (OnCreatingPolygon){
@@ -1401,6 +1460,10 @@ void Traces::OnMouseMove(UINT nFlags, CPoint point)
 	if (firsttime){
 		return;
 	}
+	if (OnMoveCircle){
+		MoveCircle(nFlags, point);
+		return;
+	}
 	if (OnMovePolygon){
 		MovePolygon(nFlags, point);
 		return;
@@ -1571,6 +1634,17 @@ void Traces::OnRbuttonDownPolygons(UINT nFlags, CPoint point){
 	NewPoint.x -= offsetx;
 	NewPoint.y -= offsety;
 
+
+	int VesicleIndex = CountPoint::IsVesicle(Counts, NewPoint);
+	if (VesicleIndex>=0){
+//		ShowFloat(VesicleIndex, "index");
+		if (Confirm("Delete vesicle")){
+			CountPoint::DeleteVesicle(Counts, VesicleIndex);
+			Invalidate();
+			return;
+		}
+	}
+
 	CDC * pDC = GetDC();
 	ShiftOriginDC(pDC);
 	char s[20];
@@ -1626,7 +1700,7 @@ void Traces::OnRbuttonDownPolygons(UINT nFlags, CPoint point){
 void Traces::OnRButtonDown(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-//xxxyyy
+//
 	if (firsttime){
 		return;
 	}
@@ -3401,6 +3475,41 @@ void Traces::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	// TODO: Add your message handler code here and/or call default
 //	Beep(2000,200);
+	if (nChar == 'D'){
+		if (IsVesicleCounting){
+			if (Counts.size()>0){
+				Counts.pop_back();
+				Invalidate();
+				return;
+			}
+		}
+	}
+	if (nChar == 'S'){
+		if (IsVesicleCounting){
+			if (Counts.size()>0){
+				//Beep(1000,10);
+				CountPoint p = Counts[Counts.size()-1];
+				Counts.pop_back();
+				AddPointToCount(p.point, abs(p.radius/2), true, 2, abs(p.radius-1));
+
+				Invalidate();
+				return;
+			}
+		}
+	}
+	if (nChar == 'L'){
+		if (IsVesicleCounting){
+			if (Counts.size()>0){
+				//Beep(1000,10);
+				CountPoint p = Counts[Counts.size()-1];
+				Counts.pop_back();
+				AddPointToCount(p.point, abs(p.radius+3), true, abs(p.radius+1), 1000);
+
+				Invalidate();
+				return;
+			}
+		}
+	}
 	if (nChar == VK_ESCAPE){
 		if (OnCreatingPolygon){
 			Beep(500, 20);
@@ -3426,6 +3535,16 @@ void Traces::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 		if (IsCounting){
 			IsCounting = false;
+			Invalidate();
+			return;
+		}
+		if (OnMoveCircle){
+			OnMoveCircle = false;
+			Invalidate();
+		}
+
+		if (IsVesicleCounting){
+			IsVesicleCounting = false;
 			Invalidate();
 			return;
 		}
@@ -3733,13 +3852,374 @@ void Traces::OnFillStopselectpointsinselectedpolygon(){
 	SelectingFillPointsInSelectedPolygon = false;
 }
 
-void Traces::AddPointToCount(CPoint NewPoint){
-	Counts.push_back(NewPoint);
+double Traces::SDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy){
+	// calc logarithm of mean intensity in rim, 3 pixels wide to average density inside
+	double SD=1e300;
+	int RimSize = frame->VesicleRimSize;
+	int cx=Params[1];
+	int cy=Params[2];
+	int r=Params[0];
+//	ShowFloat(r, "r");
+	double r2=r*r;
+	double MeanInside = 0;
+	int NPixelsInside = 0;
+	double MeanRim = 0;
+	int NPixelsRim = 0;
+	for (int iR=(-RimSize/2); iR<=(RimSize/2); iR++){
+		int rr=r+iR;
+		//ShowFloat(rr, "rr");
+
+		for (int irx=-rr; irx<=rr; irx++){
+			int ix = irx + cx;
+			if ((ix>=0) && (ix<sx)){
+				double yy=sqrt(double(rr*rr-irx*irx));
+				for (int iup=0; iup<2; iup++){
+					int iry;
+					if (iup==0){
+						iry = yy;
+					}
+					else{
+						iry=-yy;
+					}
+					int iy = iry + cy;
+//					ShowFloat(ix, "ix");
+//					ShowFloat(iy, "iy");
+					if ((iy>=0) && (iy<sy)){
+						MeanRim += im[ix][iy];
+						NPixelsRim++;
+					}
+				}
+			}
+		}
+	}
+//	ShowFloat(MeanRim, "MEanRim");
+//	ShowFloat(NPixelsRim, "NPixelsRim");
+
+	if (NPixelsRim<1){
+		return SD;
+	}
+
+	for (int ix=(cx-r)+1; ix<(cx+r-2); ix++){
+		if ((ix>=0) && (ix<sx)){
+			for (int iy=(cy-r)+1; iy<(cy+r-2); iy++){
+				if ((iy>=0) && (iy<sy)){
+					int dx = ix-cx;
+					int dy = iy - cy;
+//					ShowFloat(sqrt(double(ix*ix+iy*iy)), "root");
+					if ((dx*dx+dy*dy)<r2){
+						MeanInside += im[ix][iy];
+						NPixelsInside++;
+					}
+				}
+			}
+		}
+	}
+
+//	ShowFloat(NPixelsInside, "NPixelsIndise");
+//	ShowFloat(MeanInside, "MeanInside");
+	if (NPixelsInside<1){
+		return SD;
+	}
+
+//	return log (MeanInside/double(NPixelsInside)/MeanRim*double(NPixelsRim));
+	return (MeanInside/double(NPixelsInside)/MeanRim*double(NPixelsRim));
+}
+double Traces::GetMeanInCircle(double * Params, ImageDataType ** im, int sx, int sy){
+	int cx=Params[1];
+	int cy=Params[2];
+	int r=Params[0];
+//	ShowFloat(r, "r");
+	double r2=r*r;
+	double MeanInCircle = 0;
+	int NPixelsInCircle = 0;
+	for (int ix=-r; ix<=r; ix++){
+		int x=cx+ix;
+		if ((x>=0) && (x<sx)){
+			int dx2=ix*ix;
+			for (int iy=-r; iy<=r; iy++){
+				int y=cy+iy;
+				if ((y>=0) && (y<sy)){
+					if ((dx2 + iy*iy)<=r2){
+						MeanInCircle += im[x][y];
+						NPixelsInCircle++;
+					}
+				}
+			}
+		}
+	}
+	if (NPixelsInCircle<1){
+		return 0;
+	}
+	return MeanInCircle/double(NPixelsInCircle);
+}
+
+double Traces::GetMeanInRim(double * Params, ImageDataType ** im, int sx, int sy){
+	// calc logarithm of mean intensity in rim, 3 pixels wide to average density inside
+	int RimSize = frame->VesicleRimSize;
+	int cx=Params[1];
+	int cy=Params[2];
+	int r=Params[0];
+//	ShowFloat(r, "r");
+	double r2=r*r;
+	double MeanRim = 0;
+	int NPixelsRim = 0;
+	for (int iR=(-RimSize/2); iR<=(RimSize/2); iR++){
+		int rr=r+iR;
+		//ShowFloat(rr, "rr");
+
+		for (int irx=-rr; irx<=rr; irx++){
+			int ix = irx + cx;
+			if ((ix>=0) && (ix<sx)){
+				double yy=sqrt(double(rr*rr-irx*irx));
+				for (int iup=0; iup<2; iup++){
+					int iry;
+					if (iup==0){
+						iry = yy;
+					}
+					else{
+						iry=-yy;
+					}
+					int iy = iry + cy;
+//					ShowFloat(ix, "ix");
+//					ShowFloat(iy, "iy");
+					if ((iy>=0) && (iy<sy)){
+						MeanRim += im[ix][iy];
+						NPixelsRim++;
+					}
+				}
+			}
+		}
+	}
+//	ShowFloat(MeanRim, "MEanRim");
+//	ShowFloat(NPixelsRim, "NPixelsRim");
+	if (NPixelsRim<1){
+		return 0;
+	}
+	return MeanRim/double(NPixelsRim);
+
+}
+double Traces::RimDiffSDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy, double BackGround){
+	double Params1[3];
+	double Params2[3];
+	for (int i=0; i<3; i++){
+		Params1[i]=Params2[i]=Params[i];
+	}
+	Params1[0] = Params[0]+frame->VesicleRimSize;
+	Params2[0] = Params[0]-frame->VesicleRimSize;
+	double R0 = GetMeanInRim(Params, im, sx, sy);
+	if (R0<2.0*BackGround){
+		return 1e300;
+	}
+	double R1 = GetMeanInRim(Params1, im, sx, sy);
+	double R2 = GetMeanInRim(Params2, im, sx, sy);
+//	return (R1+R2-R0)/R0;
+//	return log(Params[0])*(R1+R2-2*R0)/R0;
+	return sqrt(log(Params[0]+1))*(R1+R2-2*R0)/R0;
+
+}
+
+double Traces::GaussSDVesicleFit(double * Params, ImageDataType ** im, int sx, int sy){
+	// calc logarithm of mean intensity in rim, 3 pixels wide to average density inside
+	double SD=0;
+	double BackGround = 20;
+	int RimSize = frame->VesicleRimSize;
+	int cx=Params[1];
+	int cy=Params[2];
+	int r=Params[0];
+//	ShowFloat(r, "r");
+	double r2=r*r;
+	double MeanInside = 0;
+	int NPixelsInside = 0;
+	double r3=r2+RimSize*RimSize;
+	double sumFR2=0;
+	double sumFRIM = 0;
+	for (int ix=(cx-r)-RimSize; ix<(cx+r+RimSize); ix++){
+		if ((ix>=0) && (ix<sx)){
+			for (int iy=(cy-r)-RimSize; iy<(cy+r+RimSize); iy++){
+				if ((iy>=0) && (iy<sy)){
+					int dx = ix-cx;
+					int dy = iy - cy;
+					double rxy2 = dx*dx+dy*dy;
+//					ShowFloat(sqrt(double(ix*ix+iy*iy)), "root");
+					if (rxy2<r3){
+						double rxy=sqrt(rxy2);
+						double fr = 0.3*exp(-(r-rxy)*(r-rxy)/RimSize/RimSize)+1;
+						sumFR2 += fr*fr;
+						sumFRIM += fr*(im[ix][iy]-BackGround);
+						NPixelsInside++;
+					}
+				}
+			}
+		}
+	}
+	double lambda = sumFRIM/sumFR2;
+	for (int ix=(cx-r)-RimSize; ix<(cx+r+RimSize); ix++){
+		if ((ix>=0) && (ix<sx)){
+			for (int iy=(cy-r)-RimSize; iy<(cy+r+RimSize); iy++){
+				if ((iy>=0) && (iy<sy)){
+					int dx = ix-cx;
+					int dy = iy - cy;
+					double rxy2 = dx*dx+dy*dy;
+//					ShowFloat(sqrt(double(ix*ix+iy*iy)), "root");
+					if (rxy2<r3){
+						double rxy=sqrt(rxy2);
+						double fr = 0.3*exp(-(r-rxy)*(r-rxy)/RimSize/RimSize)+1;
+						double temp = lambda*fr+BackGround - im[ix][iy];
+//						im[ix][iy] = lambda*fr+BackGround;
+						SD += temp*temp;
+					}
+				}
+			}
+		}
+	}
+
+//	Invalidate();
+//	ShowFloat(NPixelsInside, "NPixelsIndise");
+//	ShowFloat(MeanInside, "MeanInside");
+	if (NPixelsInside<1){
+		return 1e300;
+	}
+
+//	return log (MeanInside/double(NPixelsInside)/MeanRim*double(NPixelsRim));
+//	return (MeanInside/double(NPixelsInside)/MeanRim*double(NPixelsRim));
+	
+//	return sqrt(SD);//*NPixelsInside;
+//	return SD/sqrt(double(NPixelsInside));
+
+	return SD/double(NPixelsInside);
+}
+
+double Traces::FitVesicle(CPoint & point, int & radius, int MinRadius, int MaxRadius, bool ShowSD){
+	ImageDataType ** im = pDoc->id.data;
+	int sx = pDoc->id.xsize;
+	int sy = pDoc->id.ysize;
+
+	char s[20];
+	CString c;
+	if (im){
+		CWaitCursor dummy;
+//		if ( (point.x<pDoc->dat.p.xsizeimage) & (point.y<pDoc->dat.p.ysizeimage) ){
+		if ( (point.x<sx) & (point.y<sy) ){
+			// Paras, cx, cy, r
+			vector <CPoint> PointsTested;
+			vector <double> BestR;
+			vector <double> BestRSD;
+			int DXY=0;
+			int MinR = MinRadius;
+			for (int ix=point.x-DXY; ix<=point.x+DXY; ix++){
+				if ( (ix>=0) && (ix<sx) ){
+					for (int iy=point.y-DXY; iy<=point.y+DXY; iy++){
+						if ( (iy>=0) && (iy<sy) ){
+							double Params[3];
+							double BestParams[3];
+							Params[0] = MinR*5;
+							if (Params[0]>MaxRadius){
+								Params[0]=MaxRadius-1;
+							}
+							BestParams[0] = Params[0];
+							Params[1]=ix;
+							Params[2]=iy;
+							Simplex simp;
+							double SD;
+							double BestSD=1e300;
+							simp.InitSimplex(0.2, &Params[0], 1);
+							int i0=MinR;
+							int i1=MaxRadius;
+							for (int i=i0; i<=i1; i++){
+								Params[0]=i;
+								SD = RimDiffSDVesicleFit(&Params[0], im, sx, sy, frame->Background);
+								if (SD<BestSD){
+									BestSD = SD;
+									for (int j=0; j<1; j++){
+										BestParams[j] = Params[j];
+									}
+								}
+							}
+
+/*
+							for (int i=0; i<100; i++){
+//							for (int i=0; i<1; i++){
+								if ((Params[0]<MinR) || (Params[0]>MaxRadius)){
+									SD=1e300;
+								}
+								else{
+									SD = RimDiffSDVesicleFit(&Params[0], im, sx, sy, frame->Background);
+//									SD = SDVesicleFit(&Params[0], im, sx, sy);
+//									SD = GaussSDVesicleFit(&Params[0], im, sx, sy);
+								}
+								if (SD<BestSD){
+									BestSD = SD;
+									for (int j=0; j<1; j++){
+										BestParams[j] = Params[j];
+									}
+								}
+								simp.NextSimp(&Params[0], SD);
+							}
+*/
+							PointsTested.push_back(CPoint(Params[1], Params[2]));
+							BestR.push_back(BestParams[0]);
+							BestRSD.push_back(BestSD);
+						}
+					}
+				}
+			}
+
+			double BestSD=1e300;
+			int BestIndex = -1;
+			for (int i=0; i<BestR.size(); i++){
+//				ShowFloat(BestR.size(), "bs");
+				//ShowFloat(BestRSD[i], "B");
+				if (BestRSD[i]<BestSD){
+					BestSD = BestRSD[i];
+					BestIndex=i;
+				}
+			}
+
+			if (BestIndex>=0){
+				if (ShowSD && DoShowSDVesicle) ShowFloat(BestSD, "BEstSD");
+				point.x = PointsTested[BestIndex].x;
+				point.y = PointsTested[BestIndex].y;
+				radius = BestR[BestIndex];
+/*				double Params[3];
+				Params[0]=radius;
+				Params[1]=point.x;
+				Params[2]=point.y;
+				double rim = this->GetMeanInRim(&Params[0], im, sx, sy);
+				//ShowFloat(rim, "rim");
+				Params[0]=2.0*radius;
+				double circle = this->GetMeanInCircle(&Params[0], im, sx, sy);
+				//ShowFloat(circle, "double circle");
+				if (rim<.8*circle){
+					return 1e300;
+				}
+*/
+				return BestSD;
+			}
+		}
+	}
+	return 1e300;
+
+}
+void Traces::AddPointToCount(CPoint NewPoint, int radius, bool DoFitVesicle, int MinRadius, int MaxRadius){
+	if (MinRadius<2){
+		MinRadius = 2;
+	}
+	if (DoFitVesicle){
+		if (FitVesicle(NewPoint, radius, MinRadius, MaxRadius, true)>1e100){
+			return;
+		}
+
+	}
+	CountPoint p;
+	p.point = NewPoint;
+	p.radius = radius;
+	Counts.push_back(p);
+//	FitVesicle(NewPoint);
 	Invalidate();
 }
 
 void Traces::OnCountStop(){
-	IsCounting = false;
+	IsCounting = IsVesicleCounting = false;
 }
 	
 void Traces::OnCountClear(){
@@ -3800,7 +4280,7 @@ void Traces::OnRButtonDownCounting(UINT nFlags, CPoint point){
 	int y = MultZoom(NewPoint.y, Zoom, ZoomIn);
 
 	for (int i=0; i<this->Counts.size(); i++){
-		CPoint p = Counts[i];
+		CPoint p = Counts[i].point;
 		if (abs(p.x-x)<frame->SizeCountCircle){
 			if (abs(p.y-y)<frame->SizeCountCircle){
 				found = true;
@@ -4237,4 +4717,522 @@ void Traces::SaveMaskedPartOfImageAsTiff(int mask){
 
 	AnaVisionTif::SaveStandard16BitTiff(Name, pDoc->id.xsize, pDoc->id.ysize, numbers); 
 
+}
+
+void Traces::OnCountStartvesiclecount(){
+	if (ClickingIsTracked(true)){
+		return;
+	}
+	IsVesicleCounting = true;
+}
+
+void Traces::OnCountSetrimsize(){
+	io myio;
+	int OldSize = frame->VesicleRimSize;
+	if (myio.InInt(OldSize, "rim size of vesicle")!= IDOK){
+		return;
+	}
+	frame->VesicleRimSize = OldSize;
+	if (Counts.size()>0){
+		Invalidate();
+	}
+}
+
+void Traces::OnCountWritevesiclestoclipboard(){
+	if (Counts.size()<1){
+		return;
+	}
+	CWaitCursor dummy;
+	CString c;
+	for (int i=0; i<Counts.size(); i++){
+		char s[20];
+		_itoa(Counts[i].point.x, s, 10);
+		c += CString(s)+"\t";
+		_itoa(Counts[i].point.y, s, 10);
+		c += CString(s)+"\t";
+		_itoa(Counts[i].radius, s, 10);
+		c += CString(s);
+		if (i<(Counts.size()-1)){
+			c += "\r\n";
+		}
+	}
+	CopyTextToClipboard(c);
+
+}
+void Traces::OnCountReadvesiclesfromclipboard(){
+	CString c;
+	GetTextFromClipboard(c);
+	vector< CString > lines;
+	CString line;
+	while (GetLineFromString(c, line)){
+		lines.push_back(line);
+	}
+	if (lines.size()<1){
+		Alert("no lines");
+		return;
+	}
+	for (int i=0; i<lines.size(); i++){
+		CountPoint p;
+		int toread;
+		if (!ReadOneIntInString(lines[i], toread)){
+			Alert("could not read x");
+			return;
+		}
+		p.point.x = toread;
+		if (!ReadOneIntInString(lines[i], toread)){
+			Alert("could not read y");
+			return;
+		}
+		p.point.y = toread;
+		if (!ReadOneIntInString(lines[i], toread)){
+			Alert("could not read radius");
+			return;
+		}
+		p.radius = toread;
+		Counts.push_back(p);
+	}
+	Invalidate();
+}
+
+bool CountPoint::Compare(CountPoint & p1, CountPoint & p2){
+	return (p1.SD<=p2.SD);
+}
+int CountPoint::CompareBytes(const void* a, const void* b){
+	CountPoint * pa = (CountPoint *)(a);
+	CountPoint * pb = (CountPoint *)(b);
+	if (pa->SD<pb->SD){
+		return -1;
+	}
+	else{
+		if (pa->SD>pb->SD){
+			return 1;
+		}
+	}
+	return 0;
+}
+void CountPoint::swap(CountPoint & a, CountPoint & b){
+	CountPoint c = a;
+	a = b;
+	b = c;
+}
+
+int CountPoint::partition(vector<CountPoint> &vec, int low, int high){
+    // Selecting last element as the pivot
+    CountPoint pivot = vec[high];
+
+    // Index of elemment just before the last element
+    // It is used for swapping
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+
+        // If current element is smaller than or
+        // equal to pivot
+		if (Compare(vec[j], pivot)){
+//        if (vec[j] <= pivot) {
+            i++;
+            swap(vec[i], vec[j]);
+        }
+    }
+
+    // Put pivot to its position
+    swap(vec[i + 1], vec[high]);
+
+    // Return the point of partition
+    return (i + 1);
+}
+
+void CountPoint::quickSort(vector<CountPoint> &vec, int low, int high) {
+    // Base case: This part will be executed till the starting
+    // index low is lesser than the ending index high
+    if (low < high) {
+
+        // pi is Partitioning Index, arr[p] is now at
+        // right place
+        int pi = partition(vec, low, high);
+
+        // Separately sort elements before and after the
+        // Partition Index pi
+		if ((pi-low)<(high-pi)){
+			quickSort(vec, low, pi - 1);
+			quickSort(vec, pi + 1, high);
+		}
+		else{
+			quickSort(vec, pi + 1, high);
+			quickSort(vec, low, pi - 1);
+		}
+
+    }
+}
+
+bool CountPoint::PointClashes(CountPoint p, vector<CountPoint> &vec){
+	for (int i=0; i<vec.size(); i++){
+		CountPoint p1 = vec[i];
+		double dx = p.point.x - p1.point.x;
+		double dy = p.point.y - p1.point.y;
+		double dist = sqrt(dx*dx+dy*dy);
+//		ShowFloat(dx, "dx");
+//		ShowFloat(dy, "dy");
+//		ShowFloat(dist, "dist");
+		double sumr = double(p.radius+p1.radius);
+//		ShowFloat(sumr, "r1+r2");
+		if (sumr>(dist+3)){
+//			Alert0("does clash");
+			return true;
+		}
+	}
+//	Alert0("no clash");
+//	ShowFloat(p.SD, "SD");
+	return false;
+}
+
+void Traces::DrawCircle(CDC* pDC, CountPoint p, CPen & pen){
+	pDC->SelectObject(&pen);
+	pDC->SelectObject(GetStockObject(NULL_BRUSH));
+	ObjectPoint op;
+	op.SetPos(p.point.x+this->OriginDC.x, p.point.y+this->OriginDC.y);
+	CPoint dp = op.GetPos(Zoom,  ZoomIn);
+//			int sizecircle = DivZoom(frame->SizeCountCircle, Zoom, ZoomIn);
+	int sizecircle = DivZoom(p.radius, Zoom, ZoomIn);
+	int x1=dp.x-sizecircle ;
+	int x2=x1+2*sizecircle ;
+	int y1=dp.y-sizecircle ;
+	int y2=y1+2*sizecircle ;
+	pDC->Ellipse(x1, y1, x2, y2);
+}
+
+void Traces::OnCountGetvesiclesinpoly(){
+//	CWaitCursor dummy;
+	PolygonObject * pPoly = pDoc->dat.polys.GetPoly(selectedpolygon);
+	if (!pPoly){
+		return;
+	}
+	vector <CountPoint> circles;
+	pPoly->UpdateDataPoints();
+	int NP= pPoly->GetNumberOfDataPoints();
+	if (NP<1){
+		return;
+	}
+
+	int MaxR = frame->MaxRadiusVesicles; //pPoly->GetMaxDifferenceLengthOfVertices();
+
+	CDC * pDC = GetDC();
+	char s[20];
+	for (int i=0;i<NP; i++){
+		CountPoint cp;
+		cp.point = pPoly->DataPoints[i];
+//		double Traces::FitVesicle(CPoint & point, int & radius, int MinRadius, int MaxRadius, bool ShowSD){
+
+		cp.SD = this->FitVesicle(cp.point, cp.radius, frame->SizeCountCircle, MaxR);
+		if (cp.SD<=frame->CutoffSDVesicleFit){
+			circles.push_back(cp);
+			pDC->TextOutA(100, 100, "                         ");
+			_itoa(i, s, 10);
+			pDC->TextOutA(100, 100, CString(s));
+		}
+	}
+//	ReleaseDC(pDC);
+	NP = circles.size();
+	if (NP<1){
+		return;
+	}
+/*	int NToShow = 10;
+	UINT NToShow = GetMin(UINT(10), UINT(circles.size()));
+	for (int i=0; i<NToShow; i++){
+		ShowFloat(circles[i].SD, "SD");
+	}
+	Alert("order");
+*/
+//	void * pc = (void *) (&circles[0]);
+//	std::qsort(pc, NP, 20, CountPoint::CompareBytes);
+	CountPoint::quickSort(circles, 0, NP-1);
+//	CountPoint::quickSortNR(circles);
+//	QuickSortNonRecursive(circles, CountPoint::Compare);
+
+/*
+CWaitCursor dummy2;
+	for (int i=0; i<NToShow; i++){
+		ShowFloat(circles[i].SD, "SD");
+	}
+*/
+//	ShowFloat(pPoly->GetNumberOfDataPoints(), " np");
+
+//	CDC * pDC = GetDC();
+	vector <CountPoint> BadCircles;
+
+	for (int i=0; i<NP; i++){
+		CountPoint cp = circles[i];
+		if (cp.SD>frame->CutoffSDVesicleFit){
+			break;
+		}
+//			this->Counts.push_back(cp);
+		if (!CountPoint::PointClashes(cp, this->Counts)){
+			if (!CountPoint::IsPresentInBadCircles(cp, BadCircles)){
+//			ShowFloat(i, "i");
+//		ShowFloat(cp.SD, "SD");
+//		ShowFloat(cp.point.x, "x");
+//		ShowFloat(cp.point.y, "y");
+//		ShowFloat(cp.radius, "r");
+				DrawCircle(pDC, cp, bluePen); 
+				while (true){
+					int key = WaitKey();
+					if (key==YESKEY){
+						DrawCircle(pDC, cp, redPen); 
+						this->Counts.push_back(cp);
+						break;
+					}
+					if (key==NOKEY){
+						DrawCircle(pDC, cp, grayPen); 
+						BadCircles.push_back(cp);
+						break;
+					}
+					if (key==STOPKEY){
+						return;
+					}
+				}
+			}
+//			this->Counts.push_back(cp);
+		}
+		else{
+//			Alert("clash");
+		}
+
+	}
+	ReleaseDC(pDC);
+	Invalidate();
+}
+
+void Traces::OnCountSetcutoffsd(){
+	io myio;
+	double OldSD = frame->CutoffSDVesicleFit;
+	if (myio.InDouble(OldSD, "Cut-off SD")!= IDOK){
+		return;
+	}
+	frame->CutoffSDVesicleFit = OldSD;
+}
+void Traces::OnCountSetbackground()
+{
+	// TODO: Add your command handler code here
+	io myio;
+	double OldBack = frame->Background;
+	if (myio.InDouble(OldBack, "Background")!=IDOK){
+		return;
+	}
+	frame->Background = OldBack;
+}
+
+
+
+int CountPoint::IsVesicle(vector<CountPoint> & vec, CPoint point){
+	for (int i=0; i<vec.size(); i++){
+		if (vec[i].IsInsideCircle(point)){
+			return i;
+		}
+	}
+	return -1;
+}
+void CountPoint::DeleteVesicle(vector<CountPoint> & vec, int index){
+	if (index<0) return;
+	if (index>=vec.size()) return;
+	for (int i=index; i<(vec.size()-1); i++){
+		vec[i] = vec[i+1];
+	}
+	vec.pop_back();
+}
+
+bool CountPoint::IsInsideCircle(CPoint p){
+	int dx = point.x - p.x;
+	int dy = point.y - p.y;
+	return ((dx*dx+dy*dy)<radius*radius);
+}
+
+void Traces::OnCountDeletevesiclesinpolygon()
+{
+	// TODO: Add your command handler code here
+	CWaitCursor dummy;
+	PolygonObject * pPoly = pDoc->dat.polys.GetPoly(selectedpolygon);
+	if (!pPoly){
+		return;
+	}
+	int NP = Counts.size();
+	for (int i=0; i<NP; i++){
+		if (pPoly->IsInside(Counts[i].point)){
+			CountPoint::DeleteVesicle(Counts, i);
+			NP--;
+			i--;
+		}
+	}
+	Invalidate();
+}
+
+
+bool CountPoint::quickSortNR(vector<CountPoint> & arr) {
+//    int piv;
+	int NP = arr.size();
+	CountPoint piv;
+	vector<int> beg;
+	vector<int> end;
+//	, beg[MAX_LEVELS], end[MAX_LEVELS], i = 0, L, R;
+	int i=0;
+	int L, R;
+	beg.push_back(0); //    beg[0] = 0;
+	end.push_back(NP); //    end[0] = elements;
+
+    while (i >= 0) {
+        L = beg[i];
+        R = end[i] - 1;
+        if (L < R) {
+            piv = arr[L];
+//			if (i == beg.size()){
+//
+//
+//				MAX_LEVELS - 1)
+ //              return NO;
+		
+            while (L < R) {
+//                while (arr[R] >= piv && L < R)
+                while (Compare(piv, arr[R]) && L < R)
+                    R--;
+                if (L < R)
+                    arr[L++] = arr[R];
+//                while (arr[L] <= piv && L < R)
+                while (Compare(arr[L], piv) && L < R)
+                    L++;
+                if (L < R)
+                    arr[R--] = arr[L];
+            }
+            arr[L] = piv;
+			if ((i+1)>=beg.size()){
+				beg.push_back(L+1);
+				end.push_back(end[i]);
+			}
+			else{
+				beg[i + 1] = L + 1;
+		        end[i + 1] = end[i];
+			}
+//			end[i]
+            end[i++] = L;
+        } else {
+            i--;
+
+        }
+    }
+    return true;
+}
+
+void Traces::OnCountToggle()
+{
+	// TODO: Add your command handler code here
+	DoShowSDVesicle = !DoShowSDVesicle;
+
+}
+
+void Traces::OnCountMovecircle()
+{
+	// TODO: Add your command handler code here
+	OnMoveCircle= !OnMoveCircle;
+	Invalidate();
+}
+
+BOOL Traces::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	if (OnMoveCircle){
+		if (zDelta>0){
+			MovedCircle.radius++;
+		}
+		if (zDelta<0){
+			MovedCircle.radius--;
+			if (MovedCircle.radius<1) MovedCircle.radius = 1;
+		}
+		Invalidate();
+	}
+	return CScrollView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+
+void Traces::MoveCircle(UINT nFlags, CPoint point){
+	CPoint NewPoint = point;
+	CorrectClickedPointForOrigin(NewPoint);
+	NewPoint.x = MultZoom(NewPoint.x, Zoom, ZoomIn);
+	NewPoint.y = MultZoom(NewPoint.y, Zoom, ZoomIn);
+
+//	NewPoint.x *= Zoom;
+//	NewPoint.y *= Zoom;
+//	CDC * pDC = GetDC();
+	int offsetx, offsety;
+	GetOffset(offsetx, offsety);
+	
+	NewPoint.x -= offsetx;
+	NewPoint.y -= offsety;
+
+//	ShiftOriginDC(pDC);
+	MovedCircle.point = NewPoint;
+	Invalidate();
+//	pDoc->dat.polys.MovePolygon(selectedpolygon, cornerclicked, NewPoint, pDC, Zoom, offsetx, offsety, ZoomIn);
+//	ReleaseDC(pDC);
+
+}
+
+
+double Traces::CalcCircleValue(double * Rims){
+	ImageDataType ** im = pDoc->id.data;
+	if (!im) return 1e300;
+	int sx = pDoc->id.xsize;
+	int sy = pDoc->id.ysize;
+	double Params[3];
+	Params[0]=MovedCircle.radius; //CircleRadius;
+	Params[1]=MovedCircle.point.x; //CirclePoint.x;
+	Params[2]=MovedCircle.point.y;
+	double Params1[3];
+	double Params2[3];
+	for (int i=0; i<3; i++){
+		Params1[i]= Params2[i] = Params[i];
+	}
+	Params1[0] = Params[0]+frame->VesicleRimSize;
+	Params2[0] = Params[0]-frame->VesicleRimSize;
+	double R0 = GetMeanInRim(Params, im, sx, sy);
+	if (R0<2.0*frame->Background){
+		return 1e300;
+	}
+	double R1 = GetMeanInRim(Params1, im, sx, sy);
+	double R2 = GetMeanInRim(Params2, im, sx, sy);
+	Rims[0]=R0;
+	Rims[1]=R1;
+	Rims[2]=R2;
+	return (-2*R0+R1+R2)/R0;
+
+
+
+}
+void Traces::OnCountSetmaxradiusvesicles()
+{
+	// TODO: Add your command handler code here
+	int MR = frame->MaxRadiusVesicles;
+	io myio;
+	if (myio.InInt(MR, "Max radius vesicles")!=IDOK){
+		return;
+	}
+	if (MR<1) return;
+	frame->MaxRadiusVesicles = MR;
+
+}
+
+bool CountPoint::IsPresentInBadCircles(CountPoint p, vector<CountPoint> &vec){
+	int x = p.point.x;
+	int y = p.point.y;
+	for (int i=0; i<vec.size(); i++){
+		CountPoint & p1 = vec[i];
+		double dx = x - p1.point.x;
+		double dy = y - p1.point.y;
+		double dist2 = dx*dx+dy*dy;
+//		ShowFloat(dx, "dx");
+//		ShowFloat(dy, "dy");
+//		ShowFloat(dist, "dist");
+		if (dist2<=(p1.radius*p1.radius)){
+			return true;
+		}
+	}
+	return false;
 }

@@ -5,7 +5,7 @@
 #include "AnaVision.h"
 #include "ChildFrm.h"
 #include "AnaVisionTif.h"
-#include "../GnuWin32/include/tiffio.h"
+#include "../../GnuWin32/include/tiffio.h"
 #include "DiagFillParams.h"
 
 #include <vector>
@@ -149,6 +149,12 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_COMMAND(ID_LOCALIZATION_CALCCOEFFICIENTS, &CChildFrame::OnLocalizationCalccoefficients)
 	ON_COMMAND(ID_LOCALIZATION_CALCMANDERS1, &CChildFrame::OnLocalizationCalcmanders1)
 	ON_COMMAND(ID_LOCALIZATION_CALCMANDERS2, &CChildFrame::OnLocalizationCalcmanders2)
+	ON_COMMAND(ID_COUNT_STARTVESICLECOUNT, &CChildFrame::OnCountStartvesiclecount)
+	ON_COMMAND(ID_COUNT_SETRIMSIZE, &CChildFrame::OnCountSetrimsize)
+	ON_COMMAND(ID_COUNT_WRITEVESICLESTOCLIPBOARD, &CChildFrame::OnCountWritevesiclestoclipboard)
+	ON_COMMAND(ID_COUNT_READVESICLESFROMCLIPBOARD, &CChildFrame::OnCountReadvesiclesfromclipboard)
+	ON_COMMAND(ID_COUNT_GETVESICLESINPOLY, &CChildFrame::OnCountGetvesiclesinpoly)
+	ON_COMMAND(ID_COUNT_SETCUTOFFSD, &CChildFrame::OnCountSetcutoffsd)
 	END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1779,4 +1785,46 @@ void CChildFrame::OnLocalizationCalcmanders2()
 	// TODO: Add your command handler code here
 	CAnaVisionView * pCAna = this->GetCAnaVisionView();
 	pCAna->OnLocalizationCalccoefficients(2) ;
+}
+
+void CChildFrame::OnCountStartvesiclecount()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountStartvesiclecount();
+}
+
+void CChildFrame::OnCountSetrimsize()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountSetrimsize();
+}
+
+void CChildFrame::OnCountWritevesiclestoclipboard()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountWritevesiclestoclipboard();
+}
+
+void CChildFrame::OnCountReadvesiclesfromclipboard()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountReadvesiclesfromclipboard();
+}
+
+void CChildFrame::OnCountGetvesiclesinpoly()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountGetvesiclesinpoly();
+}
+
+void CChildFrame::OnCountSetcutoffsd()
+{
+	// TODO: Add your command handler code here
+	Traces * pT = GetTraces();
+	pT->OnCountSetcutoffsd();
 }
